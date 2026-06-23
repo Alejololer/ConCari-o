@@ -1,12 +1,11 @@
-import type { Product } from "@/lib/types";
+import type { Product, ProductTypeMeta } from "@/lib/types";
 import { occasions } from "@/data/occasions";
-import { productTypes } from "@/data/types";
 import { saveProduct } from "@/app/cms/actions";
 import { Button } from "@/components/atoms/Button";
 import { FieldLabel, Input, Select, Textarea } from "@/components/atoms/Field";
 
 // Plain HTML form posting to the saveProduct server action. No client JS needed.
-export function CmsForm({ product }: { product?: Product }) {
+export function CmsForm({ product, productTypes }: { product?: Product; productTypes: ProductTypeMeta[] }) {
   const p = product;
   return (
     <form action={saveProduct} encType="multipart/form-data" className="flex max-w-[640px] flex-col gap-5">
@@ -43,12 +42,6 @@ export function CmsForm({ product }: { product?: Product }) {
           ))}
         </div>
       </div>
-
-      <div>
-        <FieldLabel>Insignia (opcional)</FieldLabel>
-        <Input name="badge" defaultValue={p?.badge} placeholder="Lo más pedido" />
-      </div>
-
       <div>
         <FieldLabel>Foto del producto (opcional)</FieldLabel>
         {p?.imageUrl && (

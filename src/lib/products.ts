@@ -1,8 +1,32 @@
-import "server-only";
-import type { Product } from "./types";
+import type { Product, ProductTypeMeta } from "./types";
 import { seedProducts } from "@/data/products.seed";
 import { hasSupabase } from "./supabase/env";
 import { createClient } from "./supabase/server";
+
+export async function getProductTypes(): Promise<ProductTypeMeta[]> {
+  if (!hasSupabase) {
+    return [
+      { id: "fresas", label: "Fresas con chocolate", tone: ["#FBEAE6", "#F2D0C9"] },
+      { id: "desayunos", label: "Desayunos sorpresa", tone: ["#F5ECDD", "#E8D5BC"] },
+      { id: "boxes", label: "Boxes y cajas", tone: ["#F6E4EB", "#E8CCDB"] },
+    ];
+  }
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("product_types").select("*");
+  if (error) {
+    console.error("getProductTypes error, falling back to defaults:", error.message);
+    return [
+      { id: "fresas", label: "Fresas con chocolate", tone: ["#FBEAE6", "#F2D0C9"] },
+      { id: "desayunos", label: "Desayunos sorpresa", tone: ["#F5ECDD", "#E8D5BC"] },
+      { id: "boxes", label: "Boxes y cajas", tone: ["#F6E4EB", "#E8CCDB"] },
+    ];
+  }
+  return (data as any[]).map((r) => ({
+    id: r.id,
+    label: r.label,
+    tone: (r.tone && r.tone.length >= 2) ? [r.tone[0], r.tone[1]] : ["#FBEAE6", "#F2D0C9"],
+  }));
+}
 
 // DB row → domain Product (description → desc).
 interface Row {

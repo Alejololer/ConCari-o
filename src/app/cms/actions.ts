@@ -31,7 +31,6 @@ function parseForm(form: FormData) {
     occ: form.getAll("occ").map(String) as OccasionId[],
     description: String(form.get("desc") ?? "").trim(),
     inc,
-    badge: String(form.get("badge") ?? "").trim() || null,
     active: form.get("active") === "on",
   };
 }
@@ -86,6 +85,35 @@ export async function toggleActive(id: string, active: boolean) {
 export async function deleteProduct(id: string) {
   const supabase = await db();
   const { error } = await supabase.from("products").delete().eq("id", id);
+  if (error) throw new Error(error.message);
+  refresh();
+}
+
+export async function saveProductType(formData: FormData) {
+  const id = String(formData.get("id") ?? "").trim().toLowerCase().replace(/[^a-z0-9-]/g, "-");
+  const label = String(formData.get("label") ?? "").trim();
+  const tone1 = String(formData.get("tone1") ?? "#FBEAE6").trim();
+  const tone2 = String(formData.get("tone2") ?? "#F2D0C9").trim();
+
+  if (!id || !label) throw new Error("ID y Nombre son obligatorios.");
+
+  const supabase = await db();
+  const row = {
+    id,
+    label,
+    tone: [tone1, tone2],
+  };
+
+  const { error } = await supabase.from("product_types").upsert(row);
+  if (error) throw new Error(error.message);
+
+  refresh();
+  redirect("/cms/tipos");
+}
+
+export async function deleteProductType(id: string) {
+  const supabase = await db();
+  const { error } = await supabase.from("product_types").delete().eq("id", id);
   if (error) throw new Error(error.message);
   refresh();
 }

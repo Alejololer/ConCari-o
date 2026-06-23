@@ -12,7 +12,7 @@ export type OccasionId =
   | "navidad"
   | "nino";
 
-export type ProductTypeId = "fresas" | "desayunos" | "boxes";
+export type ProductTypeId = string;
 
 export interface Product {
   id: string;

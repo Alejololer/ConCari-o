@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { brand } from "@/data/brand";
 import { waLink, genericText } from "@/lib/whatsapp";
 import { Button } from "@/components/atoms/Button";
@@ -26,24 +27,61 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Decorative floating cards */}
-        <div className="relative hidden h-[380px] md:block">
+        {/* Zoomed logo and decorative floating product cards */}
+        <div className="relative hidden h-[480px] md:block">
+          {/* Zoomed Logo Circle */}
           <div
-            className="absolute left-6 top-4 h-[300px] w-[240px] rounded-panel shadow-soft"
-            style={{ animation: "floaty 6s ease-in-out infinite", background: "radial-gradient(120% 120% at 50% 20%, #FBEAE6, #F2D0C9)" }}
-          />
-          <div
-            className="absolute right-2 top-24 flex h-[150px] w-[200px] flex-col justify-end rounded-card bg-surface p-4 shadow-soft"
-            style={{ animation: "floaty2 7s ease-in-out infinite" }}
+            className="absolute inset-0 m-auto flex h-[330px] w-[330px] items-center justify-center rounded-full shadow-[0_30px_70px_rgba(150,90,105,0.20)]"
+            style={{ background: "radial-gradient(circle at 50% 40%, #ffffff 0%, #FBEDE9 70%)" }}
           >
-            <span className="font-display text-2xl text-rose">Hecho a mano</span>
-            <span className="text-[12.5px] text-ink-mute">cada detalle, con cariño</span>
+            <Image
+              src="/logo-concarino.png"
+              alt="Con cariño"
+              width={280}
+              height={280}
+              className="object-contain"
+              priority
+            />
           </div>
+
+          {/* Left Card: Caja Especial Clásica */}
           <div
-            className="absolute bottom-2 left-0 flex items-center gap-2 rounded-pill bg-surface px-4 py-2.5 shadow-soft"
+            className="absolute left-[-8px] top-[14px] w-[178px] rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)]"
             style={{ animation: "floaty 5.5s ease-in-out infinite" }}
           >
-            <Dot /> <span className="text-[13px] font-medium text-ink">Pedidos por WhatsApp</span>
+            <div className="relative h-[108px] overflow-hidden rounded-[12px] bg-cream">
+              <Image
+                src="https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-2.png"
+                alt="Caja Especial Clásica"
+                fill
+                className="object-cover"
+                sizes="156px"
+              />
+            </div>
+            <div className="px-1.5 py-2">
+              <div className="text-[13px] font-semibold text-ink truncate">Caja Especial Clásica</div>
+              <div className="mt-0.5 text-[14px] font-bold text-rose">$6.00</div>
+            </div>
+          </div>
+
+          {/* Right Card: Desayuno Premium */}
+          <div
+            className="absolute bottom-[18px] right-[-6px] w-[178px] rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)]"
+            style={{ animation: "floaty2 6.2s ease-in-out infinite" }}
+          >
+            <div className="relative h-[108px] overflow-hidden rounded-[12px] bg-cream">
+              <Image
+                src="https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-18.png"
+                alt="Desayuno Premium"
+                fill
+                className="object-cover"
+                sizes="156px"
+              />
+            </div>
+            <div className="px-1.5 py-2">
+              <div className="text-[13px] font-semibold text-ink truncate">Desayuno Premium</div>
+              <div className="mt-0.5 text-[14px] font-bold text-rose">$25.00</div>
+            </div>
           </div>
         </div>
       </div>
