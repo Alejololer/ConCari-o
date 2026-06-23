@@ -20,13 +20,7 @@ export function ProductDetail({ product }: { product: Product }) {
   return (
     <div className="grid gap-10 md:grid-cols-2">
       <div className="flex flex-col gap-4">
-        <PhotoPlaceholder type={product.type} src={product.imageUrl} className="aspect-square w-full rounded-panel">
-          {product.badge && (
-            <span className="absolute left-4 top-4">
-              <Badge>{product.badge}</Badge>
-            </span>
-          )}
-        </PhotoPlaceholder>
+        <PhotoPlaceholder type={product.type} src={product.imageUrl} className="aspect-square w-full rounded-panel" />
 
         {/* Thumbnail strip */}
         <div className="flex gap-3">
@@ -56,9 +50,9 @@ export function ProductDetail({ product }: { product: Product }) {
             <span className="mb-2 block text-xs font-semibold uppercase tracking-[.6px] text-mute">Incluye</span>
             <ul className="flex flex-col gap-2">
               {product.inc.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-[14.5px] text-ink-soft">
-                  <span className="mt-[6px]"><Dot color="var(--color-rose)" /></span>
-                  {item}
+                <li key={item} className="grid grid-cols-[auto_1fr] items-start gap-2.5 text-[14.5px] leading-relaxed text-ink-soft">
+                  <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-rose" />
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
