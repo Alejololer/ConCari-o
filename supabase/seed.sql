@@ -1,0 +1,24 @@
+-- Seed data for Con Cariño. Idempotent: safe to re-run.
+insert into public.products (id,name,price,type,occ,description,inc,badge,active) values
+  ('p1','Caja Especial Clásica',11.5,'fresas',ARRAY['papa','especial']::text[],'6 fresas con chocolate y decoración tradicional, acompañadas de chocolates Ferrero. Una caja clásica que nunca falla.',ARRAY['Caja decorativa','Tarjeta personalizada','Chocolates Ferrero']::text[],'Clásico',true),
+  ('p2','La Combinación Perfecta',15,'boxes',ARRAY['papa','amor']::text[],'6 fresas con chocolate más 1 cerveza Modelo premium, en caja decorada con tarjeta de mensaje personalizado.',ARRAY['Caja decorada','Tarjeta con tu mensaje','1 cerveza premium']::text[],null,true),
+  ('p3','Súper Promo Papá Feliz',28,'boxes',ARRAY['papa']::text[],'8 fresas cubiertas de chocolate en presentación de lujo, chocolates Ferrero y 2 cervezas Modelo premium.',ARRAY['Caja decorativa','Tarjeta personalizada','Chocolates Ferrero','2 cervezas premium']::text[],'Premium',true),
+  ('p4','Papá Especial Gold',18,'fresas',ARRAY['papa','amor']::text[],'Gold Collection de 10 fresas con diseño elegante más 1 cerveza Corona. Para un papá que merece lo mejor.',ARRAY['Caja de regalo','Tarjeta personalizada','1 cerveza Corona']::text[],'Gold',true),
+  ('p5','Para Ti Papá Valiente',25,'boxes',ARRAY['papa','cumple']::text[],'Box con 2 cervezas Corona, papas Pringles, chocolate Hershey’s y 3 snacks a elección.',ARRAY['Diseño especial','Tarjeta con tu mensaje','2 cervezas + snacks']::text[],null,true),
+  ('p6','Caja Amor de Papá',13.5,'boxes',ARRAY['papa','porquesi']::text[],'Fresas decoradas más cerveza Corona en una combinación irresistible y a buen precio.',ARRAY['Caja decorativa','Tarjeta personalizada']::text[],null,true),
+  ('p7','Box Festejo Papá',20,'boxes',ARRAY['papa','cumple']::text[],'2 cervezas, caja de chocolates Ferrero y papas Pringles. Perfecto para celebrar.',ARRAY['Caja de regalo','Tarjeta personalizada','Chocolates Ferrero']::text[],null,true),
+  ('p8','Especialmente Para Ti',20,'boxes',ARRAY['amor','especial']::text[],'Hermoso detalle con Coca-Cola, papas Pringles, 2 cervezas Corona y chocolates Ferrero, en caja de corazón.',ARRAY['Caja decorativa de corazón','Tarjeta personalizada']::text[],'Edición corazón',true),
+  ('p9','Amor Eterno de Papá',10,'boxes',ARRAY['papa','porquesi']::text[],'Cerveza Corona, gomitas y 2 chocolates Ferrero. El detalle perfecto y accesible.',ARRAY['Caja de regalo','Tarjeta personalizada']::text[],null,true),
+  ('p10','Box Collection',12.5,'fresas',ARRAY['especial','amor']::text[],'Fresas decoradas edición premium acompañadas de una cerveza Corona.',ARRAY['Caja de regalo','Tarjeta personalizada']::text[],null,true),
+  ('p11','Edición Papá Amore',12.5,'fresas',ARRAY['papa','amor']::text[],'3 fresas con chocolate más cerveza Corona, en caja decorada.',ARRAY['Caja decorada','Tarjeta personalizada']::text[],null,true),
+  ('p12','Fresas para Papá',12.5,'fresas',ARRAY['papa']::text[],'4 fresas con diseño especial acompañadas de una cerveza.',ARRAY['Caja de regalo','Tarjeta personalizada']::text[],null,true),
+  ('p13','Fresas Naruto',15.5,'fresas',ARRAY['porquesi','cumple','especial']::text[],'Fresas decoradas edición premium con temática de Naruto. Para los fans más dulces.',ARRAY['Caja de regalo','Tarjeta personalizada']::text[],'Edición especial',true),
+  ('p14','Fresas Dragon Ball',19,'fresas',ARRAY['porquesi','cumple']::text[],'10 fresas con diseño especial temática de Dragon Ball.',ARRAY['Caja de regalo','Tarjeta personalizada']::text[],'Edición especial',true),
+  ('p15','Desayuno Clásico',16.5,'desayunos',ARRAY['mama','papa','especial']::text[],'Sándwich de jamón y queso, jugo de naranja, café con leche, fruta picada y chocolate.',ARRAY['Caja decorativa','Tarjeta personalizada']::text[],null,true),
+  ('p16','Desayuno Premium',23,'desayunos',ARRAY['mama','amor']::text[],'El más completo: sándwich, café latte frío o caliente, jugo, fruta, postre y 2 chocolates Kinder.',ARRAY['Caja de madera decorada','Postre + 2 Kinder']::text[],'Premium',true),
+  ('p17','Desayuno Ideal',15.5,'desayunos',ARRAY['papa','especial']::text[],'Presentación especial en caja de madera: sándwich, fruta, jugo y Ferrero Rocher.',ARRAY['Caja de madera','Tarjeta personalizada']::text[],null,true),
+  ('p18','Desayuno Favorito',14.5,'desayunos',ARRAY['amor','mama']::text[],'Sándwich de jamón y doble queso, jugo de naranja y fresas con chocolate de lujo.',ARRAY['Caja decorativa','Tarjeta personalizada']::text[],null,true),
+  ('p19','Desayuno Ideal para Papá',15.5,'desayunos',ARRAY['papa']::text[],'Sándwich, fruta, jugo de naranja, granola y yogurt.',ARRAY['Caja especial','Tarjeta personalizada']::text[],null,true)
+on conflict (id) do update set
+  name=excluded.name, price=excluded.price, type=excluded.type, occ=excluded.occ,
+  description=excluded.description, inc=excluded.inc, badge=excluded.badge, active=excluded.active;

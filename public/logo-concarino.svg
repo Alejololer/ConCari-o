@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Con cariño">
+  <circle cx="50" cy="50" r="46" fill="#BC7A88"/>
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="2"/>
+  <path d="M50 70C40.5 63.5 31 56 31 47a9.5 9.5 0 0 1 19-3 9.5 9.5 0 0 1 19 3c0 9-9.5 16.5-19 23z" fill="#fff"/>
+</svg>

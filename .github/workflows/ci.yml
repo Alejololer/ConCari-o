@@ -1,0 +1,21 @@
+name: CI
+
+# 0-cost quality gate (GitHub Actions free tier). Runs on every push / PR.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check        # logic self-check (money/WhatsApp)
+      - run: npm run typecheck     # tsc --noEmit
+      - run: npm run build         # next build (uses seed fallback, no secrets needed)
