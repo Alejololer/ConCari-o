@@ -17,6 +17,7 @@ const rows = seedProducts.map((p) => ({
   inc: p.inc,
   badge: p.badge ?? null,
   active: p.active,
+  image_url: p.imageUrl ?? null,
 }));
 
 const res = await fetch(`${url}/rest/v1/products`, {

@@ -7,7 +7,7 @@ export const seedProducts: Product[] = [
   {
     "id": "amor-1",
     "name": "Super Promo",
-    "price": 12.0,
+    "price": 12,
     "type": "fresas",
     "occ": [
       "amor"
@@ -18,12 +18,13 @@ export const seedProducts: Product[] = [
       "Tarjeta con dedicatoria"
     ],
     "badge": "Super Promo",
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-1.png"
   },
   {
     "id": "amor-2",
     "name": "Caja Especial Clásica",
-    "price": 6.0,
+    "price": 6,
     "type": "fresas",
     "occ": [
       "amor"
@@ -33,7 +34,8 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-2.png"
   },
   {
     "id": "amor-3",
@@ -48,7 +50,8 @@ export const seedProducts: Product[] = [
       "Envoltura en papel coreano",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-3.png"
   },
   {
     "id": "amor-4",
@@ -63,12 +66,13 @@ export const seedProducts: Product[] = [
       "Diseño especial",
       "Tarjeta con mensaje"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-4.png"
   },
   {
     "id": "amor-5",
     "name": "Box Caballeros",
-    "price": 16.0,
+    "price": 16,
     "type": "fresas",
     "occ": [
       "amor"
@@ -78,7 +82,8 @@ export const seedProducts: Product[] = [
       "Caja de lujo",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-5.png"
   },
   {
     "id": "amor-6",
@@ -95,7 +100,8 @@ export const seedProducts: Product[] = [
       "Caja",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-6.png"
   },
   {
     "id": "amor-7",
@@ -112,12 +118,13 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-7.png"
   },
   {
     "id": "amor-8",
     "name": "Fresas Perfectas",
-    "price": 15.0,
+    "price": 15,
     "type": "fresas",
     "occ": [
       "amor"
@@ -129,7 +136,8 @@ export const seedProducts: Product[] = [
       "Caja de regalo",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-8.png"
   },
   {
     "id": "amor-9",
@@ -146,7 +154,8 @@ export const seedProducts: Product[] = [
       "Caja de regalo",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-9.png"
   },
   {
     "id": "amor-10",
@@ -162,7 +171,8 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Caja de regalo"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-10.png"
   },
   {
     "id": "amor-11",
@@ -177,12 +187,13 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Caja de regalo"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-11.png"
   },
   {
     "id": "amor-12",
     "name": "Box Triple Delicia",
-    "price": 20.0,
+    "price": 20,
     "type": "boxes",
     "occ": [
       "amor"
@@ -195,12 +206,13 @@ export const seedProducts: Product[] = [
       "Caja decorada",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-12.png"
   },
   {
     "id": "amor-13",
     "name": "San Valentín Con Amor",
-    "price": 25.0,
+    "price": 25,
     "type": "boxes",
     "occ": [
       "amor"
@@ -214,7 +226,8 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Mariposas doradas"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-13.png"
   },
   {
     "id": "amor-14",
@@ -231,12 +244,13 @@ export const seedProducts: Product[] = [
       "Caja corazón decorada",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-14.png"
   },
   {
     "id": "amor-15",
     "name": "Regalame Una Sonrisa",
-    "price": 20.0,
+    "price": 20,
     "type": "fresas",
     "occ": [
       "amor"
@@ -248,7 +262,8 @@ export const seedProducts: Product[] = [
       "Caja",
       "Tarjeta decorativa"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-15.png"
   },
   {
     "id": "amor-16",
@@ -268,12 +283,13 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-16.png"
   },
   {
     "id": "amor-17",
     "name": "Desayuno Ideal",
-    "price": 20.0,
+    "price": 20,
     "type": "desayunos",
     "occ": [
       "amor"
@@ -287,12 +303,13 @@ export const seedProducts: Product[] = [
       "Caja de madera",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-17.png"
   },
   {
     "id": "amor-18",
     "name": "Desayuno Premium",
-    "price": 25.0,
+    "price": 25,
     "type": "desayunos",
     "occ": [
       "amor"
@@ -306,12 +323,13 @@ export const seedProducts: Product[] = [
       "2 chocolates Kinder",
       "Caja de madera decorada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-18.png"
   },
   {
     "id": "mama-1",
     "name": "Super Promo Corporativo",
-    "price": 3.0,
+    "price": 3,
     "type": "fresas",
     "occ": [
       "mama"
@@ -322,12 +340,13 @@ export const seedProducts: Product[] = [
       "Tarjeta con dedicatoria"
     ],
     "badge": "Super Promo Corporativo",
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-1.png"
   },
   {
     "id": "mama-2",
     "name": "Caja Especial Clásica",
-    "price": 6.0,
+    "price": 6,
     "type": "fresas",
     "occ": [
       "mama"
@@ -337,12 +356,13 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-2.png"
   },
   {
     "id": "mama-3",
     "name": "El Ramo Perfecto",
-    "price": 18.0,
+    "price": 18,
     "type": "fresas",
     "occ": [
       "mama"
@@ -352,7 +372,8 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-3.png"
   },
   {
     "id": "mama-4",
@@ -369,7 +390,8 @@ export const seedProducts: Product[] = [
       "Diseño especial",
       "Tarjeta con mensaje"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-4.png"
   },
   {
     "id": "mama-5",
@@ -384,7 +406,8 @@ export const seedProducts: Product[] = [
       "Caja de lujo",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-5.png"
   },
   {
     "id": "mama-6",
@@ -401,12 +424,13 @@ export const seedProducts: Product[] = [
       "Caja",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-6.png"
   },
   {
     "id": "mama-7",
     "name": "Amor Eterno De Mamá",
-    "price": 20.0,
+    "price": 20,
     "type": "boxes",
     "occ": [
       "mama"
@@ -417,12 +441,13 @@ export const seedProducts: Product[] = [
       "Caja decorativa de corazón",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-7.png"
   },
   {
     "id": "mama-8",
     "name": "Mamá Especial",
-    "price": 6.0,
+    "price": 6,
     "type": "fresas",
     "occ": [
       "mama"
@@ -433,12 +458,13 @@ export const seedProducts: Product[] = [
       "Caja de regalo",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-8.png"
   },
   {
     "id": "mama-9",
     "name": "Balloon Bouquet",
-    "price": 25.0,
+    "price": 25,
     "type": "boxes",
     "occ": [
       "mama"
@@ -450,7 +476,8 @@ export const seedProducts: Product[] = [
       "Caja de regalo",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-9.png"
   },
   {
     "id": "mama-10",
@@ -466,7 +493,8 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Caja de regalo"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-10.png"
   },
   {
     "id": "mama-11",
@@ -481,12 +509,13 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Caja de regalo"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-11.png"
   },
   {
     "id": "mama-12",
     "name": "Box Triple Delicia",
-    "price": 20.0,
+    "price": 20,
     "type": "boxes",
     "occ": [
       "mama"
@@ -499,12 +528,13 @@ export const seedProducts: Product[] = [
       "Caja decorada",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-12.png"
   },
   {
     "id": "mama-13",
     "name": "San Valentín Con Amor",
-    "price": 25.0,
+    "price": 25,
     "type": "boxes",
     "occ": [
       "mama"
@@ -518,12 +548,13 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Mariposas doradas"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-13.png"
   },
   {
     "id": "mama-14",
     "name": "Corazón Dulce De Mamá",
-    "price": 25.0,
+    "price": 25,
     "type": "boxes",
     "occ": [
       "mama"
@@ -535,12 +566,13 @@ export const seedProducts: Product[] = [
       "Caja corazón decorada",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-14.png"
   },
   {
     "id": "mama-15",
     "name": "Regalame Una Sonrisa",
-    "price": 25.0,
+    "price": 25,
     "type": "boxes",
     "occ": [
       "mama"
@@ -553,7 +585,8 @@ export const seedProducts: Product[] = [
       "Caja deluxe",
       "Tarjeta decorativa"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-15.png"
   },
   {
     "id": "mama-16",
@@ -573,12 +606,13 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-16.png"
   },
   {
     "id": "mama-17",
     "name": "Desayuno Ideal",
-    "price": 20.0,
+    "price": 20,
     "type": "desayunos",
     "occ": [
       "mama"
@@ -592,12 +626,13 @@ export const seedProducts: Product[] = [
       "Caja de madera",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-17.png"
   },
   {
     "id": "mama-18",
     "name": "Desayuno Premium",
-    "price": 25.0,
+    "price": 25,
     "type": "desayunos",
     "occ": [
       "mama"
@@ -612,7 +647,8 @@ export const seedProducts: Product[] = [
       "2 chocolates Kinder",
       "Caja de madera decorada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-18.png"
   },
   {
     "id": "mama-19",
@@ -630,7 +666,8 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-19.png"
   },
   {
     "id": "mama-20",
@@ -650,12 +687,13 @@ export const seedProducts: Product[] = [
       "Caja especial",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-20.png"
   },
   {
     "id": "mama-21",
     "name": "Desayuno Deluxe",
-    "price": 28.0,
+    "price": 28,
     "type": "desayunos",
     "occ": [
       "mama"
@@ -671,12 +709,13 @@ export const seedProducts: Product[] = [
       "Waffles",
       "Caja de madera decorada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mama-21.png"
   },
   {
     "id": "papa-1",
     "name": "Super Promo Papá Feliz",
-    "price": 15.0,
+    "price": 15,
     "type": "boxes",
     "occ": [
       "papa"
@@ -689,7 +728,8 @@ export const seedProducts: Product[] = [
       "Tarjeta con mensaje personalizado"
     ],
     "badge": "Super Promo Papá Feliz",
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-1.png"
   },
   {
     "id": "papa-2",
@@ -706,12 +746,13 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-2.png"
   },
   {
     "id": "papa-3",
     "name": "El Combinación Perfecta",
-    "price": 28.0,
+    "price": 28,
     "type": "boxes",
     "occ": [
       "papa"
@@ -724,12 +765,13 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-3.png"
   },
   {
     "id": "papa-4",
     "name": "Caja Amor De Papá",
-    "price": 25.0,
+    "price": 25,
     "type": "boxes",
     "occ": [
       "papa"
@@ -743,12 +785,13 @@ export const seedProducts: Product[] = [
       "Diseño especial",
       "Tarjeta con mensaje"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-4.png"
   },
   {
     "id": "papa-5",
     "name": "Papá Especial",
-    "price": 18.0,
+    "price": 18,
     "type": "boxes",
     "occ": [
       "papa"
@@ -760,7 +803,8 @@ export const seedProducts: Product[] = [
       "Caja",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-5.png"
   },
   {
     "id": "papa-6",
@@ -777,12 +821,13 @@ export const seedProducts: Product[] = [
       "Caja",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-6.png"
   },
   {
     "id": "papa-7",
     "name": "Amor Eterno De Papá",
-    "price": 20.0,
+    "price": 20,
     "type": "boxes",
     "occ": [
       "papa"
@@ -796,12 +841,13 @@ export const seedProducts: Product[] = [
       "Caja decorativa de corazón",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-7.png"
   },
   {
     "id": "papa-8",
     "name": "Papá Especial",
-    "price": 20.0,
+    "price": 20,
     "type": "boxes",
     "occ": [
       "papa"
@@ -814,12 +860,13 @@ export const seedProducts: Product[] = [
       "Caja de regalo",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-8.png"
   },
   {
     "id": "papa-9",
     "name": "Especialmente Para Ti",
-    "price": 10.0,
+    "price": 10,
     "type": "boxes",
     "occ": [
       "papa"
@@ -832,7 +879,8 @@ export const seedProducts: Product[] = [
       "Caja de regalo",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-9.png"
   },
   {
     "id": "papa-10",
@@ -849,7 +897,8 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Caja de regalo"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-10.png"
   },
   {
     "id": "papa-11",
@@ -866,7 +915,8 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Caja de regalo"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-11.png"
   },
   {
     "id": "papa-12",
@@ -883,12 +933,13 @@ export const seedProducts: Product[] = [
       "Caja decorada",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-12.png"
   },
   {
     "id": "papa-13",
     "name": "Fresas Dragon Ball",
-    "price": 19.0,
+    "price": 19,
     "type": "fresas",
     "occ": [
       "papa"
@@ -899,7 +950,8 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Caja de regalo"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-13.png"
   },
   {
     "id": "papa-14",
@@ -914,7 +966,8 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Caja de regalo"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-14.png"
   },
   {
     "id": "papa-15",
@@ -934,7 +987,8 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-15.png"
   },
   {
     "id": "papa-16",
@@ -953,12 +1007,13 @@ export const seedProducts: Product[] = [
       "Caja de madera",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-16.png"
   },
   {
     "id": "papa-17",
     "name": "Desayuno Premium",
-    "price": 23.0,
+    "price": 23,
     "type": "desayunos",
     "occ": [
       "papa"
@@ -973,7 +1028,8 @@ export const seedProducts: Product[] = [
       "2 chocolates Kinder",
       "Caja de madera decorada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-17.png"
   },
   {
     "id": "papa-18",
@@ -991,7 +1047,8 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-18.png"
   },
   {
     "id": "papa-19",
@@ -1011,12 +1068,13 @@ export const seedProducts: Product[] = [
       "Caja especial",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/papa-19.png"
   },
   {
     "id": "mujer-1",
     "name": "Mujer Hermosa",
-    "price": 7.0,
+    "price": 7,
     "type": "fresas",
     "occ": [
       "mujer"
@@ -1027,12 +1085,13 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta con dedicatoria"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-1.png"
   },
   {
     "id": "mujer-2",
     "name": "Caja Especial Clásica",
-    "price": 6.0,
+    "price": 6,
     "type": "fresas",
     "occ": [
       "mujer"
@@ -1043,12 +1102,13 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-2.png"
   },
   {
     "id": "mujer-3",
     "name": "Detalle Ejecutivo",
-    "price": 5.0,
+    "price": 5,
     "type": "fresas",
     "occ": [
       "mujer"
@@ -1059,7 +1119,8 @@ export const seedProducts: Product[] = [
       "Envase con tapa",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-3.png"
   },
   {
     "id": "mujer-4",
@@ -1075,12 +1136,13 @@ export const seedProducts: Product[] = [
       "Caja corazón",
       "Tarjeta con mensaje"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-4.png"
   },
   {
     "id": "mujer-5",
     "name": "Box Damiselas",
-    "price": 13.0,
+    "price": 13,
     "type": "fresas",
     "occ": [
       "mujer"
@@ -1091,7 +1153,8 @@ export const seedProducts: Product[] = [
       "Caja de lujo",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-5.png"
   },
   {
     "id": "mujer-6",
@@ -1107,7 +1170,8 @@ export const seedProducts: Product[] = [
       "Caja",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-6.png"
   },
   {
     "id": "mujer-7",
@@ -1124,12 +1188,13 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-7.png"
   },
   {
     "id": "mujer-8",
     "name": "Combinación Perfecta",
-    "price": 11.0,
+    "price": 11,
     "type": "boxes",
     "occ": [
       "mujer"
@@ -1141,7 +1206,8 @@ export const seedProducts: Product[] = [
       "Caja corazón",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-8.png"
   },
   {
     "id": "mujer-9",
@@ -1158,7 +1224,8 @@ export const seedProducts: Product[] = [
       "Caja de regalo",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-9.png"
   },
   {
     "id": "mujer-10",
@@ -1174,7 +1241,8 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Caja de regalo"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-10.png"
   },
   {
     "id": "mujer-11",
@@ -1190,12 +1258,13 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Caja de regalo"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-11.png"
   },
   {
     "id": "mujer-12",
     "name": "Box Triple Delicia",
-    "price": 20.0,
+    "price": 20,
     "type": "boxes",
     "occ": [
       "mujer"
@@ -1208,12 +1277,13 @@ export const seedProducts: Product[] = [
       "Caja decorada",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-12.png"
   },
   {
     "id": "mujer-13",
     "name": "San Valentín Con Amor",
-    "price": 25.0,
+    "price": 25,
     "type": "boxes",
     "occ": [
       "mujer"
@@ -1227,7 +1297,8 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Mariposas doradas"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-13.png"
   },
   {
     "id": "mujer-14",
@@ -1244,12 +1315,13 @@ export const seedProducts: Product[] = [
       "Caja corazón decorada",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-14.png"
   },
   {
     "id": "mujer-15",
     "name": "Regalame Una Sonrisa",
-    "price": 19.0,
+    "price": 19,
     "type": "fresas",
     "occ": [
       "mujer"
@@ -1261,7 +1333,8 @@ export const seedProducts: Product[] = [
       "Caja corazón",
       "Tarjeta decorativa"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-15.png"
   },
   {
     "id": "mujer-16",
@@ -1281,12 +1354,13 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-16.png"
   },
   {
     "id": "mujer-17",
     "name": "Desayuno Ideal",
-    "price": 20.0,
+    "price": 20,
     "type": "desayunos",
     "occ": [
       "mujer"
@@ -1300,12 +1374,13 @@ export const seedProducts: Product[] = [
       "Caja de madera",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-17.png"
   },
   {
     "id": "mujer-18",
     "name": "Desayuno Premium",
-    "price": 25.0,
+    "price": 25,
     "type": "desayunos",
     "occ": [
       "mujer"
@@ -1319,7 +1394,8 @@ export const seedProducts: Product[] = [
       "2 chocolates Kinder",
       "Caja de madera decorada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/mujer-18.png"
   },
   {
     "id": "navidad-1",
@@ -1334,7 +1410,8 @@ export const seedProducts: Product[] = [
       "Chocolate con malvaviscos",
       "Caja individual"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-1.png"
   },
   {
     "id": "navidad-2",
@@ -1349,12 +1426,13 @@ export const seedProducts: Product[] = [
       "Chocolates con malvaviscos",
       "Caja de 4 o 6 unidades disponibles"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-2.png"
   },
   {
     "id": "navidad-3",
     "name": "Choco Hershey",
-    "price": 11.0,
+    "price": 11,
     "type": "fresas",
     "occ": [
       "navidad"
@@ -1364,7 +1442,8 @@ export const seedProducts: Product[] = [
       "Fresas con chocolate Hershey",
       "Caja de 4 o 6 unidades disponibles"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-3.png"
   },
   {
     "id": "navidad-4",
@@ -1380,12 +1459,13 @@ export const seedProducts: Product[] = [
       "Decoración navideña",
       "Disponible en caja de 3, 6, 9 o 15 unidades"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-4.png"
   },
   {
     "id": "navidad-5",
     "name": "Choco Oreo",
-    "price": 11.0,
+    "price": 11,
     "type": "fresas",
     "occ": [
       "navidad"
@@ -1396,12 +1476,13 @@ export const seedProducts: Product[] = [
       "Galleta Oreo integrada",
       "Caja de 4 o 6 unidades disponibles"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-5.png"
   },
   {
     "id": "navidad-6",
     "name": "Choco Fresa",
-    "price": 11.0,
+    "price": 11,
     "type": "fresas",
     "occ": [
       "navidad"
@@ -1411,12 +1492,13 @@ export const seedProducts: Product[] = [
       "Fresas rellenas de chocofresa",
       "Caja de 4 o 6 unidades disponibles"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-6.png"
   },
   {
     "id": "navidad-7",
     "name": "Love Happy",
-    "price": 12.0,
+    "price": 12,
     "type": "boxes",
     "occ": [
       "navidad"
@@ -1427,12 +1509,13 @@ export const seedProducts: Product[] = [
       "Taza decorativa navideña",
       "Caja de regalo"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-7.png"
   },
   {
     "id": "navidad-8",
     "name": "Love Happy 2",
-    "price": 6.0,
+    "price": 6,
     "type": "boxes",
     "occ": [
       "navidad"
@@ -1443,12 +1526,13 @@ export const seedProducts: Product[] = [
       "Taza decorativa",
       "Malvaviscos"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-8.png"
   },
   {
     "id": "navidad-9",
     "name": "Love Happy 3",
-    "price": 16.0,
+    "price": 16,
     "type": "boxes",
     "occ": [
       "navidad"
@@ -1459,12 +1543,13 @@ export const seedProducts: Product[] = [
       "2 chocobombas",
       "Jarro decorativo navideño"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-9.png"
   },
   {
     "id": "navidad-10",
     "name": "Ideal Choc",
-    "price": 17.0,
+    "price": 17,
     "type": "boxes",
     "occ": [
       "navidad"
@@ -1475,12 +1560,13 @@ export const seedProducts: Product[] = [
       "4 fresas con chocolate",
       "Caja decorada navideña"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-10.png"
   },
   {
     "id": "navidad-11",
     "name": "Dulce Navidad",
-    "price": 30.0,
+    "price": 30,
     "type": "boxes",
     "occ": [
       "navidad"
@@ -1491,12 +1577,13 @@ export const seedProducts: Product[] = [
       "Botella de vino tinto",
       "Caja de regalo decorada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-11.png"
   },
   {
     "id": "navidad-12",
     "name": "Perfect",
-    "price": 30.0,
+    "price": 30,
     "type": "boxes",
     "occ": [
       "navidad"
@@ -1508,12 +1595,13 @@ export const seedProducts: Product[] = [
       "8 chocolates Ferrero Rocher",
       "Caja de regalo premium"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-12.png"
   },
   {
     "id": "navidad-13",
     "name": "Pink Rose",
-    "price": 30.0,
+    "price": 30,
     "type": "boxes",
     "occ": [
       "navidad"
@@ -1525,12 +1613,13 @@ export const seedProducts: Product[] = [
       "Rosas decorativas",
       "Caja corazón"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-13.png"
   },
   {
     "id": "navidad-14",
     "name": "Love Happy",
-    "price": 20.0,
+    "price": 20,
     "type": "fresas",
     "occ": [
       "navidad"
@@ -1541,12 +1630,13 @@ export const seedProducts: Product[] = [
       "Decoración navideña con mariposas doradas",
       "Caja de regalo"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-14.png"
   },
   {
     "id": "navidad-15",
     "name": "Love",
-    "price": 28.0,
+    "price": 28,
     "type": "boxes",
     "occ": [
       "navidad"
@@ -1558,12 +1648,13 @@ export const seedProducts: Product[] = [
       "Mix de frutos secos",
       "Caja decorada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-15.png"
   },
   {
     "id": "navidad-16",
     "name": "Christmas Star's",
-    "price": 35.0,
+    "price": 35,
     "type": "boxes",
     "occ": [
       "navidad"
@@ -1575,12 +1666,13 @@ export const seedProducts: Product[] = [
       "Chocolates variados",
       "Caja tipo estrella dorada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-16.png"
   },
   {
     "id": "navidad-17",
     "name": "Perfect Christmas",
-    "price": 38.0,
+    "price": 38,
     "type": "boxes",
     "occ": [
       "navidad"
@@ -1593,12 +1685,13 @@ export const seedProducts: Product[] = [
       "Aceitunas gourmet",
       "Caja decorada premium"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-17.png"
   },
   {
     "id": "navidad-18",
     "name": "Christmas Love",
-    "price": 27.0,
+    "price": 27,
     "type": "boxes",
     "occ": [
       "navidad"
@@ -1610,12 +1703,13 @@ export const seedProducts: Product[] = [
       "Nueces tostadas",
       "Caja de regalo decorada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/navidad-18.png"
   },
   {
     "id": "nino-1",
     "name": "Cajita Adorable",
-    "price": 13.0,
+    "price": 13,
     "type": "fresas",
     "occ": [
       "nino"
@@ -1626,7 +1720,8 @@ export const seedProducts: Product[] = [
       "Chocolate blanco y negro",
       "Tarjeta con dedicatoria"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-1.png"
   },
   {
     "id": "nino-2",
@@ -1643,12 +1738,13 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-2.png"
   },
   {
     "id": "nino-3",
     "name": "Osito Feliz",
-    "price": 12.0,
+    "price": 12,
     "type": "fresas",
     "occ": [
       "nino"
@@ -1659,7 +1755,8 @@ export const seedProducts: Product[] = [
       "Presentación de osito decorativo",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-3.png"
   },
   {
     "id": "nino-4",
@@ -1675,7 +1772,8 @@ export const seedProducts: Product[] = [
       "Decoración del personaje favorito",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-4.png"
   },
   {
     "id": "nino-5",
@@ -1692,7 +1790,8 @@ export const seedProducts: Product[] = [
       "Caja de lujo",
       "Tarjeta"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-5.png"
   },
   {
     "id": "nino-6",
@@ -1709,7 +1808,8 @@ export const seedProducts: Product[] = [
       "Caja",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-6.png"
   },
   {
     "id": "nino-7",
@@ -1725,7 +1825,8 @@ export const seedProducts: Product[] = [
       "Chocolate blanco y negro",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-7.png"
   },
   {
     "id": "nino-8",
@@ -1741,7 +1842,8 @@ export const seedProducts: Product[] = [
       "3 Hot Wheels Cars disponibles",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-8.png"
   },
   {
     "id": "nino-9",
@@ -1758,7 +1860,8 @@ export const seedProducts: Product[] = [
       "Caja corazón",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-9.png"
   },
   {
     "id": "nino-10",
@@ -1774,7 +1877,8 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Caja de regalo"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-10.png"
   },
   {
     "id": "nino-11",
@@ -1791,12 +1895,13 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Caja de regalo"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-11.png"
   },
   {
     "id": "nino-12",
     "name": "Chiquitín",
-    "price": 6.0,
+    "price": 6,
     "type": "fresas",
     "occ": [
       "nino"
@@ -1808,12 +1913,13 @@ export const seedProducts: Product[] = [
       "Caja decorada",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-12.png"
   },
   {
     "id": "nino-13",
     "name": "Para Mi Princesa",
-    "price": 10.0,
+    "price": 10,
     "type": "fresas",
     "occ": [
       "nino"
@@ -1824,12 +1930,13 @@ export const seedProducts: Product[] = [
       "Edición especial",
       "Tarjeta personalizada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-13.png"
   },
   {
     "id": "nino-14",
     "name": "Mi Niño Valiente",
-    "price": 15.0,
+    "price": 15,
     "type": "desayunos",
     "occ": [
       "nino"
@@ -1843,7 +1950,8 @@ export const seedProducts: Product[] = [
       "Tarjeta personalizada",
       "Caja decorada"
     ],
-    "active": true
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-14.png"
   },
   {
     "id": "nino-15",
@@ -1862,6 +1970,7 @@ export const seedProducts: Product[] = [
       "Caja decorativa",
       "Tarjeta decorativa"
     ],
-    "active": true
-  },
+    "active": true,
+    "imageUrl": "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/nino-15.png"
+  }
 ];
