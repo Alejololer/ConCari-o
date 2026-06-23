@@ -2,6 +2,7 @@ import { getProductTypes } from "@/lib/products";
 import { saveProductType, deleteProductType } from "@/app/cms/actions";
 import { FieldLabel, Input } from "@/components/atoms/Field";
 import { Button } from "@/components/atoms/Button";
+import { SubmitButton } from "@/components/atoms/SubmitButton";
 
 export default async function CmsTiposPage() {
   const types = await getProductTypes();
@@ -104,7 +105,7 @@ export default async function CmsTiposPage() {
             </div>
 
             <div className="mt-2">
-              <Button className="w-full">Crear categoría</Button>
+              <SubmitButton className="w-full">Crear categoría</SubmitButton>
             </div>
           </form>
         </div>

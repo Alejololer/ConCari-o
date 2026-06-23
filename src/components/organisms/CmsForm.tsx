@@ -2,6 +2,7 @@ import type { Product, ProductTypeMeta } from "@/lib/types";
 import { occasions } from "@/data/occasions";
 import { saveProduct } from "@/app/cms/actions";
 import { Button } from "@/components/atoms/Button";
+import { SubmitButton } from "@/components/atoms/SubmitButton";
 import { FieldLabel, Input, Select, Textarea } from "@/components/atoms/Field";
 
 // Plain HTML form posting to the saveProduct server action. No client JS needed.
@@ -42,6 +43,7 @@ export function CmsForm({ product, productTypes }: { product?: Product; productT
           ))}
         </div>
       </div>
+
       <div>
         <FieldLabel>Foto del producto (opcional)</FieldLabel>
         {p?.imageUrl && (
@@ -71,13 +73,19 @@ export function CmsForm({ product, productTypes }: { product?: Product; productT
         <Textarea name="inc" defaultValue={p?.inc.join("\n")} placeholder={"6 fresas con chocolate\nTarjeta personalizada"} />
       </div>
 
-      <label className="flex items-center gap-2 text-[14.5px] text-ink-soft">
-        <input type="checkbox" name="active" defaultChecked={p?.active ?? true} />
-        Visible en la tienda
-      </label>
+      <div className="flex flex-col gap-2.5">
+        <label className="flex items-center gap-2 text-[14.5px] text-ink-soft">
+          <input type="checkbox" name="active" defaultChecked={p?.active ?? true} />
+          Visible en la tienda
+        </label>
+        <label className="flex items-center gap-2 text-[14.5px] text-ink-soft">
+          <input type="checkbox" name="featured_banner" defaultChecked={p?.featuredBanner ?? false} />
+          Destacado en el banner (máx. 2 productos)
+        </label>
+      </div>
 
       <div className="flex gap-3">
-        <Button>{p ? "Guardar cambios" : "Crear detalle"}</Button>
+        <SubmitButton>{p ? "Guardar cambios" : "Crear detalle"}</SubmitButton>
         <Button href="/cms" variant="secondary">Cancelar</Button>
       </div>
     </form>

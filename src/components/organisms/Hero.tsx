@@ -1,11 +1,27 @@
 import Image from "next/image";
+import Link from "next/link";
+import type { Product } from "@/lib/types";
 import { brand } from "@/data/brand";
 import { waLink, genericText } from "@/lib/whatsapp";
 import { Button } from "@/components/atoms/Button";
 import { SectionLabel } from "@/components/atoms/SectionLabel";
 import { Dot } from "@/components/atoms/Dot";
 
-export function Hero() {
+export function Hero({ bannerProducts = [] }: { bannerProducts?: Product[] }) {
+  const leftProduct = bannerProducts[0] || {
+    id: "amor-2",
+    name: "Caja Especial Clásica",
+    price: 6.00,
+    imageUrl: "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-2.png"
+  };
+
+  const rightProduct = bannerProducts[1] || {
+    id: "amor-18",
+    name: "Desayuno Premium",
+    price: 25.00,
+    imageUrl: "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-18.png"
+  };
+
   return (
     <section className="relative overflow-hidden">
       <div className="pointer-events-none absolute -right-24 -top-24 h-[360px] w-[360px] rounded-full bg-blush blur-[10px]" />
@@ -45,44 +61,50 @@ export function Hero() {
           </div>
 
           {/* Left Card: Caja Especial Clásica */}
-          <div
-            className="absolute left-[-8px] top-[14px] w-[178px] rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)]"
+          <Link
+            href={`/producto/${leftProduct.id}`}
+            className="absolute left-[-8px] top-[14px] w-[178px] rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)] transition hover:scale-105 active:scale-95 block z-10"
             style={{ animation: "floaty 5.5s ease-in-out infinite" }}
           >
             <div className="relative h-[108px] overflow-hidden rounded-[12px] bg-cream">
-              <Image
-                src="https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-2.png"
-                alt="Caja Especial Clásica"
-                fill
-                className="object-cover"
-                sizes="156px"
-              />
+              {leftProduct.imageUrl && (
+                <Image
+                  src={leftProduct.imageUrl}
+                  alt={leftProduct.name}
+                  fill
+                  className="object-cover"
+                  sizes="156px"
+                />
+              )}
             </div>
             <div className="px-1.5 py-2">
-              <div className="text-[13px] font-semibold text-ink truncate">Caja Especial Clásica</div>
-              <div className="mt-0.5 text-[14px] font-bold text-rose">$6.00</div>
+              <div className="text-[13px] font-semibold text-ink truncate">{leftProduct.name}</div>
+              <div className="mt-0.5 text-[14px] font-bold text-rose">${leftProduct.price.toFixed(2)}</div>
             </div>
-          </div>
+          </Link>
 
           {/* Right Card: Desayuno Premium */}
-          <div
-            className="absolute bottom-[18px] right-[-6px] w-[178px] rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)]"
+          <Link
+            href={`/producto/${rightProduct.id}`}
+            className="absolute bottom-[18px] right-[-6px] w-[178px] rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)] transition hover:scale-105 active:scale-95 block z-10"
             style={{ animation: "floaty2 6.2s ease-in-out infinite" }}
           >
             <div className="relative h-[108px] overflow-hidden rounded-[12px] bg-cream">
-              <Image
-                src="https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-18.png"
-                alt="Desayuno Premium"
-                fill
-                className="object-cover"
-                sizes="156px"
-              />
+              {rightProduct.imageUrl && (
+                <Image
+                  src={rightProduct.imageUrl}
+                  alt={rightProduct.name}
+                  fill
+                  className="object-cover"
+                  sizes="156px"
+                />
+              )}
             </div>
             <div className="px-1.5 py-2">
-              <div className="text-[13px] font-semibold text-ink truncate">Desayuno Premium</div>
-              <div className="mt-0.5 text-[14px] font-bold text-rose">$25.00</div>
+              <div className="text-[13px] font-semibold text-ink truncate">{rightProduct.name}</div>
+              <div className="mt-0.5 text-[14px] font-bold text-rose">${rightProduct.price.toFixed(2)}</div>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </section>

@@ -9,7 +9,7 @@ const lines = [
 
 assert.strictEqual(cartTotal(lines), 46, "total = 2*11.5 + 23");
 assert.ok(cartText(lines).includes("Total aproximado: $46.00"), "total formatted");
-assert.ok(cartText(lines).includes("2× Caja Clásica — $23.00"), "line total");
+assert.ok(cartText(lines).includes("- 2x Caja Clásica - $23.00"), "line total");
 
 const link = waLink("593984800307", "hola mundo & cariño");
 assert.ok(link.startsWith("https://wa.me/593984800307?text="), "wa.me base");

@@ -19,10 +19,10 @@ export function cartTotal(lines: OrderLine[]): number {
 /** Message body for a full cart order. */
 export function cartText(lines: OrderLine[]): string {
   const items = lines
-    .map((l) => `• ${l.qty}× ${l.name} — ${money(l.price * l.qty)}`)
+    .map((l) => `- ${l.qty}x ${l.name} - ${money(l.price * l.qty)}`)
     .join("\n");
   return (
-    "¡Hola! Quiero hacer un pedido con cariño 💝\n\n" +
+    "Hola! Quiero hacer un pedido con cariño ❤️\n\n" +
     items +
     `\n\nTotal aproximado: ${money(cartTotal(lines))}`
   );
@@ -30,7 +30,7 @@ export function cartText(lines: OrderLine[]): string {
 
 /** Message body for a single product. */
 export function productText(name: string, qty: number, price: number): string {
-  return `¡Hola! Me interesa el detalle "${name}" (${qty}× — ${money(price * qty)}). ¿Me ayudas a coordinarlo? 💝`;
+  return `Hola! Me interesa el detalle "${name}" (${qty}x - ${money(price * qty)}). Me ayudas a coordinarlo? ❤️`;
 }
 
-export const genericText = "¡Hola Con cariño! Quisiera información sobre sus detalles 💝";
+export const genericText = "Hola Con cariño! Quisiera información sobre sus detalles ❤️";

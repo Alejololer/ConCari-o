@@ -32,6 +32,7 @@ function parseForm(form: FormData) {
     description: String(form.get("desc") ?? "").trim(),
     inc,
     active: form.get("active") === "on",
+    featured_banner: form.get("featured_banner") === "on",
   };
 }
 
@@ -41,6 +42,18 @@ export async function saveProduct(formData: FormData) {
   if (!row.name || !(row.price >= 0)) throw new Error("Nombre y precio válidos son obligatorios.");
 
   const supabase = await db();
+
+  if (row.featured_banner) {
+    let query = supabase.from("products").select("id").eq("featured_banner", true);
+    if (id) {
+      query = query.neq("id", id);
+    }
+    const { data: currentFeatured, error: countError } = await query;
+    if (countError) throw new Error(countError.message);
+    if (currentFeatured && currentFeatured.length >= 2) {
+      throw new Error("Límite excedido: Solo puedes tener un máximo de 2 productos destacados en el banner. Por favor, desactiva el banner en otro producto primero.");
+    }
+  }
 
   // Handle image upload if present and Supabase is available.
   const image = formData.get("image");

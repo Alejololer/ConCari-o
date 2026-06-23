@@ -25,6 +25,7 @@ export interface Product {
   badge?: string;
   imageUrl?: string; // product photo URL (Supabase Storage or /products path)
   active: boolean;
+  featuredBanner?: boolean;
 }
 
 export interface Occasion {

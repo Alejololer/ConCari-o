@@ -19,12 +19,20 @@ export const metadata: Metadata = {
   description: brand.description,
 };
 
+import { Suspense } from "react";
+import { GlobalLoadingOverlay } from "@/components/organisms/GlobalLoadingOverlay";
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className={`${dancing.variable} ${hanken.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Suspense fallback={null}>
+          <GlobalLoadingOverlay />
+        </Suspense>
+        {children}
+      </body>
     </html>
   );
 }

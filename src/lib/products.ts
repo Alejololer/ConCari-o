@@ -40,6 +40,7 @@ interface Row {
   badge: string | null;
   image_url: string | null;
   active: boolean;
+  featured_banner?: boolean;
 }
 const toProduct = (r: Row): Product => ({
   id: r.id,
@@ -52,6 +53,7 @@ const toProduct = (r: Row): Product => ({
   badge: r.badge ?? undefined,
   imageUrl: r.image_url ?? undefined,
   active: r.active,
+  featuredBanner: r.featured_banner ?? false,
 });
 
 /**

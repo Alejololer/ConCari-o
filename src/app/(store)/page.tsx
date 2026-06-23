@@ -7,6 +7,7 @@ import { QuoteBand } from "@/components/organisms/QuoteBand";
 
 export default async function HomePage() {
   const products = await getProducts();
+  const bannerProducts = products.filter((p) => p.featuredBanner);
   // Featured: badged products first, then fill up to 6.
   const featured = [...products]
     .sort((a, b) => Number(Boolean(b.badge)) - Number(Boolean(a.badge)))
@@ -14,7 +15,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero />
+      <Hero bannerProducts={bannerProducts} />
       <CategoryGrid />
       <FeaturedGrid products={featured} />
       <HowTo />
