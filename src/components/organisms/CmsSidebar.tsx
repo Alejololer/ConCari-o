@@ -4,7 +4,7 @@ import { signOut } from "@/app/cms/actions";
 
 export function CmsSidebar() {
   return (
-    <aside className="flex w-full flex-col gap-1 border-line bg-surface p-5 md:h-screen md:w-[240px] md:border-r">
+    <aside className="flex w-full flex-col gap-1 border-line bg-surface p-5 md:sticky md:top-0 md:h-screen md:w-[240px] md:border-r">
       <Link href="/cms" className="mb-6">
         <Logo />
       </Link>
@@ -17,9 +17,6 @@ export function CmsSidebar() {
       </Link>
       <Link href="/cms/whatsapp" className="rounded-[12px] px-3 py-2.5 text-[14.5px] font-medium text-ink-soft hover:bg-blush/60">
         Configurar WhatsApp
-      </Link>
-      <Link href="/cms/producto/nuevo" className="rounded-[12px] px-3 py-2.5 text-[14.5px] font-medium text-ink-soft hover:bg-blush/60">
-        + Nuevo detalle
       </Link>
       <Link href="/" className="rounded-[12px] px-3 py-2.5 text-[14.5px] font-medium text-ink-soft hover:bg-blush/60">
         Ver tienda ↗

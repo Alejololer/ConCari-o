@@ -3,6 +3,7 @@ import { saveProductType, deleteProductType } from "@/app/cms/actions";
 import { FieldLabel, Input } from "@/components/atoms/Field";
 import { Button } from "@/components/atoms/Button";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
+import { ColorPicker } from "@/components/molecules/ColorPicker";
 
 export default async function CmsTiposPage() {
   const types = await getProductTypes();
@@ -82,26 +83,16 @@ export default async function CmsTiposPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div>
-                <FieldLabel>Color Inicial</FieldLabel>
-                <Input
-                  name="tone1"
-                  defaultValue="#FBEAE6"
-                  required
-                  placeholder="#FBEAE6"
-                  className="font-mono text-[13px]"
-                />
-              </div>
-              <div>
-                <FieldLabel>Color Final</FieldLabel>
-                <Input
-                  name="tone2"
-                  defaultValue="#F2D0C9"
-                  required
-                  placeholder="#F2D0C9"
-                  className="font-mono text-[13px]"
-                />
-              </div>
+              <ColorPicker
+                label="Color Inicial"
+                name="tone1"
+                defaultValue="#FBEAE6"
+              />
+              <ColorPicker
+                label="Color Final"
+                name="tone2"
+                defaultValue="#F2D0C9"
+              />
             </div>
 
             <div className="mt-2">
