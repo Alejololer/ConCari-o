@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { getProducts } from "@/lib/products";
 import { StatItem } from "@/components/molecules/StatItem";
-import { CmsRow } from "@/components/molecules/CmsRow";
+import { CmsProductList } from "@/components/molecules/CmsProductList";
 import { money } from "@/lib/format";
 
 export default async function CmsHome() {
   const products = await getProducts({ includeInactive: true });
   const activeCount = products.filter((p) => p.active).length;
-  const avg = products.length ? products.reduce((s, p) => s + p.price, 0) / products.length : 0;
+  const avg = products.length
+    ? products.reduce((s, p) => s + p.price, 0) / products.length
+    : 0;
 
   return (
     <div className="px-6 py-8">
@@ -18,23 +20,21 @@ export default async function CmsHome() {
         </div>
         <Link
           href="/cms/producto/nuevo"
-          className="rounded-pill bg-primary px-6 py-3 text-[14.5px] font-semibold text-white"
+          className="rounded-pill bg-primary px-6 py-3 text-[14.5px] font-semibold text-white hover:opacity-90 transition"
         >
           + Nuevo detalle
         </Link>
       </div>
 
+      {/* Stats */}
       <div className="mb-6 flex gap-8 rounded-card border border-line bg-surface px-6 py-5">
         <StatItem value={String(products.length)} label="Detalles" />
         <StatItem value={String(activeCount)} label="Activos" />
         <StatItem value={money(avg)} label="Precio promedio" />
       </div>
 
-      <div className="divide-y divide-line rounded-card border border-line bg-surface px-5">
-        {products.map((p) => (
-          <CmsRow key={p.id} product={p} />
-        ))}
-      </div>
+      {/* Searchable product list (client island) */}
+      <CmsProductList products={products} />
     </div>
   );
 }

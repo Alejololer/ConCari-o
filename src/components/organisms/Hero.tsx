@@ -30,7 +30,7 @@ export async function Hero({ bannerProducts = [] }: { bannerProducts?: Product[]
       <div className="pointer-events-none absolute -right-24 -top-24 h-[360px] w-[360px] rounded-full bg-blush blur-[10px]" />
       <div className="mx-auto grid max-w-[1180px] items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-24">
         <div className="flex flex-col items-start gap-5">
-          <SectionLabel>Detalles hechos a mano · {brand.location}</SectionLabel>
+          <SectionLabel>Detalles hechos a mano · {brand.city}, {brand.province}</SectionLabel>
           <h1 className="font-display text-[clamp(44px,7vw,76px)] font-bold leading-[1.02] text-ink">
             Detalles que <span className="text-rose">abrazan</span>
           </h1>
@@ -64,50 +64,59 @@ export async function Hero({ bannerProducts = [] }: { bannerProducts?: Product[]
           </div>
 
           {/* Left Card: Caja Especial Clásica */}
-          <Link
-            href={`/producto/${leftProduct.id}`}
-            className="absolute left-[-8px] top-[14px] w-[178px] rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)] transition hover:scale-105 active:scale-95 block z-10"
-            style={{ animation: "floaty 5.5s ease-in-out infinite" }}
+          {/* Float wrapper owns the animation + GPU layer; Link owns the hover scale */}
+          <div
+            className="absolute left-[-8px] top-[14px] z-10 w-[178px]"
+            style={{ animation: "floaty 5.5s cubic-bezier(0.45,0,0.55,1) infinite", willChange: "transform" }}
           >
-            <div className="relative h-[108px] overflow-hidden rounded-[12px] bg-cream">
-              {leftProduct.imageUrl && (
-                <Image
-                  src={leftProduct.imageUrl}
-                  alt={leftProduct.name}
-                  fill
-                  className="object-cover"
-                  sizes="156px"
-                />
-              )}
-            </div>
-            <div className="px-1.5 py-2">
-              <div className="text-[13px] font-semibold text-ink truncate">{leftProduct.name}</div>
-              <div className="mt-0.5 text-[14px] font-bold text-rose">${leftProduct.price.toFixed(2)}</div>
-            </div>
-          </Link>
+            <Link
+              href={`/producto/${leftProduct.id}`}
+              className="block rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)] transition-transform duration-200 hover:scale-105 active:scale-95"
+            >
+              <div className="relative h-[108px] overflow-hidden rounded-[12px] bg-cream">
+                {leftProduct.imageUrl && (
+                  <Image
+                    src={leftProduct.imageUrl}
+                    alt={leftProduct.name}
+                    fill
+                    className="object-cover"
+                    sizes="156px"
+                  />
+                )}
+              </div>
+              <div className="px-1.5 py-2">
+                <div className="text-[13px] font-semibold text-ink truncate">{leftProduct.name}</div>
+                <div className="mt-0.5 text-[14px] font-bold text-rose">${leftProduct.price.toFixed(2)}</div>
+              </div>
+            </Link>
+          </div>
 
           {/* Right Card: Desayuno Premium */}
-          <Link
-            href={`/producto/${rightProduct.id}`}
-            className="absolute bottom-[18px] right-[-6px] w-[178px] rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)] transition hover:scale-105 active:scale-95 block z-10"
-            style={{ animation: "floaty2 6.2s ease-in-out infinite" }}
+          <div
+            className="absolute bottom-[18px] right-[-6px] z-10 w-[178px]"
+            style={{ animation: "floaty2 6.2s cubic-bezier(0.45,0,0.55,1) infinite", willChange: "transform" }}
           >
-            <div className="relative h-[108px] overflow-hidden rounded-[12px] bg-cream">
-              {rightProduct.imageUrl && (
-                <Image
-                  src={rightProduct.imageUrl}
-                  alt={rightProduct.name}
-                  fill
-                  className="object-cover"
-                  sizes="156px"
-                />
-              )}
-            </div>
-            <div className="px-1.5 py-2">
-              <div className="text-[13px] font-semibold text-ink truncate">{rightProduct.name}</div>
-              <div className="mt-0.5 text-[14px] font-bold text-rose">${rightProduct.price.toFixed(2)}</div>
-            </div>
-          </Link>
+            <Link
+              href={`/producto/${rightProduct.id}`}
+              className="block rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)] transition-transform duration-200 hover:scale-105 active:scale-95"
+            >
+              <div className="relative h-[108px] overflow-hidden rounded-[12px] bg-cream">
+                {rightProduct.imageUrl && (
+                  <Image
+                    src={rightProduct.imageUrl}
+                    alt={rightProduct.name}
+                    fill
+                    className="object-cover"
+                    sizes="156px"
+                  />
+                )}
+              </div>
+              <div className="px-1.5 py-2">
+                <div className="text-[13px] font-semibold text-ink truncate">{rightProduct.name}</div>
+                <div className="mt-0.5 text-[14px] font-bold text-rose">${rightProduct.price.toFixed(2)}</div>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

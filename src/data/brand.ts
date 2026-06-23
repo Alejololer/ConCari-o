@@ -3,8 +3,16 @@ export const brand = {
   name: "Con cariño",
   tagline: "Detalles que abrazan",
   description:
-    "Detalles personalizados: fresas con chocolate, desayunos sorpresa y boxes para cada ocasión especial.",
+    "Detalles personalizados en Latacunga, Cotopaxi: fresas con chocolate, desayunos sorpresa y boxes para cada ocasión especial.",
   owner: "Fanny",
+  // ── Location (used for SEO & structured data) ─────────────────────────────
+  city: "Latacunga",
+  province: "Cotopaxi",
+  country: "Ecuador",
+  location: "Latacunga, Cotopaxi, Ecuador",
+  /** Canonical production URL — update if the domain changes. */
+  siteUrl: "https://con-carino.vercel.app",
+  // ─────────────────────────────────────────────────────────────────────────
   whatsapp: {
     number: "593984800307", // E.164 without '+', for wa.me links
     display: "0984800307",
@@ -24,5 +32,4 @@ export const brand = {
     accountNumber: "2207281322",
     holder: "Fanny Patricia Jácome",
   },
-  location: "Ecuador",
 } as const;
