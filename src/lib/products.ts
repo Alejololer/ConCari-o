@@ -1,4 +1,4 @@
-import type { Product, ProductTypeMeta } from "./types";
+import type { Product, ProductTypeMeta, WhatsappSettings } from "./types";
 import { seedProducts } from "@/data/products.seed";
 import { hasSupabase } from "./supabase/env";
 import { createClient } from "./supabase/server";
@@ -84,4 +84,39 @@ export async function getProduct(id: string): Promise<Product | null> {
     .maybeSingle();
   if (error) throw new Error(`getProduct: ${error.message}`);
   return data ? toProduct(data as Row) : null;
+}
+
+export async function getWhatsappSettings(): Promise<WhatsappSettings> {
+  const fallback: WhatsappSettings = {
+    phone_number: "593984800307",
+    cart_template: "Hola! Quiero hacer un pedido con cariño\n\n{items}\n\nTotal aproximado: {total}",
+    product_template: 'Hola! Me interesa el detalle "{name}" ({qty}x - {price}). Me ayudas a coordinarlo?',
+    generic_template: "Hola Con cariño! Quisiera información sobre sus detalles",
+  };
+  if (!hasSupabase) {
+    return fallback;
+  }
+  try {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("whatsapp_settings")
+      .select("*")
+      .eq("id", "default")
+      .maybeSingle();
+
+    if (error) {
+      console.error("getWhatsappSettings error, falling back to default:", error.message);
+      return fallback;
+    }
+    if (!data) return fallback;
+    return {
+      phone_number: data.phone_number ?? fallback.phone_number,
+      cart_template: data.cart_template ?? fallback.cart_template,
+      product_template: data.product_template ?? fallback.product_template,
+      generic_template: data.generic_template ?? fallback.generic_template,
+    };
+  } catch (e) {
+    console.error("getWhatsappSettings generic error, falling back to default:", e);
+    return fallback;
+  }
 }

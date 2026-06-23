@@ -131,6 +131,50 @@ export async function deleteProductType(id: string) {
   refresh();
 }
 
+export async function saveWhatsappSettings(formData: FormData) {
+  const phone_number = String(formData.get("phone_number") ?? "").trim();
+  const cart_template = String(formData.get("cart_template") ?? "").trim();
+  const product_template = String(formData.get("product_template") ?? "").trim();
+  const generic_template = String(formData.get("generic_template") ?? "").trim();
+
+  const cleanedPhone = phone_number.replace(/\D/g, "");
+  if (!cleanedPhone) {
+    throw new Error("El número de WhatsApp no puede estar vacío y debe contener solo dígitos.");
+  }
+
+  // Ensure no diamond emojis or other emoji characters that break. We can warn/strip, or just let it pass,
+  // but let's make sure the prompt constraint is followed: "Avoid emojis in WhatsApp templates as they render as replacement diamonds on the user's setup."
+  // Wait, let's strip any non-ASCII characters or common emoji ranges, or just warn/sanitize!
+  // It's safer to strip any emojis or symbols from the templates. Or at least warn or filter them out.
+  // Actually, we can remove emojis regex-wise or just advise in the form.
+  // Let's filter out non-ASCII/special emoji ranges just in case to be robust.
+  // But a simple regex helper to strip emojis/non-standard unicode symbols is:
+  // /[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]/g
+  // Let's just remove characters outside standard Latin/Spanish ranges and punctuation if needed, or simply strip emojis.
+  // Stripping emoji regex:
+  const emojiRegex = /[\u{1F300}-\u{1F6FF}]|[\u{1F900}-\u{1F9FF}]|[\u{2600}-\u{27BF}]|[\u{1F1E6}-\u{1F1FF}]/gu;
+  const cleanCart = cart_template.replace(emojiRegex, "");
+  const cleanProduct = product_template.replace(emojiRegex, "");
+  const cleanGeneric = generic_template.replace(emojiRegex, "");
+
+  const supabase = await db();
+  const { error } = await supabase
+    .from("whatsapp_settings")
+    .upsert({
+      id: "default",
+      phone_number: cleanedPhone,
+      cart_template: cleanCart,
+      product_template: cleanProduct,
+      generic_template: cleanGeneric,
+    });
+
+  if (error) throw new Error(error.message);
+
+  refresh();
+  revalidatePath("/cms/whatsapp");
+  redirect("/cms");
+}
+
 // --- Auth ---
 export async function signIn(formData: FormData) {
   const supabase = await db();

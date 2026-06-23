@@ -1,8 +1,10 @@
-import { brand } from "@/data/brand";
-import { waLink, genericText } from "@/lib/whatsapp";
 import { Button } from "@/components/atoms/Button";
+import { getWhatsappSettings } from "@/lib/products";
 
-export function QuoteBand() {
+export async function QuoteBand() {
+  const settings = await getWhatsappSettings();
+  const waHref = `https://wa.me/${settings.phone_number}?text=${encodeURIComponent(settings.generic_template)}`;
+
   return (
     <section className="px-5 py-10">
       <div className="mx-auto flex max-w-[1000px] flex-col items-center gap-5 rounded-panel bg-gradient-to-br from-[#F7E3DC] to-[#F1CFC9] px-8 py-14 text-center">
@@ -10,7 +12,7 @@ export function QuoteBand() {
           “Un detalle pequeño puede decir lo que mil palabras no alcanzan.”
         </p>
         <p className="text-[15px] text-ink-soft">¿Tienes una idea en mente? La hacemos realidad contigo.</p>
-        <Button href={waLink(brand.whatsapp.number, genericText)} target="_blank">
+        <Button href={waHref} target="_blank">
           Cuéntanos tu idea
         </Button>
       </div>

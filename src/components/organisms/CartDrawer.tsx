@@ -2,17 +2,17 @@
 import { brand } from "@/data/brand";
 import { useCart } from "@/lib/cart";
 import { money } from "@/lib/format";
-import { cartText, waLink } from "@/lib/whatsapp";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/atoms/Button";
 import { CartLineRow } from "@/components/molecules/CartLineRow";
+import { useWhatsapp } from "@/lib/whatsappContext";
 
 export function CartDrawer() {
   const { lines, total, isOpen, close, count } = useCart();
+  const { getCartLink } = useWhatsapp();
 
-  const checkoutHref = waLink(
-    brand.whatsapp.number,
-    cartText(lines.map((l) => ({ name: l.product.name, qty: l.qty, price: l.product.price }))),
+  const checkoutHref = getCartLink(
+    lines.map((l) => ({ name: l.product.name, qty: l.qty, price: l.product.price })),
   );
 
   return (

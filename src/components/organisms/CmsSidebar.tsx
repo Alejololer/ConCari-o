@@ -15,6 +15,9 @@ export function CmsSidebar() {
       <Link href="/cms/tipos" className="rounded-[12px] px-3 py-2.5 text-[14.5px] font-medium text-ink-soft hover:bg-blush/60">
         Tipos de detalle
       </Link>
+      <Link href="/cms/whatsapp" className="rounded-[12px] px-3 py-2.5 text-[14.5px] font-medium text-ink-soft hover:bg-blush/60">
+        Configurar WhatsApp
+      </Link>
       <Link href="/cms/producto/nuevo" className="rounded-[12px] px-3 py-2.5 text-[14.5px] font-medium text-ink-soft hover:bg-blush/60">
         + Nuevo detalle
       </Link>

@@ -1,9 +1,17 @@
 import Link from "next/link";
 import { brand } from "@/data/brand";
-import { waLink, genericText } from "@/lib/whatsapp";
 import { Logo } from "@/components/atoms/Logo";
+import { getWhatsappSettings } from "@/lib/products";
 
-export function Footer() {
+export async function Footer() {
+  const settings = await getWhatsappSettings();
+  const waHref = `https://wa.me/${settings.phone_number}?text=${encodeURIComponent(settings.generic_template)}`;
+
+  let displayPhone = settings.phone_number;
+  if (displayPhone.startsWith("593") && displayPhone.length === 12) {
+    displayPhone = "0" + displayPhone.slice(3, 6) + " " + displayPhone.slice(6, 9) + " " + displayPhone.slice(9);
+  }
+
   return (
     <footer className="mt-24 border-t border-line bg-surface">
       <div className="mx-auto grid max-w-[1180px] gap-10 px-5 py-14 sm:grid-cols-2 md:grid-cols-4">
@@ -19,8 +27,8 @@ export function Footer() {
         </div>
         <div className="flex flex-col gap-2 text-[14px]">
           <span className="mb-1 font-semibold text-ink">Contacto</span>
-          <a href={waLink(brand.whatsapp.number, genericText)} target="_blank" rel="noopener noreferrer" className="text-ink-mute hover:text-rose">
-            WhatsApp {brand.whatsapp.display}
+          <a href={waHref} target="_blank" rel="noopener noreferrer" className="text-ink-mute hover:text-rose">
+            WhatsApp {displayPhone}
           </a>
           <a href={brand.instagram.url} target="_blank" rel="noopener noreferrer" className="text-ink-mute hover:text-rose">
             Instagram @{brand.instagram.handle}

@@ -28,6 +28,11 @@ def main():
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
         
+    # Detect GPU availability
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    use_half = torch.cuda.is_available()
+    print(f"Using device: {device} (half-precision/fp16: {use_half})")
+    
     print(f"Loading RealESRGAN model...")
     # Use standard RRDBNet model for RealESRGAN_x4plus
     model = RRDBNet(num_in_ch=3, num_out_ch=3, num_feat=64, num_block=23, num_grow_ch=32, scale=4)
@@ -40,15 +45,17 @@ def main():
         tile=256,
         tile_pad=10,
         pre_pad=0,
-        half=False
+        half=use_half,
+        device=device
     )
     
     all_pngs = glob.glob(os.path.join(input_dir, "*.png"))
-    # Match final mapped products only: e.g. amor-1.png, mama-20.png. Avoid raw/tmp like amor-001.png
-    pattern = re.compile(r'^[a-z]+-\d+\.png$')
+    # Match final mapped products only: e.g. amor-1.png, mama-20.png.
+    # Exclude intermediate files with leading zeros (e.g. amor-001.png)
+    pattern = re.compile(r'^[a-z]+-[1-9]\d*\.png$')
     image_paths = [p for p in all_pngs if pattern.match(os.path.basename(p))]
     
-    print(f"Found {len(image_paths)} final product images to upscale (filtered from {len(all_pngs)} raw files).")
+    print(f"Found {len(image_paths)} final product images to upscale (filtered from {len(all_pngs)} files).")
     
     for idx, img_path in enumerate(image_paths):
         base_name = os.path.basename(img_path)
@@ -67,7 +74,7 @@ def main():
                 continue
                 
             # Perform upscaling
-            output, _ = upsampler.enhance(img, outscale=2) # Upscale by 2x using outscale parameter
+            output, _ = upsampler.enhance(img, outscale=2) # Upscale by 2x
             
             # Use numpy to write file with non-ASCII characters in Windows
             is_success, im_buf_arr = cv2.imencode(".png", output)

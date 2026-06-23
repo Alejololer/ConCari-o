@@ -11,11 +11,12 @@ import { Button } from "@/components/atoms/Button";
 import { QtyStepper } from "@/components/atoms/QtyStepper";
 import { PhotoPlaceholder } from "@/components/atoms/PhotoPlaceholder";
 import { Dot } from "@/components/atoms/Dot";
-import { productText, waLink } from "@/lib/whatsapp";
+import { useWhatsapp } from "@/lib/whatsappContext";
 
 export function ProductDetail({ product }: { product: Product }) {
   const { add } = useCart();
   const [qty, setQty] = useState(1);
+  const { getProductLink } = useWhatsapp();
 
   return (
     <div className="grid gap-10 md:grid-cols-2">
@@ -63,7 +64,7 @@ export function ProductDetail({ product }: { product: Product }) {
           <QtyStepper qty={qty} onChange={(n) => setQty(Math.max(1, n))} />
           <Button onClick={() => add(product, qty)}>Agregar al carrito · {money(qty * product.price)}</Button>
           <Button
-            href={waLink(brand.whatsapp.number, productText(product.name, qty, product.price))}
+            href={getProductLink(product.name, qty, product.price)}
             target="_blank"
             variant="secondary"
           >

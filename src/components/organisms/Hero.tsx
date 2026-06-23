@@ -2,12 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/lib/types";
 import { brand } from "@/data/brand";
-import { waLink, genericText } from "@/lib/whatsapp";
 import { Button } from "@/components/atoms/Button";
 import { SectionLabel } from "@/components/atoms/SectionLabel";
 import { Dot } from "@/components/atoms/Dot";
+import { getWhatsappSettings } from "@/lib/products";
 
-export function Hero({ bannerProducts = [] }: { bannerProducts?: Product[] }) {
+export async function Hero({ bannerProducts = [] }: { bannerProducts?: Product[] }) {
+  const settings = await getWhatsappSettings();
+  const waHref = `https://wa.me/${settings.phone_number}?text=${encodeURIComponent(settings.generic_template)}`;
+
   const leftProduct = bannerProducts[0] || {
     id: "amor-2",
     name: "Caja Especial Clásica",
@@ -37,7 +40,7 @@ export function Hero({ bannerProducts = [] }: { bannerProducts?: Product[] }) {
           </p>
           <div className="mt-1 flex flex-wrap items-center gap-3">
             <Button href="/catalogo">Ver catálogo</Button>
-            <Button href={waLink(brand.whatsapp.number, genericText)} target="_blank" variant="secondary">
+            <Button href={waHref} target="_blank" variant="secondary">
               <Dot /> Escríbenos
             </Button>
           </div>

@@ -2,12 +2,13 @@
 import Link from "next/link";
 import { brand } from "@/data/brand";
 import { useCart } from "@/lib/cart";
-import { waLink, genericText } from "@/lib/whatsapp";
 import { Logo } from "@/components/atoms/Logo";
 import { Dot } from "@/components/atoms/Dot";
+import { useWhatsapp } from "@/lib/whatsappContext";
 
 export function Header() {
   const { count, open } = useCart();
+  const { getGenericLink } = useWhatsapp();
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-cream/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-[1180px] items-center justify-between px-5 py-[14px]">
@@ -23,7 +24,7 @@ export function Header() {
 
         <div className="flex items-center gap-2.5">
           <a
-            href={waLink(brand.whatsapp.number, genericText)}
+            href={getGenericLink()}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden items-center gap-2 rounded-pill bg-whatsapp px-4 py-2.5 text-[13.5px] font-semibold text-white sm:flex"

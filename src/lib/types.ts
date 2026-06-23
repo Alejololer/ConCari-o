@@ -44,3 +44,10 @@ export interface CartLine {
   product: Product;
   qty: number;
 }
+
+export interface WhatsappSettings {
+  phone_number: string;
+  cart_template: string;
+  product_template: string;
+  generic_template: string;
+}
