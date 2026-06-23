@@ -10,6 +10,7 @@ export function CatalogFilters() {
   const params = useSearchParams();
   const ocasion = params.get("ocasion") ?? "";
   const tipo = params.get("tipo") ?? "";
+  const orden = params.get("orden") ?? "destacados";
 
   function setParam(key: string, value: string) {
     const next = new URLSearchParams(params.toString());
@@ -42,6 +43,16 @@ export function CatalogFilters() {
           </Chip>
         ))}
       </div>
+      <select
+        value={orden}
+        onChange={(e) => setParam("orden", e.target.value)}
+        className="w-full rounded-pill border border-line-strong bg-surface px-5 py-3 text-[14.5px] text-ink outline-none focus:border-primary"
+      >
+        <option value="destacados">Destacados</option>
+        <option value="precio-asc">Precio: menor a mayor</option>
+        <option value="precio-desc">Precio: mayor a menor</option>
+        <option value="nombre">Nombre A-Z</option>
+      </select>
     </div>
   );
 }

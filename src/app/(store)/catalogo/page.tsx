@@ -7,19 +7,36 @@ import { ProductCard } from "@/components/molecules/ProductCard";
 
 export const metadata = { title: "Catálogo · Con cariño" };
 
-type SP = { ocasion?: string; tipo?: string; q?: string };
+type SP = { ocasion?: string; tipo?: string; q?: string; orden?: string };
 
 export default async function CatalogPage({ searchParams }: { searchParams: Promise<SP> }) {
-  const { ocasion, tipo, q } = await searchParams;
+  const { ocasion, tipo, q, orden } = await searchParams;
   const all = await getProducts();
 
   const term = (q ?? "").trim().toLowerCase();
-  const products = all.filter((p) => {
+  let products = all.filter((p) => {
     if (ocasion && !p.occ.includes(ocasion as OccasionId)) return false;
     if (tipo && p.type !== (tipo as ProductTypeId)) return false;
     if (term && !`${p.name} ${p.desc}`.toLowerCase().includes(term)) return false;
     return true;
   });
+
+  // Apply sorting
+  const sortOption = (orden ?? "destacados").toLowerCase();
+  if (sortOption === "precio-asc") {
+    products = products.sort((a, b) => a.price - b.price);
+  } else if (sortOption === "precio-desc") {
+    products = products.sort((a, b) => b.price - a.price);
+  } else if (sortOption === "nombre") {
+    products = products.sort((a, b) => a.name.localeCompare(b.name, "es"));
+  } else {
+    // "destacados" (default): products with badge first, stable otherwise
+    products = products.sort((a, b) => {
+      if (a.badge && !b.badge) return -1;
+      if (!a.badge && b.badge) return 1;
+      return 0; // maintain original order
+    });
+  }
 
   return (
     <div className="mx-auto max-w-[1180px] px-5 py-12">

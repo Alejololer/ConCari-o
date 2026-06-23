@@ -4,6 +4,7 @@ import type { Product } from "@/lib/types";
 import { brand } from "@/data/brand";
 import { typeById } from "@/data/types";
 import { useCart } from "@/lib/cart";
+import { money } from "@/lib/format";
 import { Price } from "@/components/atoms/Price";
 import { Badge } from "@/components/atoms/Badge";
 import { Button } from "@/components/atoms/Button";
@@ -18,13 +19,27 @@ export function ProductDetail({ product }: { product: Product }) {
 
   return (
     <div className="grid gap-10 md:grid-cols-2">
-      <PhotoPlaceholder type={product.type} className="aspect-square w-full rounded-panel">
-        {product.badge && (
-          <span className="absolute left-4 top-4">
-            <Badge>{product.badge}</Badge>
-          </span>
-        )}
-      </PhotoPlaceholder>
+      <div className="flex flex-col gap-4">
+        <PhotoPlaceholder type={product.type} src={product.imageUrl} className="aspect-square w-full rounded-panel">
+          {product.badge && (
+            <span className="absolute left-4 top-4">
+              <Badge>{product.badge}</Badge>
+            </span>
+          )}
+        </PhotoPlaceholder>
+
+        {/* Thumbnail strip */}
+        <div className="flex gap-3">
+          <div className="h-[70px] w-[70px] shrink-0 rounded-[12px] overflow-hidden border-2 border-line">
+            <PhotoPlaceholder type={product.type} src={product.imageUrl} label={false} className="h-full w-full" />
+          </div>
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="h-[70px] w-[70px] shrink-0 rounded-[12px] overflow-hidden border border-line">
+              <PhotoPlaceholder type={product.type} label={false} className="h-full w-full" />
+            </div>
+          ))}
+        </div>
+      </div>
 
       <div className="flex flex-col gap-4">
         <span className="text-[12px] font-semibold uppercase tracking-[1.6px] text-label">
@@ -52,7 +67,7 @@ export function ProductDetail({ product }: { product: Product }) {
 
         <div className="mt-1 flex flex-wrap items-center gap-3">
           <QtyStepper qty={qty} onChange={(n) => setQty(Math.max(1, n))} />
-          <Button onClick={() => add(product, qty)}>Agregar al carrito</Button>
+          <Button onClick={() => add(product, qty)}>Agregar al carrito · {money(qty * product.price)}</Button>
           <Button
             href={waLink(brand.whatsapp.number, productText(product.name, qty, product.price))}
             target="_blank"

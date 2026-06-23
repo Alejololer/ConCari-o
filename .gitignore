@@ -44,3 +44,8 @@ next-env.d.ts
 
 # Agent tooling
 .serena/
+
+# Brand source material (heavy originals; data lives in src/data, photos in public)
+/tmp-catalog/
+/*.pdf
+/Tarjeta + logos  (1)/

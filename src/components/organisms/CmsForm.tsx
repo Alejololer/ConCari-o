@@ -9,7 +9,7 @@ import { FieldLabel, Input, Select, Textarea } from "@/components/atoms/Field";
 export function CmsForm({ product }: { product?: Product }) {
   const p = product;
   return (
-    <form action={saveProduct} className="flex max-w-[640px] flex-col gap-5">
+    <form action={saveProduct} encType="multipart/form-data" className="flex max-w-[640px] flex-col gap-5">
       {p && <input type="hidden" name="id" value={p.id} />}
 
       <div>
@@ -47,6 +47,25 @@ export function CmsForm({ product }: { product?: Product }) {
       <div>
         <FieldLabel>Insignia (opcional)</FieldLabel>
         <Input name="badge" defaultValue={p?.badge} placeholder="Lo más pedido" />
+      </div>
+
+      <div>
+        <FieldLabel>Foto del producto (opcional)</FieldLabel>
+        {p?.imageUrl && (
+          <div className="mb-3">
+            <img
+              src={p.imageUrl}
+              alt={p.name}
+              className="h-40 w-40 rounded-card object-cover"
+            />
+          </div>
+        )}
+        <input
+          type="file"
+          name="image"
+          accept="image/*"
+          className="block w-full rounded-card border border-line-strong bg-cream px-3 py-2 text-[14.5px] text-ink file:mr-2 file:border-0 file:rounded-card file:bg-rose file:px-2 file:py-1 file:text-[13px] file:text-cream file:hover:bg-rose-dark"
+        />
       </div>
 
       <div>

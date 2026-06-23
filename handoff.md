@@ -19,13 +19,32 @@
 - ✅ CI gratis (`.github/workflows/ci.yml`): check + typecheck + build.
 - ✅ `npm run build` y `npm run typecheck` en verde.
 
+## Estado actual (iteración 2 — catálogo real + fotos + paridad)
+- ✅ **Catálogo real importado de los PDFs de campaña** (San Valentín, Madres, Padre, Mujer,
+  Navidad, Niño): **109 productos** reales con nombre/precio/incluye, reemplazan los 19 seed.
+  Fuente parseada con `pdftotext`; validado (todos los precios existen en el PDF).
+- ✅ Nuevas ocasiones: **Día de la mujer, Navidad, Día del niño** (`occasions.ts` + `types.ts`).
+- ✅ **Migración `0002_product_images.sql`**: columna `image_url` + bucket público
+  `product-images` con RLS (lectura pública, escritura authenticated). Aplicada al remoto vía
+  `supabase db push --include-seed` (ver estrategia en `CLAUDE.md`).
+- ✅ **Subida de fotos en el CMS** (dropzone) → Storage; render real en tarjetas/detalle/carrito
+  vía `PhotoPlaceholder src=` (fallback al gradiente por tipo).
+- ✅ **Logo real** `public/logo-concarino.png` (reemplaza el SVG recreado).
+- ✅ **Sort en catálogo** (Destacados/precio/nombre, param `?orden=`) + refinos de detalle
+  (tira de miniaturas + total de línea en el botón).
+- ✅ Redes reales enlazadas: IG `con_carino_creations` + **Facebook** `con.cariniolatacunga`.
+- ✅ Seed remoto verificado (109 productos activos) y build/typecheck/check en verde.
+
 ## Pendiente de TU acción
-1. **Crear el usuario de la dueña** (para entrar a `/cms`): Supabase → proyecto `con-carino` →
-   **Authentication → Users → Add user** → email + contraseña + "Auto Confirm User". Con eso
-   `https://con-carino.vercel.app/login` da acceso al panel.
-2. **Guardar la contraseña de la base de datos** (no se persiste en el repo; se puede regenerar en
-   Settings → Database). La que se generó al crear el proyecto: `CC-8G5x6dHrDOOjYJvFyOgX`.
-3. (Opcional) Conectar el repo de GitHub al proyecto Vercel para deploys automáticos por push
+1. ✅ **Usuario de la dueña creado** — `/login` ya da acceso al panel.
+2. **Subir fotos reales de producto** desde `/cms` (el dropzone ya sube a Storage). Las fotos
+   están dentro de los PDFs de campaña; se pueden extraer con `pdfimages` y subir por el panel.
+3. **(Vercel)** si usas la nueva publishable key, actualiza `NEXT_PUBLIC_SUPABASE_ANON_KEY` en
+   Vercel (la anon key vieja sigue funcionando). Local ya usa la publishable en `.env.local`.
+4. **Guardar la contraseña de la base de datos** fuera del repo (gestor de contraseñas). Se
+   regenera en Supabase → Settings → Database. **No** se guarda aquí (es un secreto).
+   ⚠️ La contraseña original quedó en el historial de git de iteración 1 — conviene **rotarla**.
+5. (Opcional) Conectar el repo de GitHub al proyecto Vercel para deploys automáticos por push
    (hoy el deploy fue por CLI; el repo remoto aún no existe).
 
 ### Comandos útiles a futuro

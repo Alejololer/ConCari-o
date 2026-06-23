@@ -7,7 +7,10 @@ export type OccasionId =
   | "papa"
   | "especial"
   | "porquesi"
-  | "cumple";
+  | "cumple"
+  | "mujer"
+  | "navidad"
+  | "nino";
 
 export type ProductTypeId = "fresas" | "desayunos" | "boxes";
 
@@ -20,6 +23,7 @@ export interface Product {
   desc: string;
   inc: string[]; // "incluye" bullet points
   badge?: string;
+  imageUrl?: string; // product photo URL (Supabase Storage or /products path)
   active: boolean;
 }
 

@@ -13,7 +13,7 @@ export function CmsRow({ product }: { product: Product }) {
 
   return (
     <div className={cn("flex items-center gap-3 py-3", pending && "opacity-50")}>
-      <PhotoPlaceholder type={product.type} label={false} className="h-[46px] w-[46px] shrink-0 rounded-[12px]" />
+      <PhotoPlaceholder type={product.type} src={product.imageUrl} label={false} className="h-[46px] w-[46px] shrink-0 rounded-[12px]" />
       <div className="min-w-0 flex-1">
         <div className="truncate text-[14.5px] font-semibold text-ink">{product.name}</div>
         <div className="text-[12px] text-ink-mute">

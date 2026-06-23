@@ -8,6 +8,9 @@ export const occasions: Occasion[] = [
   { id: "especial", label: "Para esa persona especial", sub: "Amistad y cariño" },
   { id: "porquesi", label: "Solo porque sí", sub: "Sorpresas sin motivo" },
   { id: "cumple", label: "Para celebrar la vida", sub: "Cumpleaños y logros" },
+  { id: "mujer", label: "Día de la mujer", sub: "Celebra tu fuerza y belleza" },
+  { id: "navidad", label: "Navidad", sub: "Magia y alegría en cada detalle" },
+  { id: "nino", label: "Día del niño", sub: "Sorpresas dulces para los más pequeños" },
 ];
 
 export const occasionById = Object.fromEntries(

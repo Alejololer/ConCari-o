@@ -22,7 +22,12 @@ export function Footer() {
           <a href={waLink(brand.whatsapp.number, genericText)} target="_blank" rel="noopener noreferrer" className="text-ink-mute hover:text-rose">
             WhatsApp {brand.whatsapp.display}
           </a>
-          <span className="text-ink-mute">{brand.instagram.handle}</span>
+          <a href={brand.instagram.url} target="_blank" rel="noopener noreferrer" className="text-ink-mute hover:text-rose">
+            Instagram @{brand.instagram.handle}
+          </a>
+          <a href={brand.facebook.url} target="_blank" rel="noopener noreferrer" className="text-ink-mute hover:text-rose">
+            Facebook
+          </a>
           <span className="text-ink-mute">{brand.location}</span>
         </div>
         <div className="flex flex-col gap-2 text-[14px]">

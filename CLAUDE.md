@@ -23,8 +23,25 @@ npm run dev         # desarrollo
 npm run build       # build de producción
 npm run typecheck   # tsc --noEmit
 npm run check       # self-check de lógica (carrito/WhatsApp)
-# Supabase (ver handoff.md): npx supabase db push, etc.
 ```
+
+## Supabase — esquema y seed (estrategia oficial)
+El **CLI global `supabase`** ya está **logueado y linkeado** al proyecto `con-carino`
+(`qmdxmvswtqpvushfogjn`). Úsalo directamente (NO `npx`, NO Docker/local — todo va al remoto):
+
+```bash
+supabase db push --dry-run          # ver qué migraciones faltan en remoto
+supabase db push --include-seed     # aplica migraciones nuevas + corre supabase/seed.sql
+supabase migration list --linked    # estado local vs remoto
+```
+- **Migraciones**: SQL en `supabase/migrations/NNNN_*.sql`. Para cambios de esquema, crea una
+  migración nueva y actualiza también `src/lib/types.ts` y el mapeo en `src/lib/products.ts`
+  (regla 8). **Storage**: no hagas `alter table storage.objects enable row level security`
+  (no somos owner → error 42501); RLS ya está activo, solo crea `policy` sobre el bucket.
+- **Seed**: `supabase/seed.sql` contiene el catálogo completo (idempotente: `delete` + `insert
+  … on conflict do update`). Se genera de los productos reales; `--include-seed` lo aplica al
+  remoto. El `NEXT_PUBLIC_SUPABASE_ANON_KEY` (publishable key) **no** puede escribir (RLS
+  authenticated) — sembrar siempre por el CLI, nunca con la anon key.
 
 ## Arquitectura — léelo antes de tocar código
 

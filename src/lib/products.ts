@@ -14,6 +14,7 @@ interface Row {
   description: string;
   inc: string[];
   badge: string | null;
+  image_url: string | null;
   active: boolean;
 }
 const toProduct = (r: Row): Product => ({
@@ -25,6 +26,7 @@ const toProduct = (r: Row): Product => ({
   desc: r.description,
   inc: r.inc ?? [],
   badge: r.badge ?? undefined,
+  imageUrl: r.image_url ?? undefined,
   active: r.active,
 });
 

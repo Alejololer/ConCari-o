@@ -7,7 +7,7 @@ export function Logo({ size = 46, subtitle = false, className }: { size?: number
   return (
     <span className={cn("flex items-center gap-[11px]", className)}>
       <Image
-        src="/logo-concarino.svg"
+        src="/logo-concarino.png"
         alt={brand.name}
         width={size}
         height={size}

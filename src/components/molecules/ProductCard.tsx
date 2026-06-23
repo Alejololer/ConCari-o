@@ -21,7 +21,7 @@ export function ProductCard({ product, compact = false }: { product: Product; co
       onClick={() => router.push(`/producto/${product.id}`)}
       className="group flex cursor-pointer flex-col overflow-hidden rounded-card border border-line bg-surface shadow-card transition hover:-translate-y-[5px] hover:shadow-soft"
     >
-      <PhotoPlaceholder type={product.type} className={compact ? "h-[180px]" : "h-[218px]"}>
+      <PhotoPlaceholder type={product.type} src={product.imageUrl} className={compact ? "h-[180px]" : "h-[218px]"}>
         {product.badge && (
           <span className="absolute left-[13px] top-[13px]">
             <Badge>{product.badge}</Badge>

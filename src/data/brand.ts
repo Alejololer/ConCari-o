@@ -7,11 +7,16 @@ export const brand = {
   owner: "Fanny",
   whatsapp: {
     number: "593984800307", // E.164 without '+', for wa.me links
-    display: "098 480 0307",
+    display: "0984800307",
   },
   instagram: {
-    handle: "@con.cariño",
+    handle: "con_carino_creations",
     creations: "@concarino.creations",
+    url: "https://www.instagram.com/con_carino_creations/",
+  },
+  facebook: {
+    handle: "con.cariniolatacunga",
+    url: "https://www.facebook.com/con.cariniolatacunga",
   },
   payment: {
     bank: "Banco Pichincha",

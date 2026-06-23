@@ -42,6 +42,31 @@ export async function saveProduct(formData: FormData) {
   if (!row.name || !(row.price >= 0)) throw new Error("Nombre y precio válidos son obligatorios.");
 
   const supabase = await db();
+
+  // Handle image upload if present and Supabase is available.
+  const image = formData.get("image");
+  if (image instanceof File && image.size > 0) {
+    try {
+      const sanitizedName = image.name.replace(/\s+/g, "-");
+      const path = `${crypto.randomUUID()}-${sanitizedName}`;
+
+      const { data, error: uploadError } = await supabase.storage
+        .from("product-images")
+        .upload(path, image, { upsert: false });
+
+      if (uploadError) throw new Error(`Upload failed: ${uploadError.message}`);
+
+      const { data: publicUrlData } = supabase.storage
+        .from("product-images")
+        .getPublicUrl(data.path);
+
+      // Include image_url in the update/insert.
+      (row as any).image_url = publicUrlData.publicUrl;
+    } catch (err) {
+      throw new Error(`Image upload error: ${err instanceof Error ? err.message : String(err)}`);
+    }
+  }
+
   const { error } = id
     ? await supabase.from("products").update(row).eq("id", id)
     : await supabase.from("products").insert({ id: crypto.randomUUID(), ...row });
