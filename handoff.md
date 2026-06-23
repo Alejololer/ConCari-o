@@ -37,9 +37,8 @@
 
 ## Pendiente de TU acción
 1. ✅ **Usuario de la dueña creado** — `/login` ya da acceso al panel.
-2. **Subir fotos reales de producto** desde `/cms` (el dropzone ya sube a Storage). Las fotos
-   están dentro de los PDFs de campaña; se pueden extraer con `pdfimages` y subir por el panel.
-3. **(Vercel)** si usas la nueva publishable key, actualiza `NEXT_PUBLIC_SUPABASE_ANON_KEY` en
+2. ✅ **Subir fotos reales de producto**: Extraídas automáticamente desde los PDFs de campaña con `pdfimages` y subidas a Supabase Storage (`products/{id}.png`) vinculadas en base de datos.
+3. **(Vercel)** si usas la nueva publishable key, actualiza `NEXT_PUBLIC_SUPABASE_ANON_KEY` in
    Vercel (la anon key vieja sigue funcionando). Local ya usa la publishable en `.env.local`.
 4. **Guardar la contraseña de la base de datos** fuera del repo (gestor de contraseñas). Se
    regenera en Supabase → Settings → Database. **No** se guarda aquí (es un secreto).
@@ -54,12 +53,14 @@ npx supabase db push
 # Re-sembrar / actualizar catálogo (service key solo en memoria, no en disco):
 #   SB_URL=... SB_SERVICE=... node --experimental-strip-types scripts/seed-remote.ts
 # Nuevo deploy de producción:
-npx vercel --prod --scope alejololer-s-projects
+#   npx vercel --prod --scope alejololer-s-projects
+# Subir imágenes del catálogo y re-sembrar:
+#   node --experimental-strip-types scripts/upload-and-update.ts
+#   supabase db query --linked -f supabase/seed.sql
 ```
 
 ## Próximas iteraciones (backlog)
-- [ ] **Fotos reales**: subir a Supabase Storage y reemplazar `PhotoPlaceholder` (hoy gradiente
-      por tipo). Agregar columna `image_url` a `products` + input de archivo en `CmsForm`.
+- [x] **Fotos reales**: subir a Supabase Storage y reemplazar `PhotoPlaceholder` (hoy con URL real). Agregar columna `image_url` a `products` + input de archivo en `CmsForm`.
 - [ ] Gestión de pedidos / categorías desde el panel (hoy solo productos).
 - [ ] Dominio propio en Vercel.
 - [ ] Mejorar SEO/OG images por producto.
