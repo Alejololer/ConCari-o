@@ -10,7 +10,7 @@ export function CartLineRow({ line }: { line: CartLine }) {
   const { product, qty } = line;
   return (
     <div className="flex flex-col gap-3 py-[14px] sm:flex-row sm:items-center">
-      <PhotoPlaceholder type={product.type} src={product.imageUrl} label={false} className="h-[62px] w-[62px] shrink-0 rounded-[14px]" />
+      <PhotoPlaceholder type={product.type} src={product.imageUrl} className="h-[62px] w-[62px] shrink-0 rounded-[14px]" />
       <div className="flex flex-1 flex-col gap-[6px] min-w-0">
         <div className="flex items-start justify-between gap-2">
           <span className="truncate text-[14.5px] font-semibold text-ink">{product.name}</span>

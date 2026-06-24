@@ -27,9 +27,16 @@ export async function Hero({ bannerProducts = [] }: { bannerProducts?: Product[]
 
   return (
     <section className="relative overflow-hidden">
-      <div className="pointer-events-none absolute -right-24 -top-24 h-[360px] w-[360px] rounded-full bg-blush blur-[10px]" />
+      <div className="pointer-events-none absolute -right-24 -top-24 hidden h-[360px] w-[360px] rounded-full bg-blush blur-[10px] sm:block" />
       <div className="mx-auto grid max-w-[1180px] items-center gap-8 px-4 py-10 sm:px-5 md:gap-10 md:grid-cols-2 md:py-24">
         <div className="flex flex-col items-center gap-5 text-center md:items-start md:text-left">
+          {/* Brand logo — mobile only (desktop shows the big logo in the right column) */}
+          <div
+            className="flex h-[116px] w-[116px] items-center justify-center rounded-full shadow-[0_18px_40px_rgba(150,90,105,0.16)] md:hidden"
+            style={{ background: "radial-gradient(circle at 50% 40%, #ffffff 0%, #FBEDE9 70%)" }}
+          >
+            <Image src="/logo-concarino.png" alt="Con cariño" width={92} height={92} className="object-contain" priority />
+          </div>
           <SectionLabel>Detalles hechos a mano · {brand.city}, {brand.province}</SectionLabel>
           <h1 className="font-display text-[clamp(36px,7vw,76px)] font-bold leading-[1.02] text-ink">
             Detalles que <span className="text-rose">abrazan</span>

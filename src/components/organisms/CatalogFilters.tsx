@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { occasions } from "@/data/occasions";
 import type { ProductTypeMeta } from "@/lib/types";
 import { Chip } from "@/components/atoms/Chip";
+import { cn } from "@/lib/cn";
 
 // Reads/writes the URL search params (the catalog page filters server-side from them).
 export function CatalogFilters({ productTypes }: { productTypes: ProductTypeMeta[] }) {
@@ -71,49 +72,37 @@ export function CatalogFilters({ productTypes }: { productTypes: ProductTypeMeta
         </div>
 
         {/* Sort */}
-        <div className="relative shrink-0 w-full sm:w-auto">
-          <select
-            value={orden}
-            onChange={(e) => setParam("orden", e.target.value)}
-            className="w-full appearance-none rounded-pill border border-line-strong bg-surface py-3 pl-5 pr-10 text-[14px] text-ink outline-none transition focus:border-primary"
-          >
-            <option value="destacados">✦ Destacados</option>
-            <option value="precio-asc">Precio: menor a mayor</option>
-            <option value="precio-desc">Precio: mayor a menor</option>
-            <option value="nombre">Nombre A-Z</option>
-          </select>
-          {/* Chevron icon */}
-          <svg
-            className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-ink-mute"
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
-        </div>
+        <FilterSelect value={orden} onChange={(v) => setParam("orden", v)} className="shrink-0 w-full sm:w-auto">
+          <option value="destacados">✦ Destacados</option>
+          <option value="precio-asc">Precio: menor a mayor</option>
+          <option value="precio-desc">Precio: mayor a menor</option>
+          <option value="nombre">Nombre A-Z</option>
+        </FilterSelect>
       </div>
 
-      {/* ── Row 2: Occasion chips ────────────────────────── */}
-      <FilterRow label="Ocasión">
-        <Chip active={!ocasion} onClick={() => setParam("ocasion", "")}>
-          Todas
-        </Chip>
+      {/* ── Row 2: Occasion — dropdown on mobile, chips on desktop ── */}
+      <FilterSelect value={ocasion} onChange={(v) => setParam("ocasion", v)} className="sm:hidden">
+        <option value="">Todas las ocasiones</option>
         {occasions.map((o) => (
-          <Chip
-            key={o.id}
-            active={ocasion === o.id}
-            onClick={() => setParam("ocasion", o.id)}
-          >
-            {o.label}
-          </Chip>
+          <option key={o.id} value={o.id}>{o.label}</option>
         ))}
-      </FilterRow>
+      </FilterSelect>
+      <div className="hidden sm:block">
+        <FilterRow label="Ocasión">
+          <Chip active={!ocasion} onClick={() => setParam("ocasion", "")}>
+            Todas
+          </Chip>
+          {occasions.map((o) => (
+            <Chip
+              key={o.id}
+              active={ocasion === o.id}
+              onClick={() => setParam("ocasion", o.id)}
+            >
+              {o.label}
+            </Chip>
+          ))}
+        </FilterRow>
+      </div>
 
       {/* ── Row 3: Type chips ────────────────────────────── */}
       {productTypes.length > 0 && (
@@ -142,6 +131,44 @@ export function CatalogFilters({ productTypes }: { productTypes: ProductTypeMeta
           Limpiar filtros
         </button>
       )}
+    </div>
+  );
+}
+
+// Helper: rounded select with chevron (shared by Sort + mobile Occasion)
+function FilterSelect({
+  value,
+  onChange,
+  children,
+  className,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={cn("relative", className)}>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full appearance-none rounded-pill border border-line-strong bg-surface py-3 pl-5 pr-10 text-[14px] text-ink outline-none transition focus:border-primary"
+      >
+        {children}
+      </select>
+      <svg
+        className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-ink-mute"
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <polyline points="6 9 12 15 18 9" />
+      </svg>
     </div>
   );
 }

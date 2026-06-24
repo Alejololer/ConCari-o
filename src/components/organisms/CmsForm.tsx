@@ -46,12 +46,16 @@ export function CmsForm({ product, productTypes }: { product?: Product; productT
 
       <div>
         <FieldLabel>Foto del producto (opcional)</FieldLabel>
+        <p className="-mt-1 mb-2 text-[12.5px] leading-[1.5] text-ink-mute">
+          Mejor una foto <strong>vertical 4:5</strong> (ej. 1080×1350px). Si tiene otra
+          proporción se mostrará completa con bordes de relleno — nunca se recorta.
+        </p>
         {p?.imageUrl && (
           <div className="mb-3">
             <img
               src={p.imageUrl}
               alt={p.name}
-              className="h-40 w-40 rounded-card object-cover"
+              className="aspect-[4/5] w-40 rounded-card border border-line bg-cream object-contain"
             />
           </div>
         )}

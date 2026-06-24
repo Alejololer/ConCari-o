@@ -15,7 +15,7 @@ export function CmsRow({ product }: { product: Product }) {
     <div className={cn("flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:gap-3", pending && "opacity-50")}>
       {/* Top row: image + info + price on mobile */}
       <div className="flex items-center gap-3 min-w-0 flex-1">
-        <PhotoPlaceholder type={product.type} src={product.imageUrl} label={false} className="h-[46px] w-[46px] shrink-0 rounded-[12px]" />
+        <PhotoPlaceholder type={product.type} src={product.imageUrl} className="h-[46px] w-[46px] shrink-0 rounded-[12px]" />
         <div className="min-w-0 flex-1">
           <div className="truncate text-[14.5px] font-semibold text-ink">{product.name}</div>
           <div className="text-[12px] text-ink-mute">

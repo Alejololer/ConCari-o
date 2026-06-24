@@ -34,7 +34,7 @@ export function ProductCard({ product, compact = false }: { product: Product; co
         {!compact && (
           <p className="text-[13.5px] leading-[1.5] text-ink-mute">{shortDesc(product.desc)}</p>
         )}
-        <div className="mt-auto flex items-center justify-between pt-[11px]">
+        <div className="mt-auto flex flex-col gap-2.5 pt-[11px] sm:flex-row sm:items-center sm:justify-between">
           <Price value={product.price} className="text-xl" />
           {compact ? (
             <span className="text-xs text-label">{typeById[product.type]?.label}</span>

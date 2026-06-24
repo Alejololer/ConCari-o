@@ -21,16 +21,16 @@ export function ProductDetail({ product }: { product: Product }) {
   return (
     <div className="grid gap-8 md:gap-10 md:grid-cols-2">
       <div className="flex flex-col gap-4">
-        <PhotoPlaceholder type={product.type} src={product.imageUrl} className="aspect-square w-full rounded-panel" />
+        <PhotoPlaceholder type={product.type} src={product.imageUrl} className="aspect-[4/5] w-full rounded-panel" />
 
         {/* Thumbnail strip */}
         <div className="flex flex-wrap gap-3">
           <div className="h-[70px] w-[70px] shrink-0 rounded-[12px] overflow-hidden border-2 border-line">
-            <PhotoPlaceholder type={product.type} src={product.imageUrl} label={false} className="h-full w-full" />
+            <PhotoPlaceholder type={product.type} src={product.imageUrl} className="h-full w-full" />
           </div>
           {[0, 1, 2].map((i) => (
             <div key={i} className="h-[70px] w-[70px] shrink-0 rounded-[12px] overflow-hidden border border-line">
-              <PhotoPlaceholder type={product.type} label={false} className="h-full w-full" />
+              <PhotoPlaceholder type={product.type} className="h-full w-full" />
             </div>
           ))}
         </div>
