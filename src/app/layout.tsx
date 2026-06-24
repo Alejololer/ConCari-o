@@ -24,6 +24,7 @@ export const metadata: Metadata = {
   keywords: [...brand.keywords],
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
+  verification: { google: "MUA1DNgEbQCc9aj70hM84ABlrlZMR1r9rtU-yw4FGGk" },
   // ponytail: OG image reuses the logo; swap for a 1200×630 art when there is one.
   icons: { icon: "/logo-concarino.png" },
   openGraph: {
