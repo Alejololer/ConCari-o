@@ -21,7 +21,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
     .slice(0, 3);
 
   return (
-    <div className="mx-auto max-w-[1080px] px-5 py-12">
+    <div className="mx-auto max-w-[1080px] px-4 py-8 sm:px-5 sm:py-12">
       <Link href="/catalogo" className="mb-6 inline-block text-[13.5px] text-ink-mute hover:text-rose">
         ← Volver al catálogo
       </Link>

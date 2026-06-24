@@ -12,22 +12,22 @@ export default async function CmsHome() {
     : 0;
 
   return (
-    <div className="px-6 py-8">
+    <div className="px-4 py-6 sm:px-6 sm:py-8">
       <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="font-display text-4xl font-bold text-rose">Productos</h1>
+          <h1 className="font-display text-3xl sm:text-4xl font-bold text-rose">Productos</h1>
           <p className="text-[14px] text-ink-mute">Gestiona tu catálogo con cariño.</p>
         </div>
         <Link
           href="/cms/producto/nuevo"
-          className="rounded-pill bg-primary px-6 py-3 text-[14.5px] font-semibold text-white hover:opacity-90 transition"
+          className="rounded-pill bg-primary px-5 py-3 text-[14.5px] font-semibold text-white hover:opacity-90 transition"
         >
           + Nuevo detalle
         </Link>
       </div>
 
       {/* Stats */}
-      <div className="mb-6 flex gap-8 rounded-card border border-line bg-surface px-6 py-5">
+      <div className="mb-6 flex flex-wrap gap-6 sm:gap-8 rounded-card border border-line bg-surface px-5 py-5">
         <StatItem value={String(products.length)} label="Detalles" />
         <StatItem value={String(activeCount)} label="Activos" />
         <StatItem value={money(avg)} label="Precio promedio" />

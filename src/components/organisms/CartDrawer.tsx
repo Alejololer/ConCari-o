@@ -26,7 +26,7 @@ export function CartDrawer() {
       />
       <aside
         className={cn(
-          "fixed right-0 top-0 z-50 flex h-full w-full max-w-[400px] flex-col bg-cream shadow-soft transition-transform",
+          "fixed right-0 top-0 z-50 flex h-full w-full max-w-[calc(100vw-1rem)] sm:max-w-[400px] flex-col bg-cream shadow-soft transition-transform",
           isOpen ? "translate-x-0" : "translate-x-full",
         )}
       >
@@ -55,10 +55,16 @@ export function CartDrawer() {
                 <span className="text-[15px] text-ink-soft">Total aproximado</span>
                 <span className="text-[22px] font-bold text-rose">{money(total)}</span>
               </div>
-              <p className="mb-3 text-[12px] leading-[1.5] text-mute">
+              <p className="mb-2 text-[12px] leading-[1.5] text-mute">
                 Coordinamos el detalle final y el pago por WhatsApp ({brand.payment.bank} ·{" "}
                 {brand.payment.accountType} {brand.payment.accountNumber}).
               </p>
+              <div className="mb-3 flex items-start gap-2 rounded-[10px] bg-blush px-3 py-2.5">
+                <span className="shrink-0 text-[14px]">🚚</span>
+                <p className="text-[11.5px] leading-[1.5] text-berry">
+                  <strong className="font-semibold">Envío no incluido.</strong> El costo se cotiza aparte según tu ubicación.
+                </p>
+              </div>
               <Button href={checkoutHref} target="_blank" className="w-full">
                 Pedir por WhatsApp
               </Button>

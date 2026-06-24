@@ -21,7 +21,7 @@ export function ProductCard({ product, compact = false }: { product: Product; co
       onClick={() => router.push(`/producto/${product.id}`)}
       className="group flex cursor-pointer flex-col overflow-hidden rounded-card border border-line bg-surface shadow-card transition hover:-translate-y-[5px] hover:shadow-soft"
     >
-      <PhotoPlaceholder type={product.type} src={product.imageUrl} className={compact ? "h-[180px]" : "h-[218px]"} />
+      <PhotoPlaceholder type={product.type} src={product.imageUrl} className={compact ? "aspect-[4/5] w-full" : "aspect-[4/5] w-full"} />
 
       <div className="flex flex-1 flex-col gap-[7px] p-[18px] pt-[17px]">
         {!compact && (
@@ -43,12 +43,15 @@ export function ProductCard({ product, compact = false }: { product: Product; co
                 e.stopPropagation();
                 add(product);
               }}
-              className="rounded-pill bg-blush px-4 py-[9px] text-[13px] font-semibold text-berry hover:brightness-95"
+              className="w-full rounded-pill bg-blush px-4 py-[9px] text-[13px] font-semibold text-berry hover:brightness-95 sm:w-auto"
             >
               Agregar +
             </button>
           )}
         </div>
+        {!compact && (
+          <p className="mt-1 text-[11.5px] text-mute">🚚 Envío cotizado aparte</p>
+        )}
       </div>
     </div>
   );

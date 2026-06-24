@@ -71,11 +71,11 @@ export function CatalogFilters({ productTypes }: { productTypes: ProductTypeMeta
         </div>
 
         {/* Sort */}
-        <div className="relative shrink-0">
+        <div className="relative shrink-0 w-full sm:w-auto">
           <select
             value={orden}
             onChange={(e) => setParam("orden", e.target.value)}
-            className="appearance-none rounded-pill border border-line-strong bg-surface py-3 pl-5 pr-10 text-[14px] text-ink outline-none transition focus:border-primary"
+            className="w-full appearance-none rounded-pill border border-line-strong bg-surface py-3 pl-5 pr-10 text-[14px] text-ink outline-none transition focus:border-primary"
           >
             <option value="destacados">✦ Destacados</option>
             <option value="precio-asc">Precio: menor a mayor</option>

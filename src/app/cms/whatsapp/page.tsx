@@ -9,9 +9,9 @@ export default async function CmsWhatsappPage() {
   const settings = await getWhatsappSettings();
 
   return (
-    <div className="px-6 py-8">
+    <div className="px-4 py-6 sm:px-6 sm:py-8">
       <div className="mb-7">
-        <h1 className="font-display text-4xl font-bold text-rose">WhatsApp & Mensajes</h1>
+        <h1 className="font-display text-3xl sm:text-4xl font-bold text-rose">WhatsApp &amp; Mensajes</h1>
         <p className="text-[14px] text-ink-mute">
           Configura el número de teléfono receptor y las plantillas para los mensajes automáticos.
         </p>

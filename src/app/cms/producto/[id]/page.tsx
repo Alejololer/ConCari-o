@@ -13,8 +13,8 @@ export default async function CmsProductPage({ params }: { params: Promise<{ id:
   if (!isNew && !product) notFound();
 
   return (
-    <div className="px-6 py-8">
-      <h1 className="mb-7 font-display text-4xl font-bold text-rose">
+    <div className="px-4 py-6 sm:px-6 sm:py-8">
+      <h1 className="mb-7 font-display text-3xl sm:text-4xl font-bold text-rose">
         {isNew ? "Nuevo detalle" : `Editar · ${product!.name}`}
       </h1>
       <CmsForm product={product ?? undefined} productTypes={productTypes} />

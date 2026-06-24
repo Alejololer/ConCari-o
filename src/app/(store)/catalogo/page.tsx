@@ -42,10 +42,10 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
   }
 
   return (
-    <div className="mx-auto max-w-[1180px] px-5 py-12">
+    <div className="mx-auto max-w-[1180px] px-4 py-8 sm:px-5 sm:py-12">
       <div className="mb-8 flex flex-col gap-3">
         <SectionLabel>Nuestro catálogo</SectionLabel>
-        <h1 className="font-display text-[clamp(34px,5vw,52px)] font-bold leading-tight text-ink">
+        <h1 className="font-display text-[clamp(30px,5vw,52px)] font-bold leading-tight text-ink">
           Detalles para cada ocasión
         </h1>
       </div>

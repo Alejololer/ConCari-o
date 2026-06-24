@@ -28,19 +28,19 @@ export async function Hero({ bannerProducts = [] }: { bannerProducts?: Product[]
   return (
     <section className="relative overflow-hidden">
       <div className="pointer-events-none absolute -right-24 -top-24 h-[360px] w-[360px] rounded-full bg-blush blur-[10px]" />
-      <div className="mx-auto grid max-w-[1180px] items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-24">
-        <div className="flex flex-col items-start gap-5">
+      <div className="mx-auto grid max-w-[1180px] items-center gap-8 px-4 py-10 sm:px-5 md:gap-10 md:grid-cols-2 md:py-24">
+        <div className="flex flex-col items-center gap-5 text-center md:items-start md:text-left">
           <SectionLabel>Detalles hechos a mano · {brand.city}, {brand.province}</SectionLabel>
-          <h1 className="font-display text-[clamp(44px,7vw,76px)] font-bold leading-[1.02] text-ink">
+          <h1 className="font-display text-[clamp(36px,7vw,76px)] font-bold leading-[1.02] text-ink">
             Detalles que <span className="text-rose">abrazan</span>
           </h1>
-          <p className="max-w-[440px] text-[16.5px] leading-[1.6] text-ink-soft">
+          <p className="max-w-[440px] text-[15.5px] leading-[1.6] text-ink-soft sm:text-[16.5px]">
             Fresas con chocolate, desayunos sorpresa y boxes pensados con cariño para cada
             fecha especial. Elige, personaliza y lo coordinamos por WhatsApp.
           </p>
-          <div className="mt-1 flex flex-wrap items-center gap-3">
-            <Button href="/catalogo">Ver catálogo</Button>
-            <Button href={waHref} target="_blank" variant="secondary">
+          <div className="mt-1 flex flex-wrap items-center justify-center gap-3 md:justify-start">
+            <Button className="w-full sm:w-auto" href="/catalogo">Ver catálogo</Button>
+            <Button className="w-full sm:w-auto" href={waHref} target="_blank" variant="secondary">
               <Dot /> Escríbenos
             </Button>
           </div>

@@ -9,9 +9,9 @@ export default async function CmsTiposPage() {
   const types = await getProductTypes();
 
   return (
-    <div className="px-6 py-8">
+    <div className="px-4 py-6 sm:px-6 sm:py-8">
       <div className="mb-7">
-        <h1 className="font-display text-4xl font-bold text-rose">Tipos de detalle</h1>
+        <h1 className="font-display text-3xl sm:text-4xl font-bold text-rose">Tipos de detalle</h1>
         <p className="text-[14px] text-ink-mute">Gestiona las categorías de tus productos y sus colores de degradado.</p>
       </div>
 
@@ -82,7 +82,7 @@ export default async function CmsTiposPage() {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <ColorPicker
                 label="Color Inicial"
                 name="tone1"

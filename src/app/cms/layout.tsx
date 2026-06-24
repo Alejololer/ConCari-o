@@ -17,7 +17,7 @@ export default async function CmsLayout({ children }: { children: React.ReactNod
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
       <CmsSidebar />
-      <div className="flex-1 bg-cream">
+      <div className="min-w-0 flex-1 bg-cream">
         {!hasSupabase && (
           <p className="border-b border-line bg-blush px-6 py-2.5 text-[13px] text-berry">
             Modo demo: conecta Supabase para guardar cambios (ver <code>handoff.md</code>).

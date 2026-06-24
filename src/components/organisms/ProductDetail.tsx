@@ -19,12 +19,12 @@ export function ProductDetail({ product }: { product: Product }) {
   const { getProductLink } = useWhatsapp();
 
   return (
-    <div className="grid gap-10 md:grid-cols-2">
+    <div className="grid gap-8 md:gap-10 md:grid-cols-2">
       <div className="flex flex-col gap-4">
         <PhotoPlaceholder type={product.type} src={product.imageUrl} className="aspect-square w-full rounded-panel" />
 
         {/* Thumbnail strip */}
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <div className="h-[70px] w-[70px] shrink-0 rounded-[12px] overflow-hidden border-2 border-line">
             <PhotoPlaceholder type={product.type} src={product.imageUrl} label={false} className="h-full w-full" />
           </div>
@@ -40,7 +40,7 @@ export function ProductDetail({ product }: { product: Product }) {
         <span className="text-[12px] font-semibold uppercase tracking-[1.6px] text-label">
           {typeById[product.type]?.label}
         </span>
-        <h1 className="font-display text-[clamp(34px,5vw,50px)] font-bold leading-tight text-ink">
+        <h1 className="font-display text-[clamp(30px,5vw,50px)] font-bold leading-tight text-ink">
           {product.name}
         </h1>
         <Price value={product.price} className="text-[28px]" />
@@ -60,13 +60,24 @@ export function ProductDetail({ product }: { product: Product }) {
           </div>
         )}
 
-        <div className="mt-1 flex flex-wrap items-center gap-3">
+        {/* Shipping disclaimer */}
+        <div className="flex items-start gap-2.5 rounded-card border border-line-strong bg-blush px-4 py-3">
+          <span className="mt-[2px] shrink-0 text-[16px]">🚚</span>
+          <p className="text-[13px] leading-[1.5] text-berry">
+            <strong className="font-semibold">Envío no incluido.</strong> El costo de envío se coordina y se cotiza aparte por WhatsApp según tu ubicación.
+          </p>
+        </div>
+
+        <div className="mt-1 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
           <QtyStepper qty={qty} onChange={(n) => setQty(Math.max(1, n))} />
-          <Button onClick={() => add(product, qty)}>Agregar al carrito · {money(qty * product.price)}</Button>
+          <Button className="w-full sm:w-auto" onClick={() => add(product, qty)}>
+            Agregar al carrito · {money(qty * product.price)}
+          </Button>
           <Button
             href={getProductLink(product.name, qty, product.price)}
             target="_blank"
             variant="secondary"
+            className="w-full sm:w-auto"
           >
             <Dot /> Pedir directo
           </Button>
