@@ -6,6 +6,7 @@ import { useCart } from "@/lib/cart";
 import { Badge } from "@/components/atoms/Badge";
 import { Price } from "@/components/atoms/Price";
 import { PhotoPlaceholder } from "@/components/atoms/PhotoPlaceholder";
+import { cn } from "@/lib/cn";
 
 function shortDesc(desc: string): string {
   return desc.length > 74 ? desc.slice(0, 74).trimEnd() + "…" : desc;
@@ -21,7 +22,7 @@ export function ProductCard({ product, compact = false }: { product: Product; co
       onClick={() => router.push(`/producto/${product.id}`)}
       className="group flex cursor-pointer flex-col overflow-hidden rounded-card border border-line bg-surface shadow-card transition hover:-translate-y-[5px] hover:shadow-soft"
     >
-      <PhotoPlaceholder type={product.type} src={product.imageUrl} className={compact ? "aspect-[4/5] w-full" : "aspect-[4/5] w-full"} />
+      <PhotoPlaceholder type={product.type} src={product.imageUrl} className={cn("aspect-[4/5] w-full sm:aspect-auto", compact ? "sm:h-[180px]" : "sm:h-[218px]")} />
 
       <div className="flex flex-1 flex-col gap-[7px] p-[18px] pt-[17px]">
         {!compact && (
