@@ -10,6 +10,28 @@ export const brand = {
   province: "Cotopaxi",
   country: "Ecuador",
   location: "Latacunga, Cotopaxi, Ecuador",
+  /** Service area — delivery only, no storefront. Used for SEO/local schema. */
+  areaServed: [
+    "Latacunga",
+    "Lasso",
+    "Pujilí",
+    "Salcedo",
+    "Belisario Quevedo",
+    "San Buenaventura",
+    "Cotopaxi",
+  ],
+  /** Latacunga center; tweak if a more precise service center is known. */
+  geo: { lat: -0.9347, lng: -78.6156 },
+  priceRange: "$",
+  /** Local keywords we want to rank for (drives <meta keywords> + copy). */
+  keywords: [
+    "detalles Latacunga",
+    "regalos Latacunga",
+    "fresas con chocolate Latacunga",
+    "desayunos sorpresa Latacunga",
+    "boxes de regalo Cotopaxi",
+    "Con cariño Latacunga",
+  ],
   /** Canonical production URL — update if the domain changes. */
   siteUrl: "https://con-carino.vercel.app",
   // ─────────────────────────────────────────────────────────────────────────

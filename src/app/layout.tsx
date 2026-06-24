@@ -15,8 +15,32 @@ const hanken = Hanken_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: `${brand.name} · ${brand.tagline}`,
+  metadataBase: new URL(brand.siteUrl),
+  title: {
+    default: `${brand.name} · Detalles y regalos a domicilio en ${brand.city}`,
+    template: `%s · ${brand.name}`,
+  },
   description: brand.description,
+  keywords: [...brand.keywords],
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
+  // ponytail: OG image reuses the logo; swap for a 1200×630 art when there is one.
+  icons: { icon: "/logo-concarino.png" },
+  openGraph: {
+    type: "website",
+    locale: "es_EC",
+    url: brand.siteUrl,
+    siteName: brand.name,
+    title: `${brand.name} · Detalles y regalos en ${brand.city}`,
+    description: brand.description,
+    images: ["/logo-concarino.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${brand.name} · Detalles en ${brand.city}`,
+    description: brand.description,
+    images: ["/logo-concarino.png"],
+  },
 };
 
 import { Suspense } from "react";
@@ -26,7 +50,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={`${dancing.variable} ${hanken.variable}`}>
+    <html lang="es-EC" className={`${dancing.variable} ${hanken.variable}`}>
       <body>
         <Suspense fallback={null}>
           <GlobalLoadingOverlay />

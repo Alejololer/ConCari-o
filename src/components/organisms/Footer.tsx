@@ -37,6 +37,7 @@ export async function Footer() {
             Facebook
           </a>
           <span className="text-ink-mute">{brand.location}</span>
+          <span className="text-ink-mute">Entregas a domicilio en {brand.areaServed.slice(0, -1).join(", ")}.</span>
         </div>
         <div className="flex flex-col gap-2 text-[14px]">
           <span className="mb-1 font-semibold text-ink">Pagos</span>

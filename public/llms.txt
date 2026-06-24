@@ -1,0 +1,33 @@
+# Con cariño
+
+> Detalles personalizados a domicilio en Latacunga, Cotopaxi (Ecuador): fresas con chocolate,
+> desayunos sorpresa y boxes de regalo para cada ocasión especial. Pedidos por WhatsApp.
+
+## Qué es
+Con cariño ("Detalles que abrazan") es un negocio ecuatoriano de detalles y regalos con
+entrega a domicilio. No hay tienda física ni pasarela de pago en línea: el pedido se coordina
+y confirma por WhatsApp.
+
+## Qué vende
+- Fresas con chocolate
+- Desayunos sorpresa
+- Boxes y cajas de regalo
+
+Para ocasiones: cumpleaños, aniversarios, San Valentín, Día de la madre, Día del padre,
+Día de la mujer, Día del niño, Navidad y "solo porque sí".
+
+## Área de servicio (entrega a domicilio)
+Latacunga, Lasso, Pujilí, Salcedo, Belisario Quevedo, San Buenaventura y alrededores de la
+provincia de Cotopaxi, Ecuador.
+
+## Cómo pedir
+1. Ver el catálogo en https://con-carino.vercel.app/catalogo
+2. Escribir por WhatsApp al 0984800307 (+593 98 480 0307)
+3. Coordinar fecha de entrega, dirección y personalización.
+
+## Enlaces
+- Web: https://con-carino.vercel.app
+- Catálogo: https://con-carino.vercel.app/catalogo
+- Instagram: https://www.instagram.com/con_carino_creations/
+- Facebook: https://www.facebook.com/con.cariniolatacunga
+- WhatsApp: https://wa.me/593984800307

@@ -4,8 +4,13 @@ import { getProducts, getProductTypes } from "@/lib/products";
 import { SectionLabel } from "@/components/atoms/SectionLabel";
 import { CatalogFilters } from "@/components/organisms/CatalogFilters";
 import { ProductCard } from "@/components/molecules/ProductCard";
+import { brand } from "@/data/brand";
 
-export const metadata = { title: "Catálogo · Con cariño" };
+export const metadata = {
+  title: `Catálogo de detalles en ${brand.city}`,
+  description: `Explora fresas con chocolate, desayunos sorpresa y boxes de regalo. Entregas a domicilio en ${brand.city} y alrededores. Pide por WhatsApp.`,
+  alternates: { canonical: "/catalogo" },
+};
 
 type SP = { ocasion?: string; tipo?: string; q?: string; orden?: string };
 
