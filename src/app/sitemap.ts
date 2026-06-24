@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { brand } from "@/data/brand";
 import { getProducts } from "@/lib/products";
 
+// Fallback refresh; the CMS revalidates /sitemap.xml instantly on every edit.
+export const revalidate = 86400;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = brand.siteUrl;
   const now = new Date();

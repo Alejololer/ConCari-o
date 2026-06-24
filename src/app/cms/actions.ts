@@ -16,6 +16,8 @@ function refresh() {
   revalidatePath("/cms");
   revalidatePath("/catalogo");
   revalidatePath("/");
+  revalidatePath("/sitemap.xml"); // keep sitemap in sync when products change
+  revalidatePath("/producto/[id]", "page"); // refresh all product detail pages
 }
 
 // Shared shape for insert/update (snake_case columns).
