@@ -1,7 +1,7 @@
 import { getProducts } from "@/lib/products";
 import { brand } from "@/data/brand";
 import { JsonLd } from "@/components/atoms/JsonLd";
-import { CursorGlow } from "@/components/atoms/CursorGlow";
+import { CursorDust } from "@/components/atoms/CursorDust";
 import { Hero } from "@/components/organisms/Hero";
 import { CategoryGrid } from "@/components/organisms/CategoryGrid";
 import { FeaturedGrid } from "@/components/organisms/FeaturedGrid";
@@ -84,7 +84,7 @@ export default async function HomePage() {
       <JsonLd data={localBusiness} />
       <JsonLd data={website} />
       <JsonLd data={faqSchema} />
-      <CursorGlow />
+      <CursorDust />
       <Hero bannerProducts={bannerProducts} />
       <CategoryGrid />
       <FeaturedGrid products={featured} />

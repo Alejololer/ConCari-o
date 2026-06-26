@@ -51,3 +51,6 @@ next-env.d.ts
 /Tarjeta + logos  (1)/
 /extracted-images/
 /upscaled-images/
+
+# Playwright MCP scratch
+.playwright-mcp/

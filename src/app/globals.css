@@ -56,8 +56,10 @@
 }
 
 html, body { margin: 0; padding: 0; }
+/* Cream lives on <html> so the fixed -z-10 dust canvas paints above it but
+   behind all (transparent) content — the effect can never sit over objects. */
+html { background: var(--color-cream); }
 body {
-  background: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
