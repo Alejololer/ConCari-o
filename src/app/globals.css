@@ -38,20 +38,17 @@
   --shadow-soft: 0 18px 38px rgba(120, 70, 85, 0.15);
 }
 
-/* Floating product cards — GPU-composited, sine-wave easing for buttery smooth motion */
+/* Floating product cards — single keyframe, global ease-in-out = calm pendulum glide.
+   Both cards share one duration so they never drift; .float-b gets a half-period
+   negative delay → permanent anti-phase (one up while the other is down). */
 @keyframes floaty {
-  0%   { transform: translate3d(0, 0, 0); }
-  25%  { transform: translate3d(0, -7px, 0); }
-  50%  { transform: translate3d(0, -12px, 0); }
-  75%  { transform: translate3d(0, -7px, 0); }
-  100% { transform: translate3d(0, 0, 0); }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -12px, 0); }
 }
-@keyframes floaty2 {
-  0%   { transform: translate3d(0, 0, 0); }
-  25%  { transform: translate3d(0, 6px, 0); }
-  50%  { transform: translate3d(0, 10px, 0); }
-  75%  { transform: translate3d(0, 6px, 0); }
-  100% { transform: translate3d(0, 0, 0); }
+.float-a { animation: floaty 6s ease-in-out infinite;     will-change: transform; }
+.float-b { animation: floaty 6s ease-in-out -3s infinite; will-change: transform; }
+@media (prefers-reduced-motion: reduce) {
+  .float-a, .float-b { animation: none; }
 }
 @keyframes fadeup {
   from { opacity: 0; transform: translateY(14px); }

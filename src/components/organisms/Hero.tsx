@@ -72,10 +72,7 @@ export async function Hero({ bannerProducts = [] }: { bannerProducts?: Product[]
 
           {/* Left Card: Caja Especial Clásica */}
           {/* Float wrapper owns the animation + GPU layer; Link owns the hover scale */}
-          <div
-            className="absolute left-[-8px] top-[14px] z-10 w-[178px]"
-            style={{ animation: "floaty 5.5s cubic-bezier(0.45,0,0.55,1) infinite", willChange: "transform" }}
-          >
+          <div className="float-a absolute left-[-8px] top-[14px] z-10 w-[178px]">
             <Link
               href={`/producto/${leftProduct.id}`}
               className="block rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)] transition-transform duration-200 hover:scale-105 active:scale-95"
@@ -99,10 +96,7 @@ export async function Hero({ bannerProducts = [] }: { bannerProducts?: Product[]
           </div>
 
           {/* Right Card: Desayuno Premium */}
-          <div
-            className="absolute bottom-[18px] right-[-6px] z-10 w-[178px]"
-            style={{ animation: "floaty2 6.2s cubic-bezier(0.45,0,0.55,1) infinite", willChange: "transform" }}
-          >
+          <div className="float-b absolute bottom-[18px] right-[-6px] z-10 w-[178px]">
             <Link
               href={`/producto/${rightProduct.id}`}
               className="block rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)] transition-transform duration-200 hover:scale-105 active:scale-95"
