@@ -1,4 +1,4 @@
-import { getProducts } from "@/lib/products";
+import { getProducts, getOccasions } from "@/lib/products";
 import { brand } from "@/data/brand";
 import { JsonLd } from "@/components/atoms/JsonLd";
 import { CursorDust } from "@/components/atoms/CursorDust";
@@ -25,12 +25,12 @@ const faqs = [
   },
   {
     q: "¿Cómo hago un pedido?",
-    a: `Elige tus detalles en el catálogo y confirma el pedido por WhatsApp al ${brand.whatsapp.display}. Coordinamos fecha, entrega y personalización.`,
+    a: `Elige tus detalles en el catálogo y confirma el pedido por WhatsApp. Coordinamos fecha, entrega y personalización.`,
   },
 ];
 
 export default async function HomePage() {
-  const products = await getProducts();
+  const [products, occasions] = await Promise.all([getProducts(), getOccasions()]);
   const bannerProducts = products.filter((p) => p.featuredBanner);
   // Featured: badged products first, then fill up to 6.
   const featured = [...products]
@@ -44,7 +44,6 @@ export default async function HomePage() {
     description: brand.description,
     url: brand.siteUrl,
     image: `${brand.siteUrl}/logo-concarino.png`,
-    telephone: `+${brand.whatsapp.number}`,
     priceRange: brand.priceRange,
     address: {
       "@type": "PostalAddress",
@@ -86,7 +85,7 @@ export default async function HomePage() {
       <JsonLd data={faqSchema} />
       <CursorDust />
       <Hero bannerProducts={bannerProducts} />
-      <CategoryGrid />
+      <CategoryGrid occasions={occasions} />
       <FeaturedGrid products={featured} />
       <HowTo />
       <section className="mx-auto max-w-[820px] px-4 py-16 sm:px-5">

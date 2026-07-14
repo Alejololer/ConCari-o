@@ -8,6 +8,7 @@ import { cn } from "@/lib/cn";
 const navLinks = [
   { href: "/cms", label: "Productos" },
   { href: "/cms/tipos", label: "Tipos de detalle" },
+  { href: "/cms/ocasiones", label: "Ocasiones" },
   { href: "/cms/whatsapp", label: "Configurar WhatsApp" },
   { href: "/", label: "Ver tienda ↗" },
 ];

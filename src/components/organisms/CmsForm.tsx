@@ -1,12 +1,11 @@
-import type { Product, ProductTypeMeta } from "@/lib/types";
-import { occasions } from "@/data/occasions";
+import type { Occasion, Product, ProductTypeMeta } from "@/lib/types";
 import { saveProduct } from "@/app/cms/actions";
 import { Button } from "@/components/atoms/Button";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
 import { FieldLabel, Input, Select, Textarea } from "@/components/atoms/Field";
 
 // Plain HTML form posting to the saveProduct server action. No client JS needed.
-export function CmsForm({ product, productTypes }: { product?: Product; productTypes: ProductTypeMeta[] }) {
+export function CmsForm({ product, productTypes, occasions }: { product?: Product; productTypes: ProductTypeMeta[]; occasions: Occasion[] }) {
   const p = product;
   return (
     <form action={saveProduct} encType="multipart/form-data" className="flex max-w-[640px] flex-col gap-5">

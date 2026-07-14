@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import type { OccasionId, ProductTypeId } from "@/lib/types";
-import { getProducts, getProductTypes } from "@/lib/products";
+import { getProducts, getProductTypes, getOccasions } from "@/lib/products";
 import { SectionLabel } from "@/components/atoms/SectionLabel";
 import { CatalogFilters } from "@/components/organisms/CatalogFilters";
 import { ProductCard } from "@/components/molecules/ProductCard";
@@ -16,9 +16,10 @@ type SP = { ocasion?: string; tipo?: string; q?: string; orden?: string };
 
 export default async function CatalogPage({ searchParams }: { searchParams: Promise<SP> }) {
   const { ocasion, tipo, q, orden } = await searchParams;
-  const [all, productTypes] = await Promise.all([
+  const [all, productTypes, occasions] = await Promise.all([
     getProducts(),
-    getProductTypes()
+    getProductTypes(),
+    getOccasions(),
   ]);
 
   const term = (q ?? "").trim().toLowerCase();
@@ -57,7 +58,7 @@ export default async function CatalogPage({ searchParams }: { searchParams: Prom
 
       {/* useSearchParams needs a Suspense boundary */}
       <Suspense>
-        <CatalogFilters productTypes={productTypes} />
+        <CatalogFilters productTypes={productTypes} occasions={occasions} />
       </Suspense>
 
       <p className="mt-6 text-[13.5px] text-ink-mute">

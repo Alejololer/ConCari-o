@@ -1,7 +1,9 @@
-import type { Product, ProductTypeMeta, WhatsappSettings } from "./types";
+import type { Occasion, Product, ProductTypeMeta, WhatsappSettings } from "./types";
 import { seedProducts } from "@/data/products.seed";
+import { occasions as seedOccasions } from "@/data/occasions";
 import { hasSupabase } from "./supabase/env";
 import { createClient } from "./supabase/server";
+import { phone as fallbackPhone } from "./contact.server";
 
 export async function getProductTypes(): Promise<ProductTypeMeta[]> {
   if (!hasSupabase) {
@@ -25,6 +27,21 @@ export async function getProductTypes(): Promise<ProductTypeMeta[]> {
     id: r.id,
     label: r.label,
     tone: (r.tone && r.tone.length >= 2) ? [r.tone[0], r.tone[1]] : ["#FBEAE6", "#F2D0C9"],
+  }));
+}
+
+export async function getOccasions(): Promise<Occasion[]> {
+  if (!hasSupabase) return seedOccasions;
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("occasions").select("*").order("label");
+  if (error) {
+    console.error("getOccasions error, falling back to defaults:", error.message);
+    return seedOccasions;
+  }
+  return (data as any[]).map((r) => ({
+    id: r.id,
+    label: r.label,
+    sub: r.sub ?? "",
   }));
 }
 
@@ -88,7 +105,7 @@ export async function getProduct(id: string): Promise<Product | null> {
 
 export async function getWhatsappSettings(): Promise<WhatsappSettings> {
   const fallback: WhatsappSettings = {
-    phone_number: "593984800307",
+    phone_number: fallbackPhone,
     cart_template: "Hola! Quiero hacer un pedido con cariño\n\n{items}\n\nTotal aproximado: {total}",
     product_template: 'Hola! Me interesa el detalle "{name}" ({qty}x - {price}). Me ayudas a coordinarlo?',
     generic_template: "Hola Con cariño! Quisiera información sobre sus detalles",

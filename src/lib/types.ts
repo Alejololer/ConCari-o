@@ -1,16 +1,7 @@
 // Domain types. The Supabase `products` table mirrors Product (snake_case columns
 // mapped in lib/products.ts). Keep this in sync with supabase/migrations/0001_init.sql.
 
-export type OccasionId =
-  | "amor"
-  | "mama"
-  | "papa"
-  | "especial"
-  | "porquesi"
-  | "cumple"
-  | "mujer"
-  | "navidad"
-  | "nino";
+export type OccasionId = string;
 
 export type ProductTypeId = string;
 
@@ -29,7 +20,7 @@ export interface Product {
 }
 
 export interface Occasion {
-  id: OccasionId;
+  id: string;
   label: string;
   sub: string;
 }

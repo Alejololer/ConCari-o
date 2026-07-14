@@ -1,6 +1,7 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { checkBotId } from "botid/server";
 import type { OccasionId, ProductTypeId } from "@/lib/types";
 import { hasSupabase } from "@/lib/supabase/env";
 import { createClient } from "@/lib/supabase/server";
@@ -10,6 +11,15 @@ async function db() {
     throw new Error("Modo demo: conecta Supabase para guardar cambios (ver handoff.md).");
   }
   return createClient();
+}
+
+// Defensa en profundidad: el proxy + layout ya bloquean /cms, pero las Server
+// Actions tienen su propio endpoint, así que cada mutación re-verifica identidad.
+async function requireUser() {
+  const supabase = await db();
+  const { data, error } = await supabase.auth.getUser();
+  if (error || !data.user) throw new Error("No autorizado.");
+  return supabase;
 }
 
 function refresh() {
@@ -43,7 +53,7 @@ export async function saveProduct(formData: FormData) {
   const row = parseForm(formData);
   if (!row.name || !(row.price >= 0)) throw new Error("Nombre y precio válidos son obligatorios.");
 
-  const supabase = await db();
+  const supabase = await requireUser();
 
   if (row.featured_banner) {
     let query = supabase.from("products").select("id").eq("featured_banner", true);
@@ -60,6 +70,7 @@ export async function saveProduct(formData: FormData) {
   // Handle image upload if present and Supabase is available.
   const image = formData.get("image");
   if (image instanceof File && image.size > 0) {
+    if (!image.type.startsWith("image/")) throw new Error("El archivo debe ser una imagen.");
     try {
       const sanitizedName = image.name.replace(/\s+/g, "-");
       const path = `${crypto.randomUUID()}-${sanitizedName}`;
@@ -91,14 +102,14 @@ export async function saveProduct(formData: FormData) {
 }
 
 export async function toggleActive(id: string, active: boolean) {
-  const supabase = await db();
+  const supabase = await requireUser();
   const { error } = await supabase.from("products").update({ active }).eq("id", id);
   if (error) throw new Error(error.message);
   refresh();
 }
 
 export async function deleteProduct(id: string) {
-  const supabase = await db();
+  const supabase = await requireUser();
   const { error } = await supabase.from("products").delete().eq("id", id);
   if (error) throw new Error(error.message);
   refresh();
@@ -112,7 +123,7 @@ export async function saveProductType(formData: FormData) {
 
   if (!id || !label) throw new Error("ID y Nombre son obligatorios.");
 
-  const supabase = await db();
+  const supabase = await requireUser();
   const row = {
     id,
     label,
@@ -127,8 +138,30 @@ export async function saveProductType(formData: FormData) {
 }
 
 export async function deleteProductType(id: string) {
-  const supabase = await db();
+  const supabase = await requireUser();
   const { error } = await supabase.from("product_types").delete().eq("id", id);
+  if (error) throw new Error(error.message);
+  refresh();
+}
+
+export async function saveOccasion(formData: FormData) {
+  const id = String(formData.get("id") ?? "").trim().toLowerCase().replace(/[^a-z0-9-]/g, "-");
+  const label = String(formData.get("label") ?? "").trim();
+  const sub = String(formData.get("sub") ?? "").trim();
+
+  if (!id || !label) throw new Error("ID y Nombre son obligatorios.");
+
+  const supabase = await requireUser();
+  const { error } = await supabase.from("occasions").upsert({ id, label, sub });
+  if (error) throw new Error(error.message);
+
+  refresh();
+  redirect("/cms/ocasiones");
+}
+
+export async function deleteOccasion(id: string) {
+  const supabase = await requireUser();
+  const { error } = await supabase.from("occasions").delete().eq("id", id);
   if (error) throw new Error(error.message);
   refresh();
 }
@@ -159,7 +192,7 @@ export async function saveWhatsappSettings(formData: FormData) {
   const cleanProduct = product_template.replace(emojiRegex, "");
   const cleanGeneric = generic_template.replace(emojiRegex, "");
 
-  const supabase = await db();
+  const supabase = await requireUser();
   const { error } = await supabase
     .from("whatsapp_settings")
     .upsert({
@@ -179,6 +212,8 @@ export async function saveWhatsappSettings(formData: FormData) {
 
 // --- Auth ---
 export async function signIn(formData: FormData) {
+  const { isBot } = await checkBotId();
+  if (isBot) redirect("/login?error=1");
   const supabase = await db();
   const { error } = await supabase.auth.signInWithPassword({
     email: String(formData.get("email") ?? ""),

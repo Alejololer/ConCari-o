@@ -1,8 +1,8 @@
-import { occasions } from "@/data/occasions";
+import type { Occasion } from "@/lib/types";
 import { CategoryTile } from "@/components/molecules/CategoryTile";
 import { SectionHeading } from "./SectionHeading";
 
-export function CategoryGrid() {
+export function CategoryGrid({ occasions }: { occasions: Occasion[] }) {
   return (
     <section id="ocasiones" className="mx-auto max-w-[1180px] px-5 py-16">
       <SectionHeading

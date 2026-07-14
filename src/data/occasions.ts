@@ -12,7 +12,3 @@ export const occasions: Occasion[] = [
   { id: "navidad", label: "Navidad", sub: "Magia y alegría en cada detalle" },
   { id: "nino", label: "Día del niño", sub: "Sorpresas dulces para los más pequeños" },
 ];
-
-export const occasionById = Object.fromEntries(
-  occasions.map((o) => [o.id, o]),
-) as Record<Occasion["id"], Occasion>;

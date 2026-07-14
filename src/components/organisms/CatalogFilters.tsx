@@ -1,13 +1,12 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useRef } from "react";
-import { occasions } from "@/data/occasions";
-import type { ProductTypeMeta } from "@/lib/types";
+import type { Occasion, ProductTypeMeta } from "@/lib/types";
 import { Chip } from "@/components/atoms/Chip";
 import { cn } from "@/lib/cn";
 
 // Reads/writes the URL search params (the catalog page filters server-side from them).
-export function CatalogFilters({ productTypes }: { productTypes: ProductTypeMeta[] }) {
+export function CatalogFilters({ productTypes, occasions }: { productTypes: ProductTypeMeta[]; occasions: Occasion[] }) {
   const router = useRouter();
   const params = useSearchParams();
   const ocasion = params.get("ocasion") ?? "";
