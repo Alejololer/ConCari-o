@@ -1,16 +1,11 @@
+"use client";
 import Link from "next/link";
 import { brand } from "@/data/brand";
 import { Logo } from "@/components/atoms/Logo";
-import { getWhatsappSettings } from "@/lib/products";
+import { useWhatsapp } from "@/lib/whatsappContext";
 
-export async function Footer() {
-  const settings = await getWhatsappSettings();
-  const waHref = `https://wa.me/${settings.phone_number}?text=${encodeURIComponent(settings.generic_template)}`;
-
-  let displayPhone = settings.phone_number;
-  if (displayPhone.startsWith("593") && displayPhone.length === 12) {
-    displayPhone = "0" + displayPhone.slice(3, 6) + " " + displayPhone.slice(6, 9) + " " + displayPhone.slice(9);
-  }
+export function Footer() {
+  const { openGeneric } = useWhatsapp();
 
   return (
     <footer className="mt-24 border-t border-line bg-surface">
@@ -27,9 +22,13 @@ export async function Footer() {
         </div>
         <div className="flex flex-col gap-2 text-[14px]">
           <span className="mb-1 font-semibold text-ink">Contacto</span>
-          <a href={waHref} target="_blank" rel="noopener noreferrer" className="text-ink-mute hover:text-rose">
-            WhatsApp {displayPhone}
-          </a>
+          <button
+            type="button"
+            onClick={() => openGeneric()}
+            className="text-left text-ink-mute hover:text-rose"
+          >
+            WhatsApp
+          </button>
           <a href={brand.instagram.url} target="_blank" rel="noopener noreferrer" className="text-ink-mute hover:text-rose">
             Instagram @{brand.instagram.handle}
           </a>
@@ -41,9 +40,8 @@ export async function Footer() {
         </div>
         <div className="flex flex-col gap-2 text-[14px]">
           <span className="mb-1 font-semibold text-ink">Pagos</span>
-          <span className="text-ink-mute">{brand.payment.bank}</span>
-          <span className="text-ink-mute">{brand.payment.accountType} {brand.payment.accountNumber}</span>
-          <span className="text-ink-mute">{brand.payment.holder}</span>
+          <span className="text-ink-mute">Pago por transferencia bancaria.</span>
+          <span className="text-ink-mute">Te compartimos los datos por WhatsApp al confirmar tu pedido.</span>
         </div>
       </div>
       <div className="border-t border-line py-5 text-center text-[12.5px] text-mute">

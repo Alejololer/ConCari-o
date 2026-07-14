@@ -6,10 +6,12 @@ import { WhatsappProvider } from "@/lib/whatsappContext";
 import { getWhatsappSettings } from "@/lib/products";
 
 export default async function StoreLayout({ children }: { children: React.ReactNode }) {
-  const whatsappSettings = await getWhatsappSettings();
+  // ponytail: NO pasamos phone_number al cliente — solo las plantillas de mensaje.
+  const { phone_number, ...templates } = await getWhatsappSettings();
+  void phone_number;
 
   return (
-    <WhatsappProvider settings={whatsappSettings}>
+    <WhatsappProvider templates={templates}>
       <CartProvider>
         <Header />
         <main>{children}</main>

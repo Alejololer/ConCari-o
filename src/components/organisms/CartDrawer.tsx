@@ -1,5 +1,4 @@
 "use client";
-import { brand } from "@/data/brand";
 import { useCart } from "@/lib/cart";
 import { money } from "@/lib/format";
 import { cn } from "@/lib/cn";
@@ -9,11 +8,7 @@ import { useWhatsapp } from "@/lib/whatsappContext";
 
 export function CartDrawer() {
   const { lines, total, isOpen, close, count } = useCart();
-  const { getCartLink } = useWhatsapp();
-
-  const checkoutHref = getCartLink(
-    lines.map((l) => ({ name: l.product.name, qty: l.qty, price: l.product.price })),
-  );
+  const { openCart } = useWhatsapp();
 
   return (
     <>
@@ -56,8 +51,7 @@ export function CartDrawer() {
                 <span className="text-[22px] font-bold text-rose">{money(total)}</span>
               </div>
               <p className="mb-2 text-[12px] leading-[1.5] text-mute">
-                Coordinamos el detalle final y el pago por WhatsApp ({brand.payment.bank} ·{" "}
-                {brand.payment.accountType} {brand.payment.accountNumber}).
+                Coordinamos el detalle final y el pago por WhatsApp.
               </p>
               <div className="mb-3 flex items-start gap-2 rounded-[10px] bg-blush px-3 py-2.5">
                 <span className="shrink-0 text-[14px]">🚚</span>
@@ -65,7 +59,14 @@ export function CartDrawer() {
                   <strong className="font-semibold">Envío no incluido.</strong> El costo se cotiza aparte según tu ubicación.
                 </p>
               </div>
-              <Button href={checkoutHref} target="_blank" className="w-full">
+              <Button
+                className="w-full"
+                onClick={() =>
+                  openCart(
+                    lines.map((l) => ({ name: l.product.name, qty: l.qty, price: l.product.price })),
+                  )
+                }
+              >
                 Pedir por WhatsApp
               </Button>
             </div>

@@ -9,7 +9,7 @@ import { useWhatsapp } from "@/lib/whatsappContext";
 
 export function Header() {
   const { count, open } = useCart();
-  const { getGenericLink } = useWhatsapp();
+  const { openGeneric } = useWhatsapp();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -27,14 +27,13 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2.5">
-          <a
-            href={getGenericLink()}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => openGeneric()}
             className="hidden items-center gap-2 rounded-pill bg-whatsapp px-4 py-2.5 text-[13.5px] font-semibold text-white sm:flex"
           >
             <Dot color="#fff" /> WhatsApp
-          </a>
+          </button>
           <button
             onClick={open}
             className="relative rounded-pill border border-line-strong bg-surface px-4 py-2.5 text-[13.5px] font-semibold text-ink"
@@ -94,15 +93,16 @@ export function Header() {
           >
             Cómo pedir
           </Link>
-          <a
-            href={getGenericLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setMenuOpen(false)}
+          <button
+            type="button"
+            onClick={() => {
+              setMenuOpen(false);
+              openGeneric();
+            }}
             className="mt-2 flex items-center gap-2 rounded-pill bg-whatsapp px-4 py-3 text-[14px] font-semibold text-white justify-center"
           >
             <Dot color="#fff" /> Escríbenos por WhatsApp
-          </a>
+          </button>
         </nav>
       </div>
     </header>

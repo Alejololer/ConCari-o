@@ -5,12 +5,9 @@ import { brand } from "@/data/brand";
 import { Button } from "@/components/atoms/Button";
 import { SectionLabel } from "@/components/atoms/SectionLabel";
 import { Dot } from "@/components/atoms/Dot";
-import { getWhatsappSettings } from "@/lib/products";
+import { WhatsappButton } from "@/components/molecules/WhatsappButton";
 
-export async function Hero({ bannerProducts = [] }: { bannerProducts?: Product[] }) {
-  const settings = await getWhatsappSettings();
-  const waHref = `https://wa.me/${settings.phone_number}?text=${encodeURIComponent(settings.generic_template)}`;
-
+export function Hero({ bannerProducts = [] }: { bannerProducts?: Product[] }) {
   const leftProduct = bannerProducts[0] || {
     id: "amor-2",
     name: "Caja Especial Clásica",
@@ -47,9 +44,9 @@ export async function Hero({ bannerProducts = [] }: { bannerProducts?: Product[]
           </p>
           <div className="mt-1 flex flex-wrap items-center justify-center gap-3 md:justify-start">
             <Button className="w-full sm:w-auto" href="/catalogo">Ver catálogo</Button>
-            <Button className="w-full sm:w-auto" href={waHref} target="_blank" variant="secondary">
+            <WhatsappButton className="w-full sm:w-auto" variant="secondary">
               <Dot /> Escríbenos
-            </Button>
+            </WhatsappButton>
           </div>
         </div>
 

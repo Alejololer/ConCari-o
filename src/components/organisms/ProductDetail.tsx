@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import type { Product } from "@/lib/types";
-import { brand } from "@/data/brand";
 import { typeById } from "@/data/types";
 import { useCart } from "@/lib/cart";
 import { money } from "@/lib/format";
@@ -16,7 +15,7 @@ import { useWhatsapp } from "@/lib/whatsappContext";
 export function ProductDetail({ product }: { product: Product }) {
   const { add } = useCart();
   const [qty, setQty] = useState(1);
-  const { getProductLink } = useWhatsapp();
+  const { openProduct } = useWhatsapp();
 
   return (
     <div className="grid gap-8 md:gap-10 md:grid-cols-2">
@@ -74,17 +73,15 @@ export function ProductDetail({ product }: { product: Product }) {
             Agregar al carrito · {money(qty * product.price)}
           </Button>
           <Button
-            href={getProductLink(product.name, qty, product.price)}
-            target="_blank"
             variant="secondary"
             className="w-full sm:w-auto"
+            onClick={() => openProduct(product.name, qty, product.price)}
           >
             <Dot /> Pedir directo
           </Button>
         </div>
         <p className="text-[12.5px] text-mute">
-          Pago por transferencia · {brand.payment.bank} {brand.payment.accountType}{" "}
-          {brand.payment.accountNumber}
+          Pago por transferencia · te compartimos los datos por WhatsApp.
         </p>
       </div>
     </div>

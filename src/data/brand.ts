@@ -35,10 +35,8 @@ export const brand = {
   /** Canonical production URL — update if the domain changes. */
   siteUrl: "https://con-carino.vercel.app",
   // ─────────────────────────────────────────────────────────────────────────
-  whatsapp: {
-    number: "593984800307", // E.164 without '+', for wa.me links
-    display: "0984800307",
-  },
+  // Celular y datos de pago viven en src/lib/contact.server.ts (server-only),
+  // fuera del bundle del cliente. No los pongas aquí: brand se importa en el browser.
   instagram: {
     handle: "con_carino_creations",
     creations: "@concarino.creations",
@@ -47,11 +45,5 @@ export const brand = {
   facebook: {
     handle: "con.cariniolatacunga",
     url: "https://www.facebook.com/con.cariniolatacunga",
-  },
-  payment: {
-    bank: "Banco Pichincha",
-    accountType: "Ahorros",
-    accountNumber: "2207281322",
-    holder: "Fanny Patricia Jácome",
   },
 } as const;
