@@ -55,7 +55,7 @@ interface Row {
   description: string;
   inc: string[];
   badge: string | null;
-  image_url: string | null;
+  image_urls: string[] | null;
   active: boolean;
   featured_banner?: boolean;
 }
@@ -68,7 +68,8 @@ const toProduct = (r: Row): Product => ({
   desc: r.description,
   inc: r.inc ?? [],
   badge: r.badge ?? undefined,
-  imageUrl: r.image_url ?? undefined,
+  imageUrl: r.image_urls?.[0] ?? undefined,
+  images: r.image_urls ?? [],
   active: r.active,
   featuredBanner: r.featured_banner ?? false,
 });

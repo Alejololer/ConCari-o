@@ -67,9 +67,15 @@ export async function saveProduct(formData: FormData) {
     }
   }
 
-  // Handle image upload if present and Supabase is available.
-  const image = formData.get("image");
-  if (image instanceof File && image.size > 0) {
+  // Fotos: los hidden inputs "existing_images" traen el estado completo en orden
+  // (reordenamientos y eliminaciones incluidos); las nuevas se suben y van al final.
+  const existing = formData.getAll("existing_images").map(String).filter(Boolean);
+  const newFiles = formData
+    .getAll("images")
+    .filter((f): f is File => f instanceof File && f.size > 0);
+
+  const uploaded: string[] = [];
+  for (const image of newFiles) {
     if (!image.type.startsWith("image/")) throw new Error("El archivo debe ser una imagen.");
     try {
       const sanitizedName = image.name.replace(/\s+/g, "-");
@@ -85,12 +91,13 @@ export async function saveProduct(formData: FormData) {
         .from("product-images")
         .getPublicUrl(data.path);
 
-      // Include image_url in the update/insert.
-      (row as any).image_url = publicUrlData.publicUrl;
+      uploaded.push(publicUrlData.publicUrl);
     } catch (err) {
       throw new Error(`Image upload error: ${err instanceof Error ? err.message : String(err)}`);
     }
   }
+
+  (row as any).image_urls = [...existing, ...uploaded];
 
   const { error } = id
     ? await supabase.from("products").update(row).eq("id", id)

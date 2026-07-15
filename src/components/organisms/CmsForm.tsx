@@ -3,6 +3,7 @@ import { saveProduct } from "@/app/cms/actions";
 import { Button } from "@/components/atoms/Button";
 import { SubmitButton } from "@/components/atoms/SubmitButton";
 import { FieldLabel, Input, Select, Textarea } from "@/components/atoms/Field";
+import { CmsImageManager } from "@/components/molecules/CmsImageManager";
 
 // Plain HTML form posting to the saveProduct server action. No client JS needed.
 export function CmsForm({ product, productTypes, occasions }: { product?: Product; productTypes: ProductTypeMeta[]; occasions: Occasion[] }) {
@@ -44,26 +45,13 @@ export function CmsForm({ product, productTypes, occasions }: { product?: Produc
       </div>
 
       <div>
-        <FieldLabel>Foto del producto (opcional)</FieldLabel>
+        <FieldLabel>Fotos del producto (opcional)</FieldLabel>
         <p className="-mt-1 mb-2 text-[12.5px] leading-[1.5] text-ink-mute">
-          Mejor una foto <strong>vertical 4:5</strong> (ej. 1080×1350px). Si tiene otra
-          proporción se mostrará completa con bordes de relleno — nunca se recorta.
+          Mejor fotos <strong>verticales 4:5</strong> (ej. 1080×1350px). Si tienen otra
+          proporción se mostrarán completas con bordes de relleno — nunca se recortan.
+          La primera foto es la portada; las nuevas se añaden al final.
         </p>
-        {p?.imageUrl && (
-          <div className="mb-3">
-            <img
-              src={p.imageUrl}
-              alt={p.name}
-              className="aspect-[4/5] w-40 rounded-card border border-line bg-cream object-contain"
-            />
-          </div>
-        )}
-        <input
-          type="file"
-          name="image"
-          accept="image/*"
-          className="block w-full rounded-card border border-line-strong bg-cream px-3 py-2 text-[14.5px] text-ink file:mr-2 file:border-0 file:rounded-card file:bg-rose file:px-2 file:py-1 file:text-[13px] file:text-cream file:hover:bg-rose-dark"
-        />
+        <CmsImageManager initial={p?.images?.length ? p.images : p?.imageUrl ? [p.imageUrl] : []} />
       </div>
 
       <div>

@@ -14,7 +14,8 @@ export interface Product {
   desc: string;
   inc: string[]; // "incluye" bullet points
   badge?: string;
-  imageUrl?: string; // product photo URL (Supabase Storage or /products path)
+  imageUrl?: string; // portada = images[0] (derivado en products.ts)
+  images?: string[]; // todas las fotos en orden; ausente en el seed TS
   active: boolean;
   featuredBanner?: boolean;
 }

@@ -16,18 +16,28 @@ export function ProductDetail({ product }: { product: Product }) {
   const { add } = useCart();
   const [qty, setQty] = useState(1);
   const { openProduct } = useWhatsapp();
+  const images = product.images?.length ? product.images : product.imageUrl ? [product.imageUrl] : [];
+  const [active, setActive] = useState(0);
 
   return (
     <div className="grid gap-8 md:gap-10 md:grid-cols-2">
       <div className="flex flex-col gap-4">
-        <PhotoPlaceholder type={product.type} src={product.imageUrl} className="aspect-[4/5] w-full rounded-panel" />
+        <PhotoPlaceholder type={product.type} src={images[active]} className="aspect-[4/5] w-full rounded-panel" />
 
-        {/* Thumbnail strip */}
+        {/* Thumbnail strip: fotos reales clicables + gradientes de relleno hasta 4 */}
         <div className="flex flex-wrap gap-3">
-          <div className="h-[70px] w-[70px] shrink-0 rounded-[12px] overflow-hidden border-2 border-line">
-            <PhotoPlaceholder type={product.type} src={product.imageUrl} className="h-full w-full" />
-          </div>
-          {[0, 1, 2].map((i) => (
+          {images.map((src, i) => (
+            <button
+              key={src}
+              type="button"
+              aria-label={`Foto ${i + 1}`}
+              onClick={() => setActive(i)}
+              className={`h-[70px] w-[70px] shrink-0 rounded-[12px] overflow-hidden ${i === active ? "border-2 border-rose" : "border border-line"}`}
+            >
+              <PhotoPlaceholder type={product.type} src={src} className="h-full w-full" />
+            </button>
+          ))}
+          {Array.from({ length: Math.max(0, 4 - images.length) }).map((_, i) => (
             <div key={i} className="h-[70px] w-[70px] shrink-0 rounded-[12px] overflow-hidden border border-line">
               <PhotoPlaceholder type={product.type} className="h-full w-full" />
             </div>
