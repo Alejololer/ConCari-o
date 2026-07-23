@@ -46,6 +46,7 @@ export const metadata: Metadata = {
 
 import { Suspense } from "react";
 import { GlobalLoadingOverlay } from "@/components/organisms/GlobalLoadingOverlay";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function RootLayout({
   children,
@@ -57,6 +58,7 @@ export default function RootLayout({
           <GlobalLoadingOverlay />
         </Suspense>
         {children}
+        <Analytics />
       </body>
     </html>
   );
