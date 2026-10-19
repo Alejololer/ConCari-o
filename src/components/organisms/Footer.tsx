@@ -45,7 +45,8 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-line py-5 text-center text-[12.5px] text-mute">
-        © {new Date().getFullYear()} {brand.name} · Hecho con cariño 💝
+        © {new Date().getFullYear()} {brand.name} · Hecho con cariño 💝 por{" "}
+        <a href="https://alejololer.is-a.dev" className="underline-offset-2 hover:underline">Alejandro Alemán</a>
       </div>
     </footer>
   );
