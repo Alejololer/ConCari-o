@@ -7,21 +7,13 @@ import { SectionLabel } from "@/components/atoms/SectionLabel";
 import { Dot } from "@/components/atoms/Dot";
 import { WhatsappButton } from "@/components/molecules/WhatsappButton";
 
+// Posición flotante de cada tarjeta del banner (izquierda arriba, derecha abajo).
+const cardSlots = [
+  "float-a left-[-8px] top-[14px]",
+  "float-b bottom-[18px] right-[-6px]",
+];
+
 export function Hero({ bannerProducts = [] }: { bannerProducts?: Product[] }) {
-  const leftProduct = bannerProducts[0] || {
-    id: "amor-2",
-    name: "Caja Especial Clásica",
-    price: 6.00,
-    imageUrl: "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-2.png"
-  };
-
-  const rightProduct = bannerProducts[1] || {
-    id: "amor-18",
-    name: "Desayuno Premium",
-    price: 25.00,
-    imageUrl: "https://qmdxmvswtqpvushfogjn.supabase.co/storage/v1/object/public/product-images/products/amor-18.png"
-  };
-
   return (
     <section className="relative overflow-hidden">
       <div className="pointer-events-none absolute -right-24 -top-24 hidden h-[360px] w-[360px] rounded-full bg-blush blur-[10px] sm:block" />
@@ -67,54 +59,27 @@ export function Hero({ bannerProducts = [] }: { bannerProducts?: Product[] }) {
             />
           </div>
 
-          {/* Left Card: Caja Especial Clásica */}
-          {/* Float wrapper owns the animation + GPU layer; Link owns the hover scale */}
-          <div className="float-a absolute left-[-8px] top-[14px] z-10 w-[178px]">
-            <Link
-              href={`/producto/${leftProduct.id}`}
-              className="block rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)] transition-transform duration-200 hover:scale-105 active:scale-95"
-            >
-              <div className="relative h-[108px] overflow-hidden rounded-[12px] bg-cream">
-                {leftProduct.imageUrl && (
-                  <Image
-                    src={leftProduct.imageUrl}
-                    alt={leftProduct.name}
-                    fill
-                    className="object-cover"
-                    sizes="156px"
-                  />
-                )}
-              </div>
-              <div className="px-1.5 py-2">
-                <div className="text-[13px] font-semibold text-ink truncate">{leftProduct.name}</div>
-                <div className="mt-0.5 text-[14px] font-bold text-rose">${leftProduct.price.toFixed(2)}</div>
-              </div>
-            </Link>
-          </div>
-
-          {/* Right Card: Desayuno Premium */}
-          <div className="float-b absolute bottom-[18px] right-[-6px] z-10 w-[178px]">
-            <Link
-              href={`/producto/${rightProduct.id}`}
-              className="block rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)] transition-transform duration-200 hover:scale-105 active:scale-95"
-            >
-              <div className="relative h-[108px] overflow-hidden rounded-[12px] bg-cream">
-                {rightProduct.imageUrl && (
-                  <Image
-                    src={rightProduct.imageUrl}
-                    alt={rightProduct.name}
-                    fill
-                    className="object-cover"
-                    sizes="156px"
-                  />
-                )}
-              </div>
-              <div className="px-1.5 py-2">
-                <div className="text-[13px] font-semibold text-ink truncate">{rightProduct.name}</div>
-                <div className="mt-0.5 text-[14px] font-bold text-rose">${rightProduct.price.toFixed(2)}</div>
-              </div>
-            </Link>
-          </div>
+          {/* Tarjetas solo de productos destacados reales (activos → siempre con página).
+              Sin destacado no hay tarjeta. Float wrapper owns the animation + GPU layer;
+              Link owns the hover scale */}
+          {bannerProducts.slice(0, 2).map((p, i) => (
+            <div key={p.id} className={`${cardSlots[i]} absolute z-10 w-[178px]`}>
+              <Link
+                href={`/producto/${p.id}`}
+                className="block rounded-[18px] bg-white p-[11px] shadow-[0_18px_40px_rgba(120,70,85,0.16)] transition-transform duration-200 hover:scale-105 active:scale-95"
+              >
+                <div className="relative h-[108px] overflow-hidden rounded-[12px] bg-cream">
+                  {p.imageUrl && (
+                    <Image src={p.imageUrl} alt={p.name} fill className="object-cover" sizes="156px" />
+                  )}
+                </div>
+                <div className="px-1.5 py-2">
+                  <div className="text-[13px] font-semibold text-ink truncate">{p.name}</div>
+                  <div className="mt-0.5 text-[14px] font-bold text-rose">${p.price.toFixed(2)}</div>
+                </div>
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
     </section>

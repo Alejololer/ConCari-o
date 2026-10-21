@@ -35,6 +35,21 @@
 - ✅ Redes reales enlazadas: IG `con_carino_creations` + **Facebook** `con.cariniolatacunga`.
 - ✅ Seed remoto verificado (109 productos activos) y build/typecheck/check en verde.
 
+## Fotos del CMS (2026-10-20)
+- ✅ Compresión en el navegador antes de subir (`CmsImageManager`: ≤1600px, WebP 0.82; HEIC u
+  otros no decodificables suben originales). `serverActions.bodySizeLimit` = 4mb.
+- ✅ Quitar una foto o eliminar un producto borra su archivo del bucket (`removeImages` en
+  `cms/actions.ts`).
+- ✅ Bucket limpiado: 114 archivos sin uso borrados (216 → 102, 73 → 34 MB). Respaldo local en
+  `Documents/ConCarino-respaldo-fotos-2026-10-20` (fuera del repo).
+- ✅ `supabase/seed.sql` regenerado desde la BD de prod (100 productos + 9 ocasiones, validado
+  idéntico). Antes era el catálogo de campañas viejo.
+- ✅ Hero: sin fallback fijo; solo tarjetas de productos con "Destacado en el banner".
+- Modo demo (`products.seed.ts`) ya sin fotos: muestra el degradado.
+- ⚠️ Prod se gestiona desde el CMS: **no** correr `--include-seed`, `seed-remote.ts` ni
+  `upload-and-update.ts` contra el remoto (reemplazan el catálogo). Si hace falta, regenerar
+  `seed.sql` desde la BD primero.
+
 ## Pendiente de TU acción
 1. ✅ **Usuario de la dueña creado** — `/login` ya da acceso al panel.
 2. ✅ **Subir fotos reales de producto**: Extraídas automáticamente desde los PDFs de campaña con `pdfimages` y subidas a Supabase Storage (`products/{id}.png`) vinculadas en base de datos.

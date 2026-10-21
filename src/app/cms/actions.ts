@@ -22,6 +22,15 @@ async function requireUser() {
   return supabase;
 }
 
+// Borra del bucket las fotos que ya no usa ningún producto. Un fallo aquí solo deja
+// un huérfano: se loguea y no rompe el guardado.
+async function removeImages(supabase: Awaited<ReturnType<typeof db>>, urls: string[]) {
+  const paths = urls.map((u) => u.split("/product-images/")[1]).filter(Boolean);
+  if (!paths.length) return;
+  const { error } = await supabase.storage.from("product-images").remove(paths);
+  if (error) console.error("No se pudieron borrar fotos:", error.message);
+}
+
 function refresh() {
   revalidatePath("/cms");
   revalidatePath("/catalogo");
@@ -99,10 +108,17 @@ export async function saveProduct(formData: FormData) {
 
   (row as any).image_urls = [...existing, ...uploaded];
 
+  const previous = id
+    ? ((await supabase.from("products").select("image_urls").eq("id", id).single()).data
+        ?.image_urls as string[] | null) ?? []
+    : [];
+
   const { error } = id
     ? await supabase.from("products").update(row).eq("id", id)
     : await supabase.from("products").insert({ id: crypto.randomUUID(), ...row });
   if (error) throw new Error(error.message);
+
+  await removeImages(supabase, previous.filter((u) => !existing.includes(u)));
 
   refresh();
   redirect("/cms");
@@ -117,8 +133,10 @@ export async function toggleActive(id: string, active: boolean) {
 
 export async function deleteProduct(id: string) {
   const supabase = await requireUser();
+  const { data } = await supabase.from("products").select("image_urls").eq("id", id).single();
   const { error } = await supabase.from("products").delete().eq("id", id);
   if (error) throw new Error(error.message);
+  await removeImages(supabase, (data?.image_urls as string[] | null) ?? []);
   refresh();
 }
 
