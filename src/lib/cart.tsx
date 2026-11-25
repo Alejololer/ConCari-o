@@ -1,9 +1,11 @@
 "use client";
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -12,17 +14,31 @@ import { cartTotal } from "./whatsapp";
 
 const STORAGE_KEY = "concarino-cart";
 
+interface AddOptions {
+  openDrawer?: boolean;
+  note?: string;
+}
+
+export interface CartToastPayload {
+  product: Product;
+  qty: number;
+  ts: number;
+}
+
 interface CartCtx {
   lines: CartLine[];
   count: number;
   total: number;
   isOpen: boolean;
-  add: (product: Product, qty?: number) => void;
+  lastAdded: CartToastPayload | null;
+  add: (product: Product, qty?: number, options?: AddOptions) => void;
   setQty: (id: string, qty: number) => void;
+  setNote: (id: string, note: string) => void;
   remove: (id: string) => void;
   clear: () => void;
   open: () => void;
   close: () => void;
+  dismissToast: () => void;
 }
 
 const Ctx = createContext<CartCtx | null>(null);
@@ -30,6 +46,8 @@ const Ctx = createContext<CartCtx | null>(null);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [lines, setLines] = useState<CartLine[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [lastAdded, setLastAdded] = useState<CartToastPayload | null>(null);
+  const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Load once on mount.
   useEffect(() => {
@@ -43,26 +61,61 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   // Persist on change.
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(lines));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(lines));
+    } catch {
+      // ignore storage quota errors
+    }
   }, [lines]);
 
+  useEffect(() => {
+    return () => {
+      if (toastTimer.current) clearTimeout(toastTimer.current);
+    };
+  }, []);
+
+  const dismissToast = useCallback(() => {
+    if (toastTimer.current) clearTimeout(toastTimer.current);
+    setLastAdded(null);
+  }, []);
+
   const api = useMemo<CartCtx>(() => {
-    const add: CartCtx["add"] = (product, qty = 1) =>
+    const add: CartCtx["add"] = (product, qty = 1, options = {}) => {
+      const { openDrawer = true, note } = options;
+      const cleanNote = note?.trim();
+
       setLines((prev) => {
         const found = prev.find((l) => l.product.id === product.id);
         if (found) {
           return prev.map((l) =>
-            l.product.id === product.id ? { ...l, qty: l.qty + qty } : l,
+            l.product.id === product.id
+              ? { ...l, qty: l.qty + qty, note: cleanNote ?? l.note }
+              : l,
           );
         }
-        return [...prev, { product, qty }];
+        return [...prev, { product, qty, ...(cleanNote ? { note: cleanNote } : {}) }];
       });
+
+      if (openDrawer) {
+        dismissToast();
+        setIsOpen(true);
+      } else {
+        if (toastTimer.current) clearTimeout(toastTimer.current);
+        setLastAdded({ product, qty, ts: Date.now() });
+        toastTimer.current = setTimeout(() => setLastAdded(null), 4200);
+      }
+    };
 
     const setQty: CartCtx["setQty"] = (id, qty) =>
       setLines((prev) =>
         qty <= 0
           ? prev.filter((l) => l.product.id !== id)
           : prev.map((l) => (l.product.id === id ? { ...l, qty } : l)),
+      );
+
+    const setNote: CartCtx["setNote"] = (id, note) =>
+      setLines((prev) =>
+        prev.map((l) => (l.product.id === id ? { ...l, note: note.trim() || undefined } : l)),
       );
 
     const remove: CartCtx["remove"] = (id) =>
@@ -78,17 +131,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
       count,
       total,
       isOpen,
-      add: (p, q) => {
-        add(p, q);
-        setIsOpen(true);
-      },
+      lastAdded,
+      add,
       setQty,
+      setNote,
       remove,
       clear: () => setLines([]),
-      open: () => setIsOpen(true),
+      open: () => {
+        dismissToast();
+        setIsOpen(true);
+      },
       close: () => setIsOpen(false),
+      dismissToast,
     };
-  }, [lines, isOpen]);
+  }, [lines, isOpen, lastAdded, dismissToast]);
 
   return <Ctx.Provider value={api}>{children}</Ctx.Provider>;
 }

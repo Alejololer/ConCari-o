@@ -1,79 +1,65 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
+/**
+ * Non-blocking top progress indicator for internal route transitions.
+ * Avoids jarring full-screen overlays on fast store navigations.
+ */
 export function GlobalLoadingOverlay() {
-  const [loading, setLoading] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // Reset loading state when page pathname or query parameters change
   useEffect(() => {
-    setLoading(false);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    setVisible(false);
   }, [pathname, searchParams]);
 
   useEffect(() => {
+    const startDelayed = () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => setVisible(true), 140);
+    };
+
     const handleAnchorClick = (e: MouseEvent) => {
-      // Find closest anchor tag
-      let target = e.target as HTMLElement;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      let target = e.target as HTMLElement | null;
       while (target && target.tagName !== "A") {
-        target = target.parentElement as HTMLElement;
+        target = target.parentElement;
       }
+      if (!target || target.tagName !== "A") return;
 
-      if (target && target.tagName === "A") {
-        const href = target.getAttribute("href");
-        const targetAttr = target.getAttribute("target");
-
-        // If it's a valid relative internal link and not opening in new tab
-        if (
-          href &&
-          (href.startsWith("/") || href.startsWith("./") || href.startsWith("../")) &&
-          !href.startsWith("//") &&
-          targetAttr !== "_blank" &&
-          // Ignore anchor hashes unless it actually changes routes
-          !href.startsWith("#")
-        ) {
-          const currentUrl = window.location.pathname + window.location.search;
-          if (href !== currentUrl) {
-            setLoading(true);
-          }
-        }
-      }
-    };
-
-    const handleFormSubmit = (e: SubmitEvent) => {
-      const target = e.target as HTMLFormElement;
+      const href = target.getAttribute("href");
       const targetAttr = target.getAttribute("target");
-      
-      // If it doesn't open in a new window/tab, show loading
-      if (targetAttr !== "_blank") {
-        setLoading(true);
+      if (
+        href &&
+        href.startsWith("/") &&
+        !href.startsWith("//") &&
+        targetAttr !== "_blank" &&
+        !href.includes("#")
+      ) {
+        const currentUrl = window.location.pathname + window.location.search;
+        if (href !== currentUrl) startDelayed();
       }
     };
 
-    // Listen to all clicks and form submissions in the capturing phase
     window.addEventListener("click", handleAnchorClick, true);
-    window.addEventListener("submit", handleFormSubmit, true);
-
     return () => {
       window.removeEventListener("click", handleAnchorClick, true);
-      window.removeEventListener("submit", handleFormSubmit, true);
+      if (timerRef.current) clearTimeout(timerRef.current);
     };
   }, []);
 
-  if (!loading) return null;
+  if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-cream/75 backdrop-blur-[3px] transition-all duration-300">
-      <div className="relative flex items-center justify-center">
-        {/* Pulsing outer ring */}
-        <div className="absolute h-20 w-20 animate-ping rounded-full bg-rose/20" />
-        {/* Spinning main wheel */}
-        <div className="h-14 w-14 animate-spin rounded-full border-4 border-blush border-t-rose" />
-      </div>
-      <p className="mt-6 font-display text-3xl font-bold text-rose animate-pulse">
-        Cargando con cariño... 💝
-      </p>
+    <div
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-x-0 top-0 z-[9999] h-[3px] overflow-hidden bg-blush"
+    >
+      <div className="h-full w-2/3 animate-pulse rounded-r-full bg-rose" />
     </div>
   );
 }

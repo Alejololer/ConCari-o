@@ -1,26 +1,72 @@
 "use client";
+import Link from "next/link";
 import type { CartLine } from "@/lib/types";
 import { useCart } from "@/lib/cart";
 import { money } from "@/lib/format";
 import { QtyStepper } from "@/components/atoms/QtyStepper";
 import { PhotoPlaceholder } from "@/components/atoms/PhotoPlaceholder";
 
-export function CartLineRow({ line }: { line: CartLine }) {
+export function CartLineRow({
+  line,
+  onNavigate,
+}: {
+  line: CartLine;
+  onNavigate?: () => void;
+}) {
   const { setQty, remove } = useCart();
-  const { product, qty } = line;
+  const { product, qty, note } = line;
+
   return (
-    <div className="flex flex-col gap-3 py-[14px] sm:flex-row sm:items-center">
-      <PhotoPlaceholder type={product.type} src={product.imageUrl} className="h-[62px] w-[62px] shrink-0 rounded-[14px]" />
-      <div className="flex flex-1 flex-col gap-[6px] min-w-0">
+    <div className="flex items-start gap-3.5 py-4">
+      <Link
+        href={`/producto/${product.id}`}
+        onClick={onNavigate}
+        className="shrink-0 overflow-hidden rounded-[14px] border border-line transition hover:border-line-strong"
+      >
+        <PhotoPlaceholder
+          type={product.type}
+          src={product.imageUrl}
+          alt={product.name}
+          fit="cover"
+          sizes="72px"
+          className="h-[68px] w-[68px]"
+        />
+      </Link>
+
+      <div className="flex min-w-0 flex-1 flex-col gap-2">
         <div className="flex items-start justify-between gap-2">
-          <span className="truncate text-[14.5px] font-semibold text-ink">{product.name}</span>
-          <button onClick={() => remove(product.id)} aria-label="Quitar" className="text-[13px] text-mute hover:text-rose">
-            ✕
+          <Link
+            href={`/producto/${product.id}`}
+            onClick={onNavigate}
+            className="line-clamp-2 text-[14.5px] font-semibold leading-snug text-ink transition hover:text-rose"
+          >
+            {product.name}
+          </Link>
+          <button
+            type="button"
+            onClick={() => remove(product.id)}
+            aria-label={`Quitar ${product.name} del carrito`}
+            className="shrink-0 text-[12px] font-medium text-mute transition hover:text-rose"
+          >
+            Quitar
           </button>
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <QtyStepper qty={qty} onChange={(n) => setQty(product.id, n)} size="sm" />
-          <span className="text-[14px] font-bold text-rose">{money(product.price * qty)}</span>
+
+        {note && (
+          <p className="line-clamp-2 text-[12px] italic leading-snug text-ink-mute">
+            💌 «{note}»
+          </p>
+        )}
+
+        <div className="flex items-center justify-between gap-3 pt-0.5">
+          <QtyStepper
+            qty={qty}
+            onChange={(n) => setQty(product.id, n)}
+            size="sm"
+          />
+          <span className="text-[14.5px] font-bold text-rose">
+            {money(product.price * qty)}
+          </span>
         </div>
       </div>
     </div>

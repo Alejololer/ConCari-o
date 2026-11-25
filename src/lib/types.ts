@@ -26,6 +26,11 @@ export interface Occasion {
   sub: string;
 }
 
+export interface CategoryPreview extends Occasion {
+  imageUrl?: string;
+  count: number;
+}
+
 export interface ProductTypeMeta {
   id: ProductTypeId;
   label: string;
@@ -35,6 +40,7 @@ export interface ProductTypeMeta {
 export interface CartLine {
   product: Product;
   qty: number;
+  note?: string;
 }
 
 export interface WhatsappSettings {

@@ -1,6 +1,7 @@
 "use client";
 import React, { createContext, useContext } from "react";
 import { money } from "./format";
+import { formatOrderLine, type OrderLine } from "./whatsapp";
 
 type Templates = {
   cart_template: string;
@@ -9,8 +10,8 @@ type Templates = {
 };
 
 interface WhatsappContextType {
-  openCart: (lines: { name: string; qty: number; price: number }[]) => Promise<void>;
-  openProduct: (name: string, qty: number, price: number) => Promise<void>;
+  openCart: (lines: OrderLine[]) => Promise<void>;
+  openProduct: (name: string, qty: number, price: number, note?: string) => Promise<void>;
   openGeneric: () => Promise<void>;
 }
 
@@ -42,10 +43,8 @@ export function WhatsappProvider({
   templates: Templates;
   children: React.ReactNode;
 }) {
-  const openCart = (lines: { name: string; qty: number; price: number }[]) => {
-    const itemsText = lines
-      .map((l) => `- ${l.qty}x ${l.name} - ${money(l.price * l.qty)}`)
-      .join("\n");
+  const openCart = (lines: OrderLine[]) => {
+    const itemsText = lines.map(formatOrderLine).join("\n");
     const totalVal = lines.reduce((sum, l) => sum + l.price * l.qty, 0);
     const text = templates.cart_template
       .replace(/{items}/g, itemsText)
@@ -53,11 +52,13 @@ export function WhatsappProvider({
     return openWhatsapp(text);
   };
 
-  const openProduct = (name: string, qty: number, price: number) => {
-    const text = templates.product_template
+  const openProduct = (name: string, qty: number, price: number, note?: string) => {
+    const base = templates.product_template
       .replace(/{name}/g, name)
       .replace(/{qty}/g, String(qty))
       .replace(/{price}/g, money(price * qty));
+    const cleanNote = note?.trim();
+    const text = cleanNote ? `${base}\nDedicatoria para tarjeta: "${cleanNote}"` : base;
     return openWhatsapp(text);
   };
 
