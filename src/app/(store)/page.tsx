@@ -1,41 +1,97 @@
+import type { Metadata } from "next";
 import { getProducts, getOccasions } from "@/lib/products";
+import { buildCategoryPreviews } from "@/lib/storefront";
 import { brand } from "@/data/brand";
 import { JsonLd } from "@/components/atoms/JsonLd";
 import { CursorDust } from "@/components/atoms/CursorDust";
 import { Hero } from "@/components/organisms/Hero";
-import { CategoryGrid } from "@/components/organisms/CategoryGrid";
-import { FeaturedGrid } from "@/components/organisms/FeaturedGrid";
+import { ProductShelf } from "@/components/organisms/ProductShelf";
+import { CategoryCarousel } from "@/components/organisms/CategoryCarousel";
+import { CollectionShowcase } from "@/components/organisms/CollectionShowcase";
+import { ReviewsSection } from "@/components/organisms/ReviewsSection";
 import { HowTo } from "@/components/organisms/HowTo";
+import { FaqSection } from "@/components/organisms/FaqSection";
 import { QuoteBand } from "@/components/organisms/QuoteBand";
 
-export const metadata = {
-  title: `Detalles a domicilio en ${brand.city} · ${brand.name}`,
+export const metadata: Metadata = {
+  title: {
+    absolute: `${brand.name} · Detalles y regalos a domicilio en ${brand.city}`,
+  },
   description: `Fresas con chocolate, desayunos sorpresa y boxes de regalo en ${brand.city} y alrededores (Lasso, Pujilí, Salcedo). Pide por WhatsApp con ${brand.name}.`,
   alternates: { canonical: "/" },
 };
 
 const faqs = [
   {
-    q: `¿Hacen entregas en ${brand.city}?`,
-    a: `Sí. Entregamos a domicilio en ${brand.areaServed.slice(0, -1).join(", ")} y alrededores de Cotopaxi.`,
-  },
-  {
-    q: "¿Qué tipo de detalles venden?",
-    a: "Fresas con chocolate, desayunos sorpresa y boxes de regalo para cumpleaños, aniversarios, San Valentín, Día de la madre/padre y más ocasiones.",
+    q: `¿Hacen entregas a domicilio en ${brand.city} y alrededores?`,
+    a: `Sí. Realizamos entregas a domicilio en ${brand.areaServed.slice(0, -1).join(", ")} y sectores cercanos de ${brand.province}. Cotizamos el valor del envío directamente por WhatsApp según la dirección.`,
   },
   {
     q: "¿Cómo hago un pedido?",
-    a: `Elige tus detalles en el catálogo y confirma el pedido por WhatsApp. Coordinamos fecha, entrega y personalización.`,
+    a: "Agrega tus detalles favoritos al carrito desde el catálogo o la página principal y presiona pedir por WhatsApp. Te ayudamos a confirmar disponibilidad, hora de entrega y mensaje personalizado.",
+  },
+  {
+    q: "¿Con cuánta anticipación debo reservar y se puede personalizar?",
+    a: "Recomendamos reservar con 24 a 48 horas de anticipación, especialmente en desayunos sorpresa y fechas especiales. Puedes personalizar la tarjeta, colores y pequeños extras al escribirnos por WhatsApp.",
+  },
+  {
+    q: "¿Cuáles son los métodos de pago?",
+    a: "Trabajamos con transferencia o depósito bancario a Banco Pichincha. Al confirmar tu pedido por WhatsApp te compartimos los datos para apartar tu fecha de entrega.",
+  },
+  {
+    q: "¿Qué tipo de detalles preparan?",
+    a: "Preparamos fresas cubiertas con chocolate, desayunos sorpresa, boxes de regalo y detalles personalizados para cumpleaños, aniversarios, San Valentín, Día de la Madre, Día del Padre y más ocasiones.",
   },
 ];
 
 export default async function HomePage() {
   const [products, occasions] = await Promise.all([getProducts(), getOccasions()]);
-  const bannerProducts = products.filter((p) => p.featuredBanner);
-  // Featured: badged products first, then fill up to 6.
-  const featured = [...products]
-    .sort((a, b) => Number(Boolean(b.badge)) - Number(Boolean(a.badge)))
-    .slice(0, 6);
+  const categories = buildCategoryPreviews(occasions, products);
+
+  const flaggedBanner = products.filter((p) => p.featuredBanner);
+  const bannerProducts =
+    flaggedBanner.length > 0
+      ? flaggedBanner
+      : [...products]
+          .sort(
+            (a, b) =>
+              Number(Boolean(b.badge)) - Number(Boolean(a.badge)) ||
+              Number(Boolean(b.imageUrl)) - Number(Boolean(a.imageUrl)),
+          )
+          .slice(0, 2);
+
+  const favorites = [...products]
+    .sort(
+      (a, b) =>
+        Number(Boolean(b.badge)) - Number(Boolean(a.badge)) ||
+        Number(Boolean(b.imageUrl)) - Number(Boolean(a.imageUrl)),
+    )
+    .slice(0, 8);
+
+  const eligibleCategories = [...categories]
+    .filter((c) => c.count >= 3)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 3);
+
+  const collectionSource =
+    eligibleCategories.length > 0
+      ? eligibleCategories
+      : [...categories]
+          .filter((c) => c.count > 0)
+          .sort((a, b) => b.count - a.count)
+          .slice(0, 3);
+
+  const topCollections = collectionSource.map((category) => ({
+    category,
+    products: products
+      .filter((p) => p.occ.includes(category.id))
+      .sort(
+        (a, b) =>
+          Number(Boolean(b.imageUrl)) - Number(Boolean(a.imageUrl)) ||
+          Number(Boolean(b.badge)) - Number(Boolean(a.badge)),
+      )
+      .slice(0, 4),
+  }));
 
   const localBusiness = {
     "@context": "https://schema.org",
@@ -85,22 +141,17 @@ export default async function HomePage() {
       <JsonLd data={faqSchema} />
       <CursorDust />
       <Hero bannerProducts={bannerProducts} />
-      <CategoryGrid occasions={occasions} />
-      <FeaturedGrid products={featured} />
+      <ProductShelf
+        title="Los favoritos"
+        subtitle="Los detalles más pedidos"
+        viewMoreHref="/catalogo"
+        products={favorites}
+      />
+      <CategoryCarousel categories={categories} />
+      <CollectionShowcase collections={topCollections} />
+      <ReviewsSection />
       <HowTo />
-      <section className="mx-auto max-w-[820px] px-4 py-16 sm:px-5">
-        <h2 className="font-display text-[clamp(26px,4vw,40px)] font-bold text-ink">
-          Preguntas frecuentes
-        </h2>
-        <dl className="mt-6 flex flex-col gap-5">
-          {faqs.map((f) => (
-            <div key={f.q}>
-              <dt className="font-semibold text-ink">{f.q}</dt>
-              <dd className="mt-1 text-[14.5px] leading-relaxed text-ink-soft">{f.a}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
+      <FaqSection faqs={faqs} />
       <QuoteBand />
     </>
   );
