@@ -3,6 +3,15 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { Occasion, ProductTypeMeta } from "@/lib/types";
 import { Chip } from "@/components/atoms/Chip";
+import { cn } from "@/lib/cn";
+
+const SORT_OPTIONS = [
+  { value: "destacados", label: "Destacados" },
+  { value: "precio-asc", label: "Precio: menor a mayor" },
+  { value: "precio-desc", label: "Precio: mayor a menor" },
+  { value: "nombre", label: "Nombre: A – Z" },
+  { value: "nombre-desc", label: "Nombre: Z – A" },
+] as const;
 
 export interface CatalogFiltersProps {
   productTypes: ProductTypeMeta[];
@@ -30,8 +39,28 @@ export function CatalogFilters({
   const urlQ = params.get("q") ?? "";
 
   const [query, setQuery] = useState(urlQ);
+  const [sortOpen, setSortOpen] = useState(false);
   const lastPushedQ = useRef(urlQ);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const sortRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!sortOpen) return;
+    const onPointerDown = (e: MouseEvent) => {
+      if (sortRef.current && !sortRef.current.contains(e.target as Node)) {
+        setSortOpen(false);
+      }
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSortOpen(false);
+    };
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [sortOpen]);
 
   // Sync controlled input on external URL navigation (e.g. Back/Forward or Clear All)
   useEffect(() => {
@@ -240,34 +269,72 @@ export function CatalogFilters({
           )}
         </div>
 
-        {/* Sort select (single SVG chevron only) */}
-        <div className="relative w-full shrink-0 sm:w-auto">
-          <select
-            value={orden}
-            onChange={(e) => handleSortChange(e.target.value)}
-            aria-label="Ordenar productos"
-            className="w-full appearance-none rounded-pill border border-line-strong bg-surface py-2.5 pl-4 pr-10 text-[13.5px] font-medium text-ink outline-none transition hover:border-primary/60 focus:border-primary sm:w-auto"
+        {/* Custom pill sort dropdown (single crisp chevron across all browsers) */}
+        <div ref={sortRef} className="relative w-full shrink-0 sm:w-auto">
+          <button
+            type="button"
+            aria-haspopup="listbox"
+            aria-expanded={sortOpen}
+            onClick={() => setSortOpen((v) => !v)}
+            className="flex w-full items-center justify-between gap-3 rounded-pill border border-line-strong bg-surface py-2.5 pl-4 pr-3.5 text-[13.5px] font-medium text-ink shadow-card transition hover:border-primary/60 focus:border-primary sm:w-auto"
           >
-            <option value="destacados">Ordenar: Destacados</option>
-            <option value="precio-asc">Precio: menor a mayor</option>
-            <option value="precio-desc">Precio: mayor a menor</option>
-            <option value="nombre">Nombre: A – Z</option>
-            <option value="nombre-desc">Nombre: Z – A</option>
-          </select>
-          <svg
-            className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-ink-mute"
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
+            <span>
+              Ordenar por:{" "}
+              <strong className="font-semibold text-rose">
+                {SORT_OPTIONS.find((opt) => opt.value === orden)?.label ?? "Destacados"}
+              </strong>
+            </span>
+            <svg
+              className={cn(
+                "shrink-0 text-ink-mute transition-transform duration-200",
+                sortOpen && "rotate-180",
+              )}
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+
+          {sortOpen && (
+            <div
+              role="listbox"
+              aria-label="Ordenar productos"
+              className="absolute right-0 top-full z-30 mt-2 w-full min-w-[230px] overflow-hidden rounded-card border border-line-strong bg-surface p-1.5 shadow-soft sm:w-auto"
+            >
+              {SORT_OPTIONS.map((opt) => {
+                const selected = orden === opt.value;
+                return (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    role="option"
+                    aria-selected={selected}
+                    onClick={() => {
+                      setSortOpen(false);
+                      handleSortChange(opt.value);
+                    }}
+                    className={cn(
+                      "flex w-full items-center justify-between rounded-[12px] px-3 py-2 text-left text-[13.5px] transition",
+                      selected
+                        ? "bg-blush font-semibold text-berry"
+                        : "text-ink-soft hover:bg-cream hover:text-rose",
+                    )}
+                  >
+                    <span>{opt.label}</span>
+                    {selected && <span aria-hidden="true">✓</span>}
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </section>

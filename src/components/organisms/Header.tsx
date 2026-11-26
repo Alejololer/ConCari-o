@@ -66,7 +66,7 @@ export function Header({ categories = [] }: { categories?: CategoryPreview[] }) 
       ref={headerRef}
       className="sticky top-0 z-40 border-b border-line bg-surface/95 backdrop-blur-md"
     >
-      <div className="mx-auto flex h-[68px] max-w-[1220px] items-center justify-between gap-3 px-4 sm:px-5">
+      <div className="mx-auto flex h-[64px] max-w-[1220px] items-center justify-between gap-2 px-3.5 sm:h-[68px] sm:gap-3 sm:px-5">
         {/* Brand */}
         <Link href="/" aria-label={brand.name} className="shrink-0">
           <Logo size={40} subtitle />
@@ -119,6 +119,7 @@ export function Header({ categories = [] }: { categories?: CategoryPreview[] }) 
                             alt={cat.label}
                             fill
                             sizes="40px"
+                            loading="eager"
                             className="object-cover"
                           />
                         ) : (
@@ -211,7 +212,7 @@ export function Header({ categories = [] }: { categories?: CategoryPreview[] }) 
         </nav>
 
         {/* Right actions: Search + Cart Pill + Mobile Menu */}
-        <div className="flex items-center gap-2 sm:gap-2.5">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2.5">
           {/* Desktop inline search */}
           <form onSubmit={handleSearchSubmit} className="relative hidden lg:block">
             <SearchIcon className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-mute" />
@@ -233,7 +234,7 @@ export function Header({ categories = [] }: { categories?: CategoryPreview[] }) 
               setMenuOpen(false);
             }}
             aria-label="Buscar en la tienda"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-line-strong bg-surface text-ink-soft transition hover:border-primary hover:text-rose lg:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-line-strong bg-surface text-ink-soft transition hover:border-primary hover:text-rose sm:h-10 sm:w-10 lg:hidden"
           >
             <SearchIcon />
           </button>
@@ -243,7 +244,7 @@ export function Header({ categories = [] }: { categories?: CategoryPreview[] }) 
             type="button"
             onClick={open}
             aria-label={`Abrir carrito (${count} ${count === 1 ? "producto" : "productos"})`}
-            className="flex h-10 items-center gap-2 rounded-pill bg-primary px-3.5 text-[14px] font-semibold text-white shadow-card transition hover:brightness-105 active:scale-95 sm:px-4"
+            className="flex h-9 items-center gap-1.5 rounded-pill bg-primary px-3 text-[13.5px] font-semibold text-white shadow-card transition hover:brightness-105 active:scale-95 sm:h-10 sm:gap-2 sm:px-4 sm:text-[14px]"
           >
             <svg
               width="17"
@@ -271,7 +272,7 @@ export function Header({ categories = [] }: { categories?: CategoryPreview[] }) 
               setMobileSearchOpen(false);
             }}
             aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-            className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-full border border-line-strong bg-surface md:hidden"
+            className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] rounded-full border border-line-strong bg-surface sm:h-10 sm:w-10 md:hidden"
           >
             <span
               className={cn(
@@ -368,6 +369,7 @@ export function Header({ categories = [] }: { categories?: CategoryPreview[] }) 
                               alt={cat.label}
                               fill
                               sizes="32px"
+                              loading="eager"
                               className="object-cover"
                             />
                           ) : (
