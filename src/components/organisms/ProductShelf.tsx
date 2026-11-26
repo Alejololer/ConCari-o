@@ -87,12 +87,12 @@ export function ProductShelf({
           ref={scrollerRef}
           className="no-scrollbar -my-2 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth py-2"
         >
-          {products.map((product) => (
+          {products.map((product, idx) => (
             <div
               key={product.id}
               className="w-[calc((100%-2rem)/3)] shrink-0 snap-start lg:w-[calc((100%-3rem)/4)]"
             >
-              <ProductCard product={product} className="h-full" />
+              <ProductCard product={product} priority={idx < 4} className="h-full" />
             </div>
           ))}
         </div>
@@ -113,8 +113,8 @@ export function ProductShelf({
 
       {/* Mobile crisp 2-column grid */}
       <div className="grid grid-cols-2 gap-3 md:hidden">
-        {products.slice(0, 4).map((product) => (
-          <ProductCard key={product.id} product={product} compact />
+        {products.slice(0, 4).map((product, idx) => (
+          <ProductCard key={product.id} product={product} compact priority={idx < 2} />
         ))}
       </div>
     </section>

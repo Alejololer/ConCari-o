@@ -16,10 +16,12 @@ import { cn } from "@/lib/cn";
 export function ProductCard({
   product,
   compact = false,
+  priority = false,
   className,
 }: {
   product: Product;
   compact?: boolean;
+  priority?: boolean;
   className?: string;
 }) {
   const { add } = useCart();
@@ -98,6 +100,7 @@ export function ProductCard({
             src={product.imageUrl}
             alt={product.name}
             fit="cover"
+            priority={priority}
             sizes={
               compact
                 ? "(max-width: 640px) 50vw, 25vw"

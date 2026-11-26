@@ -39,6 +39,8 @@ export default async function CatalogPage({
   ]);
 
   const categories = buildCategoryPreviews(occasions, all);
+  const nonEmptyOccasions = categories.filter((c) => c.count > 0 || c.id === ocasion);
+  const filterOccasions = nonEmptyOccasions.length > 0 ? nonEmptyOccasions : occasions;
   const activeCategory = ocasion
     ? categories.find((c) => c.id === ocasion)
     : undefined;
@@ -183,7 +185,7 @@ export default async function CatalogPage({
       <Suspense>
         <CatalogFilters
           productTypes={productTypes}
-          occasions={occasions}
+          occasions={filterOccasions}
           totalCount={totalCount}
           showingFrom={showingFrom}
           showingTo={showingTo}
@@ -208,8 +210,8 @@ export default async function CatalogPage({
         </div>
       ) : (
         <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
-          {paginated.map((p) => (
-            <ProductCard key={p.id} product={p} />
+          {paginated.map((p, idx) => (
+            <ProductCard key={p.id} product={p} priority={idx < 4} />
           ))}
         </div>
       )}

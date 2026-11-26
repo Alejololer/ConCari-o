@@ -10,6 +10,9 @@ export function CategoryCarousel({ categories }: { categories: CategoryPreview[]
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
 
+  const nonEmpty = categories.filter((c) => c.count > 0);
+  const items = nonEmpty.length > 0 ? nonEmpty : categories;
+
   const updateScrollState = useCallback(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -27,7 +30,7 @@ export function CategoryCarousel({ categories }: { categories: CategoryPreview[]
       el.removeEventListener("scroll", updateScrollState);
       window.removeEventListener("resize", updateScrollState);
     };
-  }, [categories.length, updateScrollState]);
+  }, [items.length, updateScrollState]);
 
   function scrollByDir(dir: -1 | 1) {
     const el = scrollerRef.current;
@@ -35,7 +38,7 @@ export function CategoryCarousel({ categories }: { categories: CategoryPreview[]
     el.scrollBy({ left: dir * 320, behavior: "smooth" });
   }
 
-  if (categories.length === 0) return null;
+  if (items.length === 0) return null;
 
   return (
     <section id="ocasiones" className="scroll-mt-24 mx-auto max-w-[1220px] px-4 py-6 sm:px-5 sm:py-8">
@@ -67,7 +70,7 @@ export function CategoryCarousel({ categories }: { categories: CategoryPreview[]
           ref={scrollerRef}
           className="no-scrollbar flex gap-4 overflow-x-auto scroll-smooth px-1 pt-1.5 pb-2 sm:gap-6"
         >
-          {categories.map((category) => (
+          {items.map((category) => (
             <CategoryCircle key={category.id} category={category} />
           ))}
         </div>
